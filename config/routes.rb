@@ -1,4 +1,6 @@
 Discovery::Application.routes.draw do
+  resources :bands
+
   devise_for :users
 
   # The priority is based upon order of creation:

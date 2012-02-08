@@ -1,0 +1,42 @@
+%p#notice= notice
+
+%p
+  %b Title:
+  = @album.title
+%p
+  %b Release date:
+  = @album.release_date
+%p
+  %b Downloadable:
+  = @album.downloadable
+%p
+  %b Url:
+  = @album.url
+%p
+  %b About:
+  = @album.about
+%p
+  %b Credits:
+  = @album.credits
+%p
+  %b Small art url:
+  = @album.small_art_url
+%p
+  %b Large art url:
+  = @album.large_art_url
+%p
+  %b Artist:
+  = @album.artist
+%p
+  %b Band:
+  = @album.band_id
+%p
+  %b E:
+  = @album.e_id
+%p
+  %b E band:
+  = @album.e_band_id
+
+= link_to 'Edit', edit_album_path(@album)
+\|
+= link_to 'Back', albums_path

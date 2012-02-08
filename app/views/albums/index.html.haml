@@ -1,0 +1,41 @@
+%h1 Listing albums
+
+%table
+  %tr
+    %th Title
+    %th Release date
+    %th Downloadable
+    %th Url
+    %th About
+    %th Credits
+    %th Small art url
+    %th Large art url
+    %th Artist
+    %th Band
+    %th E
+    %th E band
+    %th
+    %th
+    %th
+
+  - @albums.each do |album|
+    %tr
+      %td= album.title
+      %td= album.release_date
+      %td= album.downloadable
+      %td= album.url
+      %td= album.about
+      %td= album.credits
+      %td= album.small_art_url
+      %td= album.large_art_url
+      %td= album.artist
+      %td= album.band_id
+      %td= album.e_id
+      %td= album.e_band_id
+      %td= link_to 'Show', album
+      %td= link_to 'Edit', edit_album_path(album)
+      %td= link_to 'Destroy', album, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Album', new_album_path

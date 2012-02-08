@@ -1,0 +1,57 @@
+%p#notice= notice
+
+%p
+  %b Title:
+  = @track.title
+%p
+  %b Number:
+  = @track.number
+%p
+  %b Duration:
+  = @track.duration
+%p
+  %b Release date:
+  = @track.release_date
+%p
+  %b Downloadable:
+  = @track.downloadable
+%p
+  %b Url:
+  = @track.url
+%p
+  %b Streaming url:
+  = @track.streaming_url
+%p
+  %b Lyrics:
+  = @track.lyrics
+%p
+  %b About:
+  = @track.about
+%p
+  %b Credits:
+  = @track.credits
+%p
+  %b Small art url:
+  = @track.small_art_url
+%p
+  %b Large art url:
+  = @track.large_art_url
+%p
+  %b Artist:
+  = @track.artist
+%p
+  %b Album:
+  = @track.album_id
+%p
+  %b E:
+  = @track.e_id
+%p
+  %b E album:
+  = @track.e_album_id
+%p
+  %b E band:
+  = @track.e_band_id
+
+= link_to 'Edit', edit_track_path(@track)
+\|
+= link_to 'Back', tracks_path

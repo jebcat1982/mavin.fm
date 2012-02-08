@@ -1,0 +1,51 @@
+%h1 Listing tracks
+
+%table
+  %tr
+    %th Title
+    %th Number
+    %th Duration
+    %th Release date
+    %th Downloadable
+    %th Url
+    %th Streaming url
+    %th Lyrics
+    %th About
+    %th Credits
+    %th Small art url
+    %th Large art url
+    %th Artist
+    %th Album
+    %th E
+    %th E album
+    %th E band
+    %th
+    %th
+    %th
+
+  - @tracks.each do |track|
+    %tr
+      %td= track.title
+      %td= track.number
+      %td= track.duration
+      %td= track.release_date
+      %td= track.downloadable
+      %td= track.url
+      %td= track.streaming_url
+      %td= track.lyrics
+      %td= track.about
+      %td= track.credits
+      %td= track.small_art_url
+      %td= track.large_art_url
+      %td= track.artist
+      %td= track.album_id
+      %td= track.e_id
+      %td= track.e_album_id
+      %td= track.e_band_id
+      %td= link_to 'Show', track
+      %td= link_to 'Edit', edit_track_path(track)
+      %td= link_to 'Destroy', track, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Track', new_track_path

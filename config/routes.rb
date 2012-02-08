@@ -1,4 +1,6 @@
 Discovery::Application.routes.draw do
+  resources :tracks
+
   resources :tags
 
   resources :albums

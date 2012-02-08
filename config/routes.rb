@@ -1,4 +1,6 @@
 Discovery::Application.routes.draw do
+  resources :playlists
+
   resources :tracks
 
   resources :tags

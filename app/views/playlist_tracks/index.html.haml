@@ -1,0 +1,21 @@
+%h1 Listing playlist_tracks
+
+%table
+  %tr
+    %th Playlist
+    %th Track
+    %th
+    %th
+    %th
+
+  - @playlist_tracks.each do |playlist_track|
+    %tr
+      %td= playlist_track.playlist_id
+      %td= playlist_track.track_id
+      %td= link_to 'Show', playlist_track
+      %td= link_to 'Edit', edit_playlist_track_path(playlist_track)
+      %td= link_to 'Destroy', playlist_track, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Playlist track', new_playlist_track_path

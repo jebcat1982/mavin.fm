@@ -1,0 +1,10 @@
+!!!
+%html
+  %head
+    %title Discovery
+    = stylesheet_link_tag     "reset-min", "bootstrap.min", "application"
+    = javascript_include_tag  "backbone-min", "underscore-min", "application"
+    = csrf_meta_tags
+
+  %body
+    = yield

@@ -1,4 +1,6 @@
 Discovery::Application.routes.draw do
+  get "listen/index"
+
   resources :playlist_tracks
 
   resources :playlists
@@ -12,6 +14,8 @@ Discovery::Application.routes.draw do
   resources :bands
 
   devise_for :users
+
+  root :to => "listen#index"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -42,5 +42,9 @@
   .field
     = f.label :e_band_id
     = f.number_field :e_band_id
+  .field
+    = fields_for :tags do |tags|
+      = tags.label :tags
+      = tags.text_field :name
   .actions
     = f.submit 'Save'

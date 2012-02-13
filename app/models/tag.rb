@@ -1,3 +1,4 @@
 class Tag < ActiveRecord::Base
-  belongs_to :album
+  has_many :taggings
+  has_many :albums, :through => :taggings
 end

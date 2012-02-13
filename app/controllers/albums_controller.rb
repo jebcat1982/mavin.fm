@@ -42,7 +42,11 @@ class AlbumsController < ApplicationController
   # POST /albums.json
   def create
     @album = Album.new(params[:album])
-    @album.tags.build(params[:tags])
+    
+    params[:tags][:name].split(' ').map do |name| 
+      tag = Tag.find_or_create_by_name(name.chomp)
+      @album.taggings.build(:tag_id => tag.id)
+    end
 
     respond_to do |format|
       if @album.save

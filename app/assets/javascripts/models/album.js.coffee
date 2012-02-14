@@ -1,1 +1,1 @@
-window.Album = Backbone.Model.extend {}
+App.Models.Album = Backbone.Model.extend {}

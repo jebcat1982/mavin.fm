@@ -37,18 +37,18 @@ class Album < ActiveRecord::Base
     band_module()
     album_module()
 
-    self.title         = album_json["title"]
-    self.release_date  = album_json["release_date"]
-    self.downloadable  = album_json["downloadable"]
-    self.url           = album_json["url"]
-    self.about         = album_json["about"]
-    self.credits       = album_json["credits"]
-    self.small_art_url = album_json["small_art_url"]
-    self.large_art_url = album_json["large_art_url"]
-    self.artist        = album_json["artist"]
-    self.band_id       = band.id
-    self.e_id          = album_json["album_id"]
-    self.e_band_id     = album_json["band_id"]
+    self.title         = @album["title"]
+    self.release_date  = @album["release_date"]
+    self.downloadable  = @album["downloadable"]
+    self.url           = @album["url"]
+    self.about         = @album["about"]
+    self.credits       = @album["credits"]
+    self.small_art_url = @album["small_art_url"]
+    self.large_art_url = @album["large_art_url"]
+    self.artist        = @album["artist"]
+    self.band_id       = @band.id
+    self.e_id          = @album["album_id"]
+    self.e_band_id     = @album["band_id"]
 
     album_json["tracks"].each do |t|
       #track = JSON.parse(t)

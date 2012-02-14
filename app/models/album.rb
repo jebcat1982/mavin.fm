@@ -14,20 +14,19 @@ class Album < ActiveRecord::Base
   end
 
   def band_module
+    @band = Band.find_or_create_by_e_id(@info["band_id"])
+    uri = URI.parse("http://api.bandcamp.com/api/band/3/info?key=#{APIKeys::BANDCAMP}&band_id=#{band.e_id}")
+    response = Net::HTTP.get(uri)
+    band = JSON.parse(response)
+
+    @band.offsite_url  = band["offsite_url"]
+    @band.url          = band["url"]
+    @band.subdomin     = band["subdomain"]
+    @band.name         = band["name"]
+    @band.save
   end
 
   def get_everything
-    band = Band.find_or_create_by_e_id(@info["band_id"])
-    band_uri = URI.parse("http://api.bandcamp.com/api/band/3/info?key=#{APIKeys::BANDCAMP}&band_id=#{band.e_id}")
-    band_response = Net::HTTP.get(band_uri)
-    band_json = JSON.parse(band_response)
-
-    band.offsite_url  = band_json["offsite_url"]
-    band.url          = band_json["url"]
-    band.subdomin     = band_json["subdomain"]
-    band.name         = band_json["name"]
-    band.save
-
     album_uri = URI.parse("http://api.bandcamp.com/api/album/2/info?key=#{APIKeys::BANDCAMP}&album_id=#{url_json["album_id"]}")
     album_response = Net::HTTP.get(album_uri)
     album_json = JSON.parse(album_response)

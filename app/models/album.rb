@@ -10,16 +10,14 @@ class Album < ActiveRecord::Base
   def url_module
     uri = URI.parse("http://http://api.bandcamp.com/api/url/1/info?key=#{APIKeys::BANDCAMP}&url=#{self.url}")
     response = Net::HTTP.get(uri)
-    parsed = JSON.parse(response)
+    @info = JSON.parse(response)
   end
 
   def band_module
   end
 
   def get_everything
-    url_info = url_module()
-
-    band = Band.find_or_create_by_e_id(url_json["band_id"])
+    band = Band.find_or_create_by_e_id(@info["band_id"])
     band_uri = URI.parse("http://api.bandcamp.com/api/band/3/info?key=#{APIKeys::BANDCAMP}&band_id=#{band.e_id}")
     band_response = Net::HTTP.get(band_uri)
     band_json = JSON.parse(band_response)

@@ -61,7 +61,7 @@ class Album < ActiveRecord::Base
     self.e_id          = @album["album_id"]
     self.e_band_id     = @album["band_id"]
 
-    album_json["tracks"].each do |t|
+    @album["tracks"].each do |t|
       #track = JSON.parse(t)
       self.tracks.build(
         :title         => track["title"],

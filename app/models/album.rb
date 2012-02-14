@@ -65,8 +65,7 @@ class Album < ActiveRecord::Base
   end
 
   def build_tracks
-    @album["tracks"].each do |t|
-      #track = JSON.parse(t)
+    @album["tracks"].each do |track|
       self.tracks.build(
         :title         => track["title"],
         :number        => track["number"],

@@ -25,4 +25,8 @@ App = {
   }
 };
 
+//= ./models
+//= ./collections
+//= ./views
+//= ./routers
 //= require_tree .

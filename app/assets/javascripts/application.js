@@ -14,4 +14,15 @@
 //= require jquery_ujs
 //= require underscore-min
 //= require backbone-min
+
+App = {
+  Models: {},
+  Collections: {},
+  Views: {},
+  Routers: {},
+  init: function() {
+    
+  }
+};
+
 //= require_tree .

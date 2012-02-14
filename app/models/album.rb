@@ -13,6 +13,9 @@ class Album < ActiveRecord::Base
     parsed = JSON.parse(response)
   end
 
+  def band_module
+  end
+
   def get_everything
     url_info = url_module()
 

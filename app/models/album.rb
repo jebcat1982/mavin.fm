@@ -33,6 +33,9 @@ class Album < ActiveRecord::Base
   end
 
   def get_everything
+    url_module()
+    band_module()
+    album_module()
 
     self.title         = album_json["title"]
     self.release_date  = album_json["release_date"]

@@ -1,6 +1,6 @@
-App.Views.AlbumView = Backbone.View.Extend
+App.Views.AlbumView = Backbone.View.extend
   initialize: () ->
 
   render: () ->
-    this.$el.html(JST['albums/view']({ model: this.model }))
+    this.$el.html(JST['albums/new']({ model: this.model }))
     return this

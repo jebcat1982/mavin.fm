@@ -7,12 +7,19 @@ class Album < ActiveRecord::Base
   before_save :get_everything
 
   private
+  # These are methods for calling several different Bandcamp API modules in order to retrieve all of
+  # the information on a band and album. Bandcamp API docs are located at http://bandcamp.com/developer
+
+  # Makes a request to the URL module. This module will take a Bandcamp URL and resolve it to a 
+  # Bandcamp band_id and a Bandcamp album_id
   def url_module
     uri = URI.parse("http://http://api.bandcamp.com/api/url/1/info?key=#{APIKeys::BANDCAMP}&url=#{self.url}")
     response = Net::HTTP.get(uri)
     @info = JSON.parse(response)
   end
 
+  # Takes the Bandcamp band_id from the url_module and makes a request to the band module. This retrieves
+  # all of the band information from Bandcamp such as name, offsite_url, etc.
   def band_module
     @band = Band.find_or_create_by_e_id(@info["band_id"])
     uri = URI.parse("http://api.bandcamp.com/api/band/3/info?key=#{APIKeys::BANDCAMP}&band_id=#{band.e_id}")
@@ -26,12 +33,16 @@ class Album < ActiveRecord::Base
     @band.save
   end
 
+  # Takes the album_id from the url_module and makes a request to the album module. This retrieves
+  # all of the album information such as the artwork, free or not, and all of the album's tracks.
   def album_module
     uri = URI.parse("http://api.bandcamp.com/api/album/2/info?key=#{APIKeys::BANDCAMP}&album_id=#{@info["album_id"]}")
     response = Net::HTTP.get(album_uri)
     @album = JSON.parse(album_response)
   end
 
+  # Calls each module method and stores the information to the model before saving. Also builds all
+  # of the tracks into the album model before saving.
   def get_everything
     url_module()
     band_module()

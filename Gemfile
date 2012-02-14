@@ -9,6 +9,7 @@ gem 'haml'
 gem 'haml-rails'
 gem 'jquery-rails'
 gem 'json'
+gem 'pry-rails'
 gem 'therubyracer'
 
 group :assets do

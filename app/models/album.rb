@@ -22,7 +22,7 @@ class Album < ActiveRecord::Base
   # all of the band information from Bandcamp such as name, offsite_url, etc.
   def band_module
     @band = Band.find_or_create_by_e_id(@info["band_id"])
-    uri = URI.parse("http://api.bandcamp.com/api/band/3/info?key=#{APIKeys::BANDCAMP}&band_id=#{band.e_id}")
+    uri = URI.parse("http://api.bandcamp.com/api/band/3/info?key=#{APIKeys::BANDCAMP}&band_id=#{@band.e_id}")
     response = Net::HTTP.get(uri)
     band = JSON.parse(response)
 

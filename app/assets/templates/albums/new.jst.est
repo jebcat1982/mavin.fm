@@ -1,0 +1,7 @@
+<form>
+  <label>Album link</label>
+  <input type="text"></input>
+  
+  <label>Tags</label>
+  <input type="text"></input>
+</form>

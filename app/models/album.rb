@@ -26,10 +26,13 @@ class Album < ActiveRecord::Base
     @band.save
   end
 
+  def album_module
+    uri = URI.parse("http://api.bandcamp.com/api/album/2/info?key=#{APIKeys::BANDCAMP}&album_id=#{@info["album_id"]}")
+    response = Net::HTTP.get(album_uri)
+    @album = JSON.parse(album_response)
+  end
+
   def get_everything
-    album_uri = URI.parse("http://api.bandcamp.com/api/album/2/info?key=#{APIKeys::BANDCAMP}&album_id=#{url_json["album_id"]}")
-    album_response = Net::HTTP.get(album_uri)
-    album_json = JSON.parse(album_response)
 
     self.title         = album_json["title"]
     self.release_date  = album_json["release_date"]

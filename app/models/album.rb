@@ -13,7 +13,7 @@ class Album < ActiveRecord::Base
   # Makes a request to the URL module. This module will take a Bandcamp URL and resolve it to a 
   # Bandcamp band_id and a Bandcamp album_id
   def url_module
-    uri = URI.parse("http://http://api.bandcamp.com/api/url/1/info?key=#{APIKeys::BANDCAMP}&url=#{self.url}")
+    uri = URI.parse("http://api.bandcamp.com/api/url/1/info?key=#{APIKeys::BANDCAMP}&url=#{self.url}")
     response = Net::HTTP.get(uri)
     @info = JSON.parse(response)
   end

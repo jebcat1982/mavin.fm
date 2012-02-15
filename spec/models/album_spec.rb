@@ -1,5 +1,11 @@
 require 'spec_helper'
 
 describe Album do
-  pending "add some examples to (or delete) #{__FILE__}"
+  use_vcr_cassette
+  
+  it "creates an album" do
+    album = Factory.build(:album)
+    album.save
+    album.should exist
+  end
 end

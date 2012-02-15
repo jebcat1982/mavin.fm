@@ -6,7 +6,6 @@ class Album < ActiveRecord::Base
 
   before_save :get_everything
 
-  private
   # These are methods for calling several different Bandcamp API modules in order to retrieve all of
   # the information on a band and album. Bandcamp API docs are located at http://bandcamp.com/developer
 

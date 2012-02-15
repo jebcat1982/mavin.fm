@@ -11,6 +11,7 @@ gem 'jquery-rails'
 gem 'json'
 gem 'pry-rails'
 gem 'therubyracer'
+gem 'webmock'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

@@ -167,7 +167,7 @@ GEM
     uglifier (1.2.3)
       execjs (>= 0.3.0)
       multi_json (>= 1.0.2)
-    vcr (1.11.3)
+    vcr (2.0.0.rc1)
     warden (1.1.0)
       rack (>= 1.0)
     xpath (0.1.4)
@@ -194,4 +194,4 @@ DEPENDENCIES
   therubyracer
   turn
   uglifier (>= 1.0.3)
-  vcr
+  vcr (~> 2.0.0.rc1)

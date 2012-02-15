@@ -24,5 +24,5 @@ group :test do
   gem 'capybara'
   gem 'turn', :require => false
   gem 'guard-rspec'
-  gem 'vcr'
+  gem 'vcr', '~> 2.0.0.rc1'
 end

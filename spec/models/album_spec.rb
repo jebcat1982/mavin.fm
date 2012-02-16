@@ -10,10 +10,4 @@ describe Album do
       info["band_id"].should == 2153716647
     end
   end
-
-  it "creates an album" do
-    album = Factory.build(:album)
-    album.save
-    album.should exist
-  end
 end

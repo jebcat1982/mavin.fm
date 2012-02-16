@@ -11,7 +11,6 @@ gem 'jquery-rails'
 gem 'json'
 gem 'pry-rails'
 gem 'therubyracer'
-gem 'webmock'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
@@ -26,4 +25,5 @@ group :test do
   gem 'turn', :require => false
   gem 'guard-rspec'
   gem 'vcr', '~> 2.0.0.rc1'
+  gem 'webmock'
 end

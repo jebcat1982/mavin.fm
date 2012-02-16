@@ -37,5 +37,13 @@ describe Album do
       json = album.album_module
       json["title"].should == "New Moods"
     end
+
+    it "should get all of the album tracks from the album module" do
+      album = Factory.build(:album, url: 'http://featurelessghost.bandcamp.com/album/new-moods')
+      album.url_module
+      album.band_module
+      json = album.album_module   
+      json["tracks"].size.should == 8
+    end
   end
 end

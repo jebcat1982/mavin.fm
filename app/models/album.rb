@@ -30,6 +30,9 @@ class Album < ActiveRecord::Base
     @band.subdomain    = band["subdomain"]
     @band.name         = band["name"]
     @band.save
+
+    # Return the parsed JSON for the rspec test
+    band
   end
 
   # Takes the album_id from the url_module and makes a request to the album module. This retrieves

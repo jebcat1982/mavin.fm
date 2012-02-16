@@ -15,5 +15,12 @@ describe Album do
       info = album.url_module
       info["album_id"].should == 3152700495
     end
+
+    it "should retrieve a name from the band module" do
+      album = Factory.build(:album, url: 'http://featurelessghost.bandcamp.com/album/new-moods')
+      info = album.url_module
+      band = album.band_module
+      band["name"].should == "Featureless Ghost"
+    end
   end
 end

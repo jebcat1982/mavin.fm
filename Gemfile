@@ -9,6 +9,7 @@ gem 'haml'
 gem 'haml-rails'
 gem 'jquery-rails'
 gem 'json'
+gem 'pry-rails'
 gem 'therubyracer'
 
 group :assets do
@@ -23,4 +24,6 @@ group :test do
   gem 'capybara'
   gem 'turn', :require => false
   gem 'guard-rspec'
+  gem 'vcr', '~> 2.0.0.rc1'
+  gem 'webmock'
 end

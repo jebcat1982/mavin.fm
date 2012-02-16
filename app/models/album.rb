@@ -27,7 +27,7 @@ class Album < ActiveRecord::Base
 
     @band.offsite_url  = band["offsite_url"]
     @band.url          = band["url"]
-    @band.subdomin     = band["subdomain"]
+    @band.subdomain    = band["subdomain"]
     @band.name         = band["name"]
     @band.save
   end

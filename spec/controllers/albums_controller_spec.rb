@@ -25,7 +25,9 @@ describe AlbumsController do
   # Album. As you add validations to Album, be sure to
   # update the return value of this method accordingly.
   def valid_attributes
-    {}
+    {
+      :url => 'http://featurelessghost.bandcamp.com/album/new-moods'
+    }
   end
   
   # This should return the minimal set of values that should be in the session

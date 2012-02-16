@@ -4,7 +4,7 @@ class Album < ActiveRecord::Base
   has_many :taggings
   has_many :tags, :through => :taggings
 
-  before_save :get_everything
+  before_create :get_everything
 
   # These are methods for calling several different Bandcamp API modules in order to retrieve all of
   # the information on a band and album. Bandcamp API docs are located at http://bandcamp.com/developer

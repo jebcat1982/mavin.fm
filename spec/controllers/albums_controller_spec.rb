@@ -19,6 +19,7 @@ require 'spec_helper'
 # that an instance is receiving a specific message.
 
 describe AlbumsController do
+  use_vcr_cassette
 
   # This should return the minimal set of attributes required to create a valid
   # Album. As you add validations to Album, be sure to

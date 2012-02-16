@@ -22,5 +22,12 @@ describe Album do
       band = album.band_module
       band["name"].should == "Featureless Ghost"
     end
+
+    it "should retrieve a subdomain from the band module" do
+      album = Factory.build(:album, url: 'http://featurelessghost.bandcamp.com/album/new-moods')
+      info = album.url_module
+      band = album.band_module
+      band["subdomain"].should == "featurelessghost"
+    end
   end
 end

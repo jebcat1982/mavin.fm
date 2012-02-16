@@ -43,9 +43,11 @@ class AlbumsController < ApplicationController
   def create
     @album = Album.new(params[:album])
     
-    params[:tags][:name].split(' ').map do |name| 
-      tag = Tag.find_or_create_by_name(name.chomp)
-      @album.taggings.build(:tag_id => tag.id)
+    if params[:tags] && params[:tags][:name]
+      params[:tags][:name].split(' ').map do |name| 
+        tag = Tag.find_or_create_by_name(name.chomp)
+        @album.taggings.build(:tag_id => tag.id)
+      end
     end
 
     respond_to do |format|

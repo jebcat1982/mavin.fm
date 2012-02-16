@@ -46,4 +46,11 @@ describe Album do
       json["tracks"].size.should == 8
     end
   end
+
+  describe "validations" do
+    it "should make sure there's a url" do
+      album = Factory.build(:album, url: nil)
+      album.should_not be_valid
+    end
+  end
 end

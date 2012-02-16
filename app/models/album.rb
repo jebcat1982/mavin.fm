@@ -36,8 +36,8 @@ class Album < ActiveRecord::Base
   # all of the album information such as the artwork, free or not, and all of the album's tracks.
   def album_module
     uri = URI.parse("http://api.bandcamp.com/api/album/2/info?key=#{APIKeys::BANDCAMP}&album_id=#{@info["album_id"]}")
-    response = Net::HTTP.get(album_uri)
-    @album = JSON.parse(album_response)
+    response = Net::HTTP.get(uri)
+    @album = JSON.parse(response)
   end
 
   # Calls each module method and stores the information to the model before saving. Also builds all

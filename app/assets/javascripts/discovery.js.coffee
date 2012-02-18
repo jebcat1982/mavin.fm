@@ -3,7 +3,9 @@ window.Discovery =
   Collections: {}
   Views: {}
   Routers: {}
-  init: -> alert 'Hello from Backbone!'
+  init: ->
+    new Discovery.Routers.Songs()
+    Backbone.history.start()
 
 $(document).ready ->
   Discovery.init()

@@ -15,7 +15,9 @@ class Discovery.Views.PlaylistsIndex extends Backbone.View
     e.preventDefault()
     attributes = search_term: $('#new_playlist_search_term').val()
     this.collection.create attributes
+    this.get_first_song()
 
+  get_first_song: ->
     song = new Discovery.Collections.Songs()
     song.fetch()
 

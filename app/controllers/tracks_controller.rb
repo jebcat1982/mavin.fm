@@ -2,11 +2,12 @@ class TracksController < ApplicationController
   # GET /tracks
   # GET /tracks.json
   def index
-    @tracks = Track.all
+    random = rand(Track.count)
+    @track = Track.find(random)
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @tracks }
+      format.json { render json: @track }
     end
   end
 

@@ -26,7 +26,7 @@ class Discovery.Views.PlaylistsIndex extends Backbone.View
       playlist.play_song(c)
 
   play_song: (song) ->
-    view = new Discovery.Views.SongsIndex(collection: song)
-    $('#songs').html(view.render().el)
+    view = new Discovery.Views.Song(model: song.models[0])
+    $('#songs').prepend(view.render().el)
     $('#player')[0].src = song.models[0].get('streaming_url')
     $('#player')[0].play()

@@ -4,7 +4,7 @@ window.Discovery =
   Views: {}
   Routers: {}
   init: ->
-    new Discovery.Routers.Songs()
+    new Discovery.Routers.Playlists()
     Backbone.history.start()
 
 $(document).ready ->

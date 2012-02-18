@@ -4,3 +4,5 @@
 </form>
 
 <div id="songs"></div>
+
+<audio id="player"></audio>

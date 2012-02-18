@@ -18,8 +18,13 @@ class Discovery.Views.PlaylistsIndex extends Backbone.View
     this.get_first_song()
 
   get_first_song: ->
+    playlist = this
     song = new Discovery.Collections.Songs()
-    song.fetch()
+    song.fetch success: (c, r) -> 
+      playlist.start_player(c)
 
+  start_player: (song) ->
     view = new Discovery.Views.SongsIndex(collection: song)
     $('#songs').html(view.render().el)
+    $('#player')[0].src = song.models[0].get('streaming_url')
+    $('#player')[0].play()

@@ -3,6 +3,7 @@ class Discovery.Views.PlaylistsIndex extends Backbone.View
 
   events:
     'submit #new_playlist': 'create_playlist'
+    'click #next_song': 'get_song'
 
   initialize: ->
     this.collection.on('reset', this.render, this)
@@ -15,15 +16,16 @@ class Discovery.Views.PlaylistsIndex extends Backbone.View
     e.preventDefault()
     attributes = search_term: $('#new_playlist_search_term').val()
     this.collection.create attributes
-    this.get_first_song()
+    this.get_song()
 
-  get_first_song: ->
+  get_song: (e) ->
+    e.preventDefault() if e
     playlist = this
     song = new Discovery.Collections.Songs()
     song.fetch success: (c, r) -> 
-      playlist.start_player(c)
+      playlist.play_song(c)
 
-  start_player: (song) ->
+  play_song: (song) ->
     view = new Discovery.Views.SongsIndex(collection: song)
     $('#songs').html(view.render().el)
     $('#player')[0].src = song.models[0].get('streaming_url')

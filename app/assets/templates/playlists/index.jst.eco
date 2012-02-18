@@ -3,6 +3,7 @@
   <input type="submit" value="Create playlist">
 </form>
 
-<div id="songs"></div>
-
 <audio id="player"></audio>
+<a href="#" id="next_song">next</a>
+
+<div id="songs"></div>

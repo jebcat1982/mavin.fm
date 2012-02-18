@@ -2,3 +2,5 @@
   <input type="text" name="tag" id="new_playlist_search_term">
   <input type="submit" value="Create playlist">
 </form>
+
+<div id="songs"></div>

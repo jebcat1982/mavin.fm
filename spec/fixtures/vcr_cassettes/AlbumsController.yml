@@ -17,7 +17,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Thu, 16 Feb 2012 00:59:29 GMT
+      - Sun, 19 Feb 2012 03:55:58 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
@@ -27,10 +27,10 @@ http_interactions:
       Cache-Control:
       - no-cache
       Set-Cookie:
-      - BACKENDID=bender4; path=/; domain=.bandcamp.com
+      - BACKENDID=roberto4; path=/; domain=.bandcamp.com
     body: ! '{"band_id":2153716647,"album_id":3152700495}'
     http_version: 
-  recorded_at: Thu, 16 Feb 2012 00:59:30 GMT
+  recorded_at: Sun, 19 Feb 2012 03:55:58 GMT
 - request:
     method: get
     uri: http://api.bandcamp.com/api/band/3/info?band_id=2153716647&key=vifaurskordadlaussofhlada
@@ -48,7 +48,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Thu, 16 Feb 2012 00:59:29 GMT
+      - Sun, 19 Feb 2012 03:55:58 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
@@ -59,10 +59,10 @@ http_interactions:
       - no-cache
       Set-Cookie:
       - BACKENDID=bender4; path=/; domain=.bandcamp.com
-    body: ! '{"band_id":2153716647,"url":"http:\/\/featurelessghost.bandcamp.com","name":"Featureless
-      Ghost","subdomain":"featurelessghost","offsite_url":"http:\/\/www.featurelessghost.com"}'
+    body: ! '{"subdomain":"featurelessghost","url":"http:\/\/featurelessghost.bandcamp.com","offsite_url":"http:\/\/www.featurelessghost.com","band_id":2153716647,"name":"Featureless
+      Ghost"}'
     http_version: 
-  recorded_at: Thu, 16 Feb 2012 00:59:30 GMT
+  recorded_at: Sun, 19 Feb 2012 03:55:58 GMT
 - request:
     method: get
     uri: http://api.bandcamp.com/api/album/2/info?album_id=3152700495&key=vifaurskordadlaussofhlada
@@ -80,7 +80,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Thu, 16 Feb 2012 00:59:30 GMT
+      - Sun, 19 Feb 2012 03:55:58 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
@@ -90,17 +90,17 @@ http_interactions:
       Cache-Control:
       - no-cache
       Set-Cookie:
-      - BACKENDID=bender4; path=/; domain=.bandcamp.com
-    body: ! '{"band_id":2153716647,"url":"http:\/\/featurelessghost.bandcamp.com\/album\/new-moods?pk=520","album_id":3152700495,"tracks":[{"band_id":2153716647,"url":"\/track\/lost-city?pk=520","album_id":3152700495,"streaming_url":"http:\/\/popplers5.bandcamp.com\/download\/track?enc=mp3-128&fsig=c36455dc58742dbfd05147386f39cdd6&id=1974108541&pk=520&stream=1&ts=1329364800.0","duration":69.1154,"number":1,"title":"Lost
-      City","downloadable":2,"track_id":1974108541},{"band_id":2153716647,"url":"\/track\/scanproof-cyberdream-c?pk=520","album_id":3152700495,"streaming_url":"http:\/\/popplers5.bandcamp.com\/download\/track?enc=mp3-128&fsig=d16cb41d54f7976e65964d6cc7317f87&id=3481473301&pk=520&stream=1&ts=1329364800.0","duration":435.692,"number":2,"title":"Scanproof
-      (CyberDream\u00a9)","downloadable":2,"track_id":3481473301},{"band_id":2153716647,"url":"\/track\/featureless-ghost-virtual-night?pk=520","album_id":3152700495,"streaming_url":"http:\/\/popplers5.bandcamp.com\/download\/track?enc=mp3-128&fsig=b116cd8d3e7539b6cab725a18423f791&id=167605840&pk=520&stream=1&ts=1329364800.0","duration":355.038,"number":3,"title":"Featureless
-      Ghost (Virtual Night)","downloadable":2,"track_id":167605840},{"band_id":2153716647,"url":"\/track\/see-through?pk=520","album_id":3152700495,"streaming_url":"http:\/\/popplers5.bandcamp.com\/download\/track?enc=mp3-128&fsig=a2698b2ce142dcdb102eecc5a2a083ac&id=3224213872&pk=520&stream=1&ts=1329364800.0","duration":378.253,"number":4,"title":"See
-      Through","downloadable":2,"track_id":3224213872},{"band_id":2153716647,"url":"\/track\/get-away?pk=520","album_id":3152700495,"streaming_url":"http:\/\/popplers5.bandcamp.com\/download\/track?enc=mp3-128&fsig=cb4cf801b44e6c95e59cdb8a6e3f217d&id=2192786324&pk=520&stream=1&ts=1329364800.0","duration":261.358,"number":5,"title":"Get
-      Away","downloadable":2,"track_id":2192786324},{"band_id":2153716647,"url":"\/track\/take-it-out-my-machine?pk=520","album_id":3152700495,"streaming_url":"http:\/\/popplers5.bandcamp.com\/download\/track?enc=mp3-128&fsig=c9a8716992e58457c9b54b933014268f&id=2577953762&pk=520&stream=1&ts=1329364800.0","duration":438.577,"number":6,"title":"Take
-      It Out \/ My Machine","downloadable":2,"track_id":2577953762},{"band_id":2153716647,"url":"\/track\/tonite-impossible-dream?pk=520","album_id":3152700495,"streaming_url":"http:\/\/popplers5.bandcamp.com\/download\/track?enc=mp3-128&fsig=9adcac3289d2168cf6c1fffeb55a72d3&id=6842729&pk=520&stream=1&ts=1329364800.0","duration":533.161,"number":7,"title":"Tonite
-      (Impossible Dream)","downloadable":2,"track_id":6842729},{"band_id":2153716647,"url":"\/track\/lost-city-cont?pk=520","album_id":3152700495,"streaming_url":"http:\/\/popplers5.bandcamp.com\/download\/track?enc=mp3-128&fsig=95654c51f3c84676ff3b901f62fb6ac9&id=1236669402&pk=520&stream=1&ts=1329364800.0","duration":155.192,"number":8,"title":"Lost
-      City Cont.","downloadable":2,"track_id":1236669402}],"small_art_url":"http:\/\/f0.bcbits.com\/z\/36\/95\/3695810431-1.jpg","large_art_url":"http:\/\/f0.bcbits.com\/z\/39\/97\/3997313192-1.jpg","title":"New
+      - BACKENDID=panucci4; path=/; domain=.bandcamp.com
+    body: ! '{"band_id":2153716647,"url":"http:\/\/featurelessghost.bandcamp.com\/album\/new-moods?pk=520","album_id":3152700495,"tracks":[{"band_id":2153716647,"url":"\/track\/lost-city?pk=520","album_id":3152700495,"streaming_url":"http:\/\/popplers5.bandcamp.com\/download\/track?enc=mp3-128&fsig=284bc41e27e6f41db34d94fd94fd117e&id=1974108541&pk=520&stream=1&ts=1329624000.0","number":1,"title":"Lost
+      City","duration":69.1154,"downloadable":2,"track_id":1974108541},{"band_id":2153716647,"url":"\/track\/scanproof-cyberdream-c?pk=520","album_id":3152700495,"streaming_url":"http:\/\/popplers5.bandcamp.com\/download\/track?enc=mp3-128&fsig=98eb690daa11359b8809246daa773bc9&id=3481473301&pk=520&stream=1&ts=1329624000.0","number":2,"title":"Scanproof
+      (CyberDream\u00a9)","duration":435.692,"downloadable":2,"track_id":3481473301},{"band_id":2153716647,"url":"\/track\/featureless-ghost-virtual-night?pk=520","album_id":3152700495,"streaming_url":"http:\/\/popplers5.bandcamp.com\/download\/track?enc=mp3-128&fsig=9fd106f08a753a1a674e8bf49ca95394&id=167605840&pk=520&stream=1&ts=1329624000.0","number":3,"title":"Featureless
+      Ghost (Virtual Night)","duration":355.038,"downloadable":2,"track_id":167605840},{"band_id":2153716647,"url":"\/track\/see-through?pk=520","album_id":3152700495,"streaming_url":"http:\/\/popplers5.bandcamp.com\/download\/track?enc=mp3-128&fsig=8c2178cf5a0880b324ceb86881848d6c&id=3224213872&pk=520&stream=1&ts=1329624000.0","number":4,"title":"See
+      Through","duration":378.253,"downloadable":2,"track_id":3224213872},{"band_id":2153716647,"url":"\/track\/get-away?pk=520","album_id":3152700495,"streaming_url":"http:\/\/popplers5.bandcamp.com\/download\/track?enc=mp3-128&fsig=5c7eb6877994e253bf99a8f3cad3c8a9&id=2192786324&pk=520&stream=1&ts=1329624000.0","number":5,"title":"Get
+      Away","duration":261.358,"downloadable":2,"track_id":2192786324},{"band_id":2153716647,"url":"\/track\/take-it-out-my-machine?pk=520","album_id":3152700495,"streaming_url":"http:\/\/popplers5.bandcamp.com\/download\/track?enc=mp3-128&fsig=c412f6c3c9cf8b2ebb16b4afe7a6ef4a&id=2577953762&pk=520&stream=1&ts=1329624000.0","number":6,"title":"Take
+      It Out \/ My Machine","duration":438.577,"downloadable":2,"track_id":2577953762},{"band_id":2153716647,"url":"\/track\/tonite-impossible-dream?pk=520","album_id":3152700495,"streaming_url":"http:\/\/popplers5.bandcamp.com\/download\/track?enc=mp3-128&fsig=c51016de06a43719b9d73a6543726c5d&id=6842729&pk=520&stream=1&ts=1329624000.0","number":7,"title":"Tonite
+      (Impossible Dream)","duration":533.161,"downloadable":2,"track_id":6842729},{"band_id":2153716647,"url":"\/track\/lost-city-cont?pk=520","album_id":3152700495,"streaming_url":"http:\/\/popplers5.bandcamp.com\/download\/track?enc=mp3-128&fsig=38b0051638af956f41bb09547c0d8267&id=1236669402&pk=520&stream=1&ts=1329624000.0","number":8,"title":"Lost
+      City Cont.","duration":155.192,"downloadable":2,"track_id":1236669402}],"small_art_url":"http:\/\/f0.bcbits.com\/z\/36\/95\/3695810431-1.jpg","large_art_url":"http:\/\/f0.bcbits.com\/z\/39\/97\/3997313192-1.jpg","title":"New
       Moods","release_date":1312243200}'
     http_version: 
-  recorded_at: Thu, 16 Feb 2012 00:59:31 GMT
+  recorded_at: Sun, 19 Feb 2012 03:55:58 GMT
 recorded_with: VCR 2.0.0.rc1

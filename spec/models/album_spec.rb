@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Album do
-  use_vcr_cassette
+  use_vcr_cassette "Album", :record => :new_episodes
   
   describe "bandcamp modules" do
     it "should retrieve a band_id from the URL module" do

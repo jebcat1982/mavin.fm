@@ -40,12 +40,15 @@ class PlaylistTracksController < ApplicationController
   # POST /playlist_tracks
   # POST /playlist_tracks.json
   def create
-    @playlist_track = PlaylistTrack.new(params[:playlist_track])
+    @playlist = Playlist.find(params[:playlist_id])
+    random = rand(Track.count)
+    @track = Track.find(random)
+    @playlist.playlist_tracks.build(:track_id => @track)
 
     respond_to do |format|
-      if @playlist_track.save
+      if @playlist.save
         format.html { redirect_to @playlist_track, notice: 'Playlist track was successfully created.' }
-        format.json { render json: @playlist_track, status: :created, location: @playlist_track }
+        format.json { render json: @track, status: :created, location: @track}
       else
         format.html { render action: "new" }
         format.json { render json: @playlist_track.errors, status: :unprocessable_entity }

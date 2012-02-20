@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe "PlaylistTracks" do
-  describe "GET /playlist_tracks" do
+  pending "GET /playlist_tracks" do
     it "works! (now write some real specs)" do
       # Run the generator again with the --webrat flag if you want to use webrat methods/matchers
       get playlist_tracks_path

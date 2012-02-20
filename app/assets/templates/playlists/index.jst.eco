@@ -4,6 +4,8 @@
 </form>
 
 <audio id="player"></audio>
+<a href="#" id="play_song">play</a>
+<a href="#" id="pause_song">pause</a>
 <a href="#" id="next_song">next</a>
 
 <div id="songs"></div>

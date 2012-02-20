@@ -70,20 +70,26 @@ class Album < ActiveRecord::Base
 
   def build_tracks
     @album["tracks"].each do |track|
+      # If the tracks don't have these values take them from the album
+      downloadable  = track["downloadable"]  || self.downloadable
+      small_art_url = track["small_art_url"] || self.small_art_url
+      large_art_url = track["large_art_url"] || self.large_art_url
+      artist        = track["artist"]        || self.artist
+
       self.tracks.build(
         :title         => track["title"],
         :number        => track["number"],
         :duration      => track["duration"],
         :release_date  => track["release_date"],
-        :downloadable  => track["downloadable"],
+        :downloadable  => downloadable,
         :url           => track["url"],
         :streaming_url => track["streaming_url"],
         :lyrics        => track["lyrics"],
         :about         => track["about"],
         :credits       => track["credits"],
-        :small_art_url => track["small_art_url"],
-        :large_art_url => track["large_art_url"],
-        :artist        => track["artist"],
+        :small_art_url => small_art_url,
+        :large_art_url => large_art_url,
+        :artist        => artist,
         :e_id          => track["track_id"],
         :e_album_id    => track["album_id"],
         :e_band_id     => track["band_id"]

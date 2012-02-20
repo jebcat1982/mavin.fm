@@ -2,7 +2,7 @@ class AlbumsController < ApplicationController
   respond_to :json, :except => :create
 
   def show
-    respond_with Album.find(params[:id])
+    respond_with (@album = Album.find(params[:id]))
   end
 
   def new

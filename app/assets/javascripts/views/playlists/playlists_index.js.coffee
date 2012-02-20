@@ -2,10 +2,10 @@ class Discovery.Views.PlaylistsIndex extends Backbone.View
   template: JST['playlists/index']
 
   events:
-    'submit #new_playlist': 'create_playlist'
+    'submit #new_playlist': 'createPlaylist'
     'click #next_song': 'get_song'
-    'click #pause_song': 'pause_song'
-    'click #play_song': 'play_song'
+    'click #pause_song': 'pauseSong'
+    'click #play_song': 'playSong'
 
   initialize: ->
     this.collection.on('reset', this.render, this)
@@ -14,29 +14,29 @@ class Discovery.Views.PlaylistsIndex extends Backbone.View
     $(this.el).html(this.template(playlists: this.collection))
     this
 
-  create_playlist: (e) ->
+  createPlaylist: (e) ->
     e.preventDefault()
     attributes = search_term: $('#new_playlist_search_term').val()
     this.collection.create attributes
-    this.get_song()
+    this.getSong()
 
-  get_song: (e) ->
+  getSong: (e) ->
     e.preventDefault() if e
     playlist = this
     song = new Discovery.Collections.Songs()
     song.fetch success: (c, r) -> 
-      playlist.start_song(c)
+      playlist.startSong(c)
 
-  start_song: (song) ->
+  startSong: (song) ->
     view = new Discovery.Views.Song(model: song.models[0])
     $('#songs').prepend(view.render().el)
     $('#player')[0].src = song.models[0].get('streaming_url')
     $('#player')[0].play()
 
-  pause_song: (e) ->
+  pauseSong: (e) ->
     e.preventDefault()
     $('#player')[0].pause()
 
-  play_song: (e) ->
+  playSong: (e) ->
     e.preventDefault()
     $('#player')[0].play()

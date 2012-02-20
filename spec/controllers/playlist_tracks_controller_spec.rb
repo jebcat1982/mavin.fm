@@ -24,7 +24,9 @@ describe PlaylistTracksController do
   # PlaylistTrack. As you add validations to PlaylistTrack, be sure to
   # update the return value of this method accordingly.
   def valid_attributes
-    {}
+    {
+      :playlist_id => @playlist.id
+    }
   end
   
   # This should return the minimal set of values that should be in the session
@@ -32,6 +34,10 @@ describe PlaylistTracksController do
   # PlaylistTracksController. Be sure to keep this updated too.
   def valid_session
     {}
+  end
+
+  before(:each) do
+    @playlist = Factory.create(:playlist)
   end
 
   describe "GET index" do
@@ -68,14 +74,15 @@ describe PlaylistTracksController do
   describe "POST create" do
     describe "with valid params" do
       it "creates a new PlaylistTrack" do
+        puts valid_attributes
         expect {
           post :create, {:playlist_track => valid_attributes}, valid_session
         }.to change(PlaylistTrack, :count).by(1)
       end
 
-      it "assigns a newly created playlist_track as @playlist_track" do
+      it "assigns a newly created playlist_track as @track" do
         post :create, {:playlist_track => valid_attributes}, valid_session
-        assigns(:playlist_track).should be_a(PlaylistTrack)
+        assigns(:playlist_track).should be_a(Track)
         assigns(:playlist_track).should be_persisted
       end
 

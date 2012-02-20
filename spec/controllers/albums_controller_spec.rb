@@ -37,14 +37,6 @@ describe AlbumsController do
     {}
   end
 
-  describe "GET index" do
-    it "assigns all albums as @albums" do
-      album = Album.create! valid_attributes
-      get :index, {}, valid_session
-      assigns(:albums).should eq([album])
-    end
-  end
-
   describe "GET show" do
     it "assigns the requested album as @album" do
       album = Album.create! valid_attributes
@@ -57,14 +49,6 @@ describe AlbumsController do
     it "assigns a new album as @album" do
       get :new, {}, valid_session
       assigns(:album).should be_a_new(Album)
-    end
-  end
-
-  describe "GET edit" do
-    it "assigns the requested album as @album" do
-      album = Album.create! valid_attributes
-      get :edit, {:id => album.to_param}, valid_session
-      assigns(:album).should eq(album)
     end
   end
 
@@ -104,64 +88,4 @@ describe AlbumsController do
       end
     end
   end
-
-  describe "PUT update" do
-    describe "with valid params" do
-      it "updates the requested album" do
-        album = Album.create! valid_attributes
-        # Assuming there are no other albums in the database, this
-        # specifies that the Album created on the previous line
-        # receives the :update_attributes message with whatever params are
-        # submitted in the request.
-        Album.any_instance.should_receive(:update_attributes).with({'these' => 'params'})
-        put :update, {:id => album.to_param, :album => {'these' => 'params'}}, valid_session
-      end
-
-      it "assigns the requested album as @album" do
-        album = Album.create! valid_attributes
-        put :update, {:id => album.to_param, :album => valid_attributes}, valid_session
-        assigns(:album).should eq(album)
-      end
-
-      it "redirects to the album" do
-        album = Album.create! valid_attributes
-        put :update, {:id => album.to_param, :album => valid_attributes}, valid_session
-        response.should redirect_to(album)
-      end
-    end
-
-    describe "with invalid params" do
-      it "assigns the album as @album" do
-        album = Album.create! valid_attributes
-        # Trigger the behavior that occurs when invalid params are submitted
-        Album.any_instance.stub(:save).and_return(false)
-        put :update, {:id => album.to_param, :album => {}}, valid_session
-        assigns(:album).should eq(album)
-      end
-
-      it "re-renders the 'edit' template" do
-        album = Album.create! valid_attributes
-        # Trigger the behavior that occurs when invalid params are submitted
-        Album.any_instance.stub(:save).and_return(false)
-        put :update, {:id => album.to_param, :album => {}}, valid_session
-        response.should render_template("edit")
-      end
-    end
-  end
-
-  describe "DELETE destroy" do
-    it "destroys the requested album" do
-      album = Album.create! valid_attributes
-      expect {
-        delete :destroy, {:id => album.to_param}, valid_session
-      }.to change(Album, :count).by(-1)
-    end
-
-    it "redirects to the albums list" do
-      album = Album.create! valid_attributes
-      delete :destroy, {:id => album.to_param}, valid_session
-      response.should redirect_to(albums_url)
-    end
-  end
-
 end

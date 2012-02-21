@@ -8,4 +8,4 @@ class Discovery.Models.Playlist extends Backbone.Model
       this.tracks.url = '/playlists/' + this.id + '/playlist_tracks'
 
   nextTrack: () ->
-    this.tracks.create({search_term: self.search_term})
+    this.tracks.create({search_term: this.get('search_term')})

@@ -7,8 +7,10 @@ class PlaylistTracksController < ApplicationController
 
   def create
     @playlist = Playlist.find(params[:playlist_id])
-    random = rand(Track.count)
-    @track = Track.find(random)
+    @tag      = Tag.where('name LIKE ?', "%#{params[:search_term]}%")
+    @album    = @tag.albums[rand(@tag.albums.length)]
+    @track    = @album.tracks[rand(@album.tracks.length)]
+
     @playlist.playlist_tracks.build(:track_id => @track)
     @playlist.save
     respond_with @track

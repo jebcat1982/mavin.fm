@@ -13,4 +13,4 @@ class PlaylistTracksController < ApplicationController
     @playlist.save
     respond_with @track
   end
-
+end

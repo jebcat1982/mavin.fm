@@ -9,6 +9,7 @@ class Discovery.Views.PlaylistsIndex extends Backbone.View
 
   initialize: ->
     this.collection.on('reset', this.render, this)
+    this.active = null
 
   render: ->
     $(this.el).html(this.template(playlists: this.collection))

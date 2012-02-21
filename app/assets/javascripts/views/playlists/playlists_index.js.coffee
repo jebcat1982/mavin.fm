@@ -3,7 +3,7 @@ class Discovery.Views.PlaylistsIndex extends Backbone.View
 
   events:
     'submit #new_playlist': 'createPlaylist'
-    'click #next_song': 'get_song'
+    'click #next_song': 'getSong'
     'click #pause_song': 'pauseSong'
     'click #play_song': 'playSong'
 
@@ -24,7 +24,7 @@ class Discovery.Views.PlaylistsIndex extends Backbone.View
     e.preventDefault() if e
     playlist = this
     song = new Discovery.Collections.Songs()
-    song.fetch success: (c, r) -> 
+    song.fetch success: (c, r) ->
       playlist.startSong(c)
 
   startSong: (song) ->

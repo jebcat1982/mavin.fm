@@ -18,8 +18,10 @@ class Discovery.Views.PlaylistsIndex extends Backbone.View
   createPlaylist: (e) ->
     e.preventDefault()
     attributes = search_term: $('#new_playlist_search_term').val()
-    this.collection.create attributes
-    this.getSong()
+    this.collection.create attributes,
+      success: (model) ->
+        this.active = new Discovery.Models.Playlist(model)
+        this.getSong()
 
   getSong: (e) ->
     e.preventDefault() if e

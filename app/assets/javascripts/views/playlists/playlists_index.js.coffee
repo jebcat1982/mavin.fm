@@ -12,8 +12,13 @@ class Discovery.Views.PlaylistsIndex extends Backbone.View
     this.active = null
 
   render: ->
-    $(this.el).html(this.template(playlists: this.collection))
+    $(this.el).html(this.template())
+    this.collection.each(this.prependPlaylist)
     this
+
+  prependPlaylist: (playlist) ->
+    view = new Discovery.Views.Playlist(model: playlist)
+    this.$('#playlists').prepend(view.render().el)
 
   createPlaylist: (e) ->
     e.preventDefault()

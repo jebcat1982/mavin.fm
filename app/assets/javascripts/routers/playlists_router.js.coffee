@@ -7,4 +7,3 @@ class Discovery.Routers.Playlists extends Backbone.Router
     this.playlists.fetch()
 
     view = new Discovery.Views.PlaylistsIndex(collection: this.playlists)
-    $('#container').html(view.render().el)

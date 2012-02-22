@@ -1,5 +1,6 @@
 class PlaylistsController < ApplicationController
   respond_to :json
+  before_filter :create_session
 
   def index
     respond_with @playlists = Playlist.all

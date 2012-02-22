@@ -17,23 +17,28 @@ class Discovery.Views.PlaylistsIndex extends Backbone.View
 
   createPlaylist: (e) ->
     e.preventDefault()
+    view = this
+
     attributes = search_term: $('#new_playlist_search_term').val()
     this.collection.create attributes,
       success: (model) ->
-        this.active = new Discovery.Models.Playlist(model)
-        this.getSong()
+        view.active = new Discovery.Models.Playlist(model)
+        view.getSong()
 
   getSong: (e) ->
     e.preventDefault() if e
-    playlist = this
-    song = new Discovery.Collections.Songs()
-    song.fetch success: (c, r) ->
-      playlist.startSong(c)
+    view = this
+    
+    attributes = search_term: this.active.get('search_term')
+    this.active.tracks.create attributes,
+      success: (model) ->
+        song = new Discovery.Models.Song(model.attributes)
+        view.startSong(song)
 
   startSong: (song) ->
-    view = new Discovery.Views.Song(model: song.models[0])
+    view = new Discovery.Views.Song(model: song)
     $('#songs').prepend(view.render().el)
-    $('#player')[0].src = song.models[0].get('streaming_url')
+    $('#player')[0].src = song.get('streaming_url')
     $('#player')[0].play()
 
   pauseSong: (e) ->

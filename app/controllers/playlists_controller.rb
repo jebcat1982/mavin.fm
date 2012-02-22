@@ -3,7 +3,7 @@ class PlaylistsController < ApplicationController
   before_filter :create_session
 
   def index
-    respond_with @playlists = Playlist.all
+    respond_with @playlists = Playlist.where(:session_id => current_session)
   end
 
   def show
@@ -12,6 +12,7 @@ class PlaylistsController < ApplicationController
 
   def create
     @playlist = Playlist.new(params[:playlist])
+    @playlist.session_id = current_session
     @playlist.save
     respond_with @playlist
   end

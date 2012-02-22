@@ -24,6 +24,8 @@ class Discovery.Views.PlaylistsIndex extends Backbone.View
       success: (model) ->
         view.active = new Discovery.Models.Playlist(model)
         view.getSong()
+        playlistView = new Discovery.Views.Playlist(model: view.active)
+        $('#playlists').prepend(playlistView.render().el)
 
   getSong: (e) ->
     e.preventDefault() if e

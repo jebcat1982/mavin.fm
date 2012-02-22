@@ -1,0 +1,1 @@
+<%= this.playlist.get('search_term') %>

@@ -1,5 +1,5 @@
 class Discovery.Views.PlaylistsIndex extends Backbone.View
-  template: JST['playlists/index']
+  el: '#app_container'
 
   events:
     'submit #new_playlist': 'createPlaylist'
@@ -12,7 +12,6 @@ class Discovery.Views.PlaylistsIndex extends Backbone.View
     this.active = null
 
   render: ->
-    $(this.el).html(this.template())
     this.collection.each(this.prependPlaylist)
     this
 

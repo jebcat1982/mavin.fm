@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
+  helper_method :current_session
+
   def create_session
     unless cookies[:restore_session]
       cookies[:restore_session] = (Digest::SHA2.new << Time.now.to_s).to_s

@@ -83,7 +83,7 @@ class Album < ActiveRecord::Base
         :release_date  => track["release_date"],
         :downloadable  => downloadable,
         :url           => track["url"],
-        :streaming_url => track["streaming_url"],
+        :streaming_url => track["streaming_url"] + "&api_key=#{APIKeys::BANDCAMP}",
         :lyrics        => track["lyrics"],
         :about         => track["about"],
         :credits       => track["credits"],

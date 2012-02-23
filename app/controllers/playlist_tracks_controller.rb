@@ -1,6 +1,10 @@
 class PlaylistTracksController < ApplicationController
   respond_to :json
 
+  def index
+    respond_with @tracks = Track.all
+  end
+
   def show
     respond_with @playlist_track = PlaylistTrack.find(params[:id])
   end

@@ -11,4 +11,7 @@ class Discovery.Routers.Playlists extends Backbone.Router
   index: ->
 
   show: (id) ->
-    alert "playlist #{id}"
+    playlist = new Discovery.Models.Playlist(id: id)
+    playlist.fetch success: ->
+      playlist.tracks.fetch success: ->
+        view = new Discovery.Views.Song(collection: playlist.tracks)

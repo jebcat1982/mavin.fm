@@ -16,7 +16,7 @@ class PlaylistTracksController < ApplicationController
     @album    = @tag.albums[rand(@tag.albums.length)]
     @track    = @album.tracks[rand(@album.tracks.length)]
 
-    @playlist.playlist_tracks.build(:track_id => @track)
+    @playlist.playlist_tracks.build(:track_id => @track.id)
     @playlist.save
     respond_with @track
   end

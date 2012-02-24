@@ -2,42 +2,28 @@ class Discovery.Views.PlaylistsIndex extends Backbone.View
   el: '#app_container'
 
   events:
-    'submit #new_playlist': 'createPlaylist'
     'click #next_song': 'getSong'
     'click #pause_song': 'pauseSong'
     'click #play_song': 'playSong'
 
   initialize: ->
-    this.collection.on('reset', this.render, this)
-    this.active = null
+    this.model.tracks.fetch()
+    this.getSong()
 
   render: ->
-    this.collection.each(this.prependPlaylist)
+    this.model.tracks.each(this.prependSong)
     this
 
-  prependPlaylist: (playlist) ->
-    view = new Discovery.Views.Playlist(model: playlist)
-    this.$('#playlists').prepend(view.render().el)
-
-  createPlaylist: (e) ->
-    e.preventDefault()
-    view = this
-
-    attributes = search_term: $('#new_playlist_search_term').val()
-    this.collection.create attributes,
-      success: (model) ->
-        router.navigate("playlists/#{model.id}")
-        view.active = new Discovery.Models.Playlist(model)
-        view.getSong()
-        playlistView = new Discovery.Views.Playlist(model: view.active)
-        $('#playlists').prepend(playlistView.render().el)
+  prependSong: (song) ->
+    view = new Discovery.Views.Song(model: song)
+    $('#songs').prepend(view.render().el)
 
   getSong: (e) ->
     e.preventDefault() if e
     view = this
     
-    attributes = search_term: this.active.get('search_term')
-    this.active.tracks.create attributes,
+    attributes = search_term: this.model.get('search_term')
+    this.model.tracks.create attributes,
       success: (model) ->
         song = new Discovery.Models.Song(model.attributes)
         view.startSong(song)

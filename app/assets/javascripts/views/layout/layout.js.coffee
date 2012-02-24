@@ -3,9 +3,6 @@ class Discovery.Views.Layout extends Backbone.View
 
   events:
     'submit #new_playlist': 'createPlaylist'
-    'click #next_song': 'getSong'
-    'click #pause_song': 'pauseSong'
-    'click #play_song': 'playSong'
 
   initialize: ->
     this.collection.on('reset', this.render, this)
@@ -26,32 +23,6 @@ class Discovery.Views.Layout extends Backbone.View
     attributes = search_term: $('#new_playlist_search_term').val()
     this.collection.create attributes,
       success: (model) ->
-        router.navigate("playlists/#{model.id}")
-        view.active = new Discovery.Models.Playlist(model)
-        view.getSong()
-        playlistView = new Discovery.Views.Playlist(model: view.active)
+        playlistView = new Discovery.Views.Playlist(model: model)
         $('#playlists').prepend(playlistView.render().el)
-
-  getSong: (e) ->
-    e.preventDefault() if e
-    view = this
-    
-    attributes = search_term: this.active.get('search_term')
-    this.active.tracks.create attributes,
-      success: (model) ->
-        song = new Discovery.Models.Song(model.attributes)
-        view.startSong(song)
-
-  startSong: (song) ->
-    view = new Discovery.Views.Song(model: song)
-    $('#songs').prepend(view.render().el)
-    $('#player')[0].src = song.get('streaming_url')
-    $('#player')[0].play()
-
-  pauseSong: (e) ->
-    e.preventDefault()
-    $('#player')[0].pause()
-
-  playSong: (e) ->
-    e.preventDefault()
-    $('#player')[0].play()
+        router.navigate("playlists/#{model.id}", trigger: true)

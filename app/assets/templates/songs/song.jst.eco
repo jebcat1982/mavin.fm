@@ -1,1 +1,3 @@
+<img src="<%= this.song.get('small_art_url') %>" alt="<%= this.song.get('album') %>" />
 <%= this.song.get('title') %>
+by <%= this.song.get('artist') %>

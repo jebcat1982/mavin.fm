@@ -26,6 +26,7 @@ class Discovery.Views.PlaylistsIndex extends Backbone.View
     attributes = search_term: $('#new_playlist_search_term').val()
     this.collection.create attributes,
       success: (model) ->
+        router.navigate("playlists/#{model.id}")
         view.active = new Discovery.Models.Playlist(model)
         view.getSong()
         playlistView = new Discovery.Views.Playlist(model: view.active)

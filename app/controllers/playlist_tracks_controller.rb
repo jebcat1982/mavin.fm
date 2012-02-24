@@ -3,7 +3,7 @@ class PlaylistTracksController < ApplicationController
 
   def index
     @playlist = Playlist.find(params[:playlist_id])
-    respond_with @playlist.playlist_tracks.limit(5).order('created_at DESC')
+    respond_with @playlist.playlist_tracks.limit(5).order('created_at DESC').reverse
   end
 
   def show

@@ -15,3 +15,4 @@ class Discovery.Routers.Playlists extends Backbone.Router
     playlist.fetch success: ->
       playlist.tracks.fetch success: ->
         view = new Discovery.Views.PlaylistsIndex(model: playlist)
+        view.render().el

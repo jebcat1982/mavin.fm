@@ -2,7 +2,8 @@ class PlaylistTracksController < ApplicationController
   respond_to :json
 
   def index
-    respond_with @tracks = Track.all
+    @playlist = Playlist.find(params[:playlist_id])
+    respond_with @playlist.playlist_tracks.limit(5).order('created_at DESC')
   end
 
   def show

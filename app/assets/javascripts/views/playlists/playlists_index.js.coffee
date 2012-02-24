@@ -11,6 +11,7 @@ class Discovery.Views.PlaylistsIndex extends Backbone.View
     this.getSong()
 
   render: ->
+    $('#songs').empty()
     this.model.tracks.each(this.prependSong)
     this
 

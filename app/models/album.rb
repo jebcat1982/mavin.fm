@@ -92,7 +92,12 @@ class Album < ActiveRecord::Base
         :artist        => artist,
         :e_id          => track["track_id"],
         :e_album_id    => track["album_id"],
-        :e_band_id     => track["band_id"]
+        :e_band_id     => track["band_id"],
+
+        :album_title   => self.title,
+        :album_url     => self.url,
+        :artist_url    => @band.url,
+        :band_subdomain => @band.subdomain
       )
     end
   end

@@ -1,3 +1,0 @@
-<% for song in this.songs.models: %>
-  <p><%= song.get('title') %></p>
-<% end %>

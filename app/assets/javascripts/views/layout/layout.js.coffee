@@ -6,7 +6,6 @@ class Discovery.Views.Layout extends Backbone.View
 
   initialize: ->
     this.collection.on('reset', this.render, this)
-    this.active = null
 
   render: ->
     this.collection.each(this.prependPlaylist)

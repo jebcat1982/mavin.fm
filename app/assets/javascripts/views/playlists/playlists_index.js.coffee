@@ -7,7 +7,6 @@ class Discovery.Views.PlaylistsIndex extends Backbone.View
     'click #play_song': 'playSong'
 
   initialize: ->
-    this.model.tracks.fetch()
     this.getSong()
 
   render: ->

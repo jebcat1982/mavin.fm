@@ -40,3 +40,17 @@ html, body {
 .playlists_container, .player_container, .songs_container {
   float: left;
 }
+
+.player_container, .songs_container {
+  width: 599px;
+}
+
+.playlists_container {
+  width: 200px;
+}
+
+.player_container {
+}
+
+.songs_container {
+}

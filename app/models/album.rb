@@ -60,7 +60,7 @@ class Album < ActiveRecord::Base
     self.credits       = @album["credits"]
     self.small_art_url = @album["small_art_url"]
     self.large_art_url = @album["large_art_url"]
-    self.artist        = @album["artist"]
+    self.artist        = @album["artist"] || @band.name
     self.band_id       = @band.id
     self.e_id          = @album["album_id"]
     self.e_band_id     = @album["band_id"]
@@ -74,7 +74,7 @@ class Album < ActiveRecord::Base
       downloadable  = track["downloadable"]  || self.downloadable
       small_art_url = track["small_art_url"] || self.small_art_url
       large_art_url = track["large_art_url"] || self.large_art_url
-      artist        = track["artist"]        || self.artist
+      artist        = track["artist"]        || self.artist         || @band.name
 
       self.tracks.build(
         :title         => track["title"],

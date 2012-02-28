@@ -14,7 +14,13 @@
  *= require_tree .
 */
 
-html {
+html, body {
+  background: #f5f5f5;
   margin: 0 auto;
   width: 800px;
+}
+
+#app_container {
+  border: #ccc 1px solid;
+  padding: 10px;
 }

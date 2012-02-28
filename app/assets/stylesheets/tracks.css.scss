@@ -1,3 +1,38 @@
 // Place all the styles related to the tracks controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#songs div {
+  background: #fbfbfb;
+  border-top: 1px solid #999;
+  border-bottom: 1px solid #999;
+  margin: 10px 0px 10px 0px;
+
+  img {
+    float: left;
+    padding: 10px;
+  }
+
+  p {
+    font-size: 9pt;
+    padding: 0px;
+  }
+
+  ul {
+    clear: both;
+    background: #ccc;
+    margin: 0px;
+    
+    li {
+      display: inline-block;
+      text-align: center;
+      width: 49%;
+    }
+  }
+
+  .clear {
+    clear: both;
+    margin: 0;
+    padding: 0;
+  }
+}

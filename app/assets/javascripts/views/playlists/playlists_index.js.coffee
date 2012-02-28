@@ -15,9 +15,10 @@ class Discovery.Views.PlaylistsIndex extends Backbone.View
     this
 
   prependSong: (song) ->
-    model = new Discovery.Models.Song(song.get('track'))
-    view = new Discovery.Views.Song(model: model)
-    $('#songs').prepend(view.render().el)
+    if song.get('track')
+      model = new Discovery.Models.Song(song.get('track'))
+      view = new Discovery.Views.Song(model: model)
+      $('#songs').prepend(view.render().el)
 
   getSong: (e) ->
     e.preventDefault() if e

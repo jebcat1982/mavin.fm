@@ -1,7 +1,8 @@
 #app_container
-  %form#new_playlist
-    %input#new_playlist_search_term{:type => "text", :name => "tag"}
-    %input{:type => "submit", :value => "Create playlist"}
+  #playlist_form
+    %form#new_playlist
+      %input#new_playlist_search_term{:type => "text", :name => "tag"}
+      %input{:type => "submit", :value => "Create playlist"}
 
   %h3 playlists
   #playlists

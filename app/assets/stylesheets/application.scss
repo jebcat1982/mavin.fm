@@ -42,11 +42,16 @@ html, body {
 }
 
 .player_container, .songs_container {
-  width: 599px;
+  width: 579px;
 }
 
 .playlists_container {
+  margin-right: 20px;
   width: 200px;
+
+  h3 {
+    border-bottom: 1px solid #999;
+  }
 }
 
 .player_container {

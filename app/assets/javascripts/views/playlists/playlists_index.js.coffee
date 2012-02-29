@@ -8,6 +8,9 @@ class Discovery.Views.PlaylistsIndex extends Backbone.View
 
   initialize: ->
     this.getSong()
+    view = this
+    $('#player').on 'timeupdate', () -> view.songTime()
+    $('#player').on 'ended', () -> view.songEnded()
 
   render: ->
     $('#songs').empty()
@@ -43,3 +46,9 @@ class Discovery.Views.PlaylistsIndex extends Backbone.View
   playSong: (e) ->
     e.preventDefault()
     $('#player')[0].play()
+
+  songTime: () ->
+    #$('#player')[0].currentTime
+
+  songEnded: () ->
+    this.getSong()

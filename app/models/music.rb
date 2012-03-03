@@ -6,7 +6,16 @@ class Music
   end
 
   def save
+    uri = URI.parse(self.url)
+    bandcamp()   if uri.host.index('bandcamp.com')
+    soundcloud() if uri.host.index('soundcloud.com')
+  end
+
+  def bandcamp
     get_album() if self.url.index('/albums/')
+  end
+
+  def soundcloud
   end
 
   # These are methods for calling several different Bandcamp API modules in order to retrieve all of

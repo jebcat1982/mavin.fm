@@ -1,5 +1,5 @@
 class Music
-  attr_accessor :url
+  attr_accessor :url, :tags
 
   def initialize(url = nil)
     self.url = url
@@ -7,6 +7,7 @@ class Music
 
   def save
     uri = URI.parse(self.url)
+    split_tags()
     bandcamp()   if uri.host.index('bandcamp.com')
     soundcloud() if uri.host.index('soundcloud.com')
   end
@@ -16,6 +17,13 @@ class Music
   end
 
   def soundcloud
+  end
+
+  def split_tags
+    @tags = []
+    self.tags.split(' ').map do |name|
+      @tags << Tag.find_or_create_by_name(name.chomp)
+    end
   end
 
   # These are methods for calling several different Bandcamp API modules in order to retrieve all of

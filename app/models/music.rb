@@ -121,6 +121,12 @@ class Music
         :artist_url    => @band.url,
         :band_subdomain => @band.subdomain
       )
+
+      @album.tracks.each do |track|
+        @tags.each do |tag|
+          track.taggings.build(:tag_id => tag.id)
+        end
+      end
     end
   end
 end

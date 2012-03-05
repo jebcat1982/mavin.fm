@@ -1,5 +1,5 @@
 class Music
-  attr_accessor :url, :tags
+  attr_accessor :url, :tags, :album_id
 
   def initialize(url = nil)
     self.url = url
@@ -58,8 +58,8 @@ class Music
 
   # Takes the album_id from the url_module and makes a request to the album module. This retrieves
   # all of the album information such as the artwork, free or not, and all of the album's tracks.
-  def album_module(id = nil)
-    album_id = id || @info["album_id"]
+  def album_module
+    album_id = @info["album_id"] || self.album_id
     uri = URI.parse("http://api.bandcamp.com/api/album/2/info?key=#{APIKeys::BANDCAMP}&album_id=#{album_id}")
     response = Net::HTTP.get(uri)
     @album_info = JSON.parse(response)
@@ -102,7 +102,12 @@ class Music
     url_module()
     band_module()
     track_module()
-    album_module(@track_info['album_id']) if @track_info['album_id']
+    if @track_info['album_id']
+      self.album_id = @track['album_id']
+      get_album()
+    else
+      # make a track
+    end
   end
 
   def build_tracks

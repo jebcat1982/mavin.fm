@@ -65,6 +65,9 @@ class Music
   end
 
   def track_module
+    uri = URI.parse("http://api.bandcamp.com/api/track/3/info?key=#{APIKeys::BANDCAMP}&track_id=#{@info['track_id']}")
+    response = Net::HTTP.get(uri)
+    @track_info = JSON.parse(response)
   end
 
   # Calls each module method and stores the information to the model before saving. Also builds all

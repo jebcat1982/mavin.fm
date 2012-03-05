@@ -14,6 +14,7 @@ class Music
 
   def bandcamp
     get_album() if self.url.index('/albums/')
+    get_track() if self.url.index('/track/')
   end
 
   def soundcloud
@@ -63,6 +64,9 @@ class Music
     @album_info = JSON.parse(response)
   end
 
+  def track_module
+  end
+
   # Calls each module method and stores the information to the model before saving. Also builds all
   # of the tracks into the album model before saving.
   def get_album
@@ -88,6 +92,12 @@ class Music
     build_tracks()
 
     @album.save
+  end
+  
+  def get_track
+    url_module()
+    band_module()
+    track_module()
   end
 
   def build_tracks

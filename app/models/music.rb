@@ -1,8 +1,9 @@
 class Music
   attr_accessor :url, :tags, :album_id
 
-  def initialize(url = nil)
+  def initialize(url = nil, tags = nil)
     self.url = url
+    self.tags = tags
   end
 
   def save

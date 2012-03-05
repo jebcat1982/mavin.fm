@@ -67,7 +67,6 @@ class Music
       end
 
       @track.save
-
     end
   end
 

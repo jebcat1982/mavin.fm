@@ -106,7 +106,30 @@ class Music
       self.album_id = @track['album_id']
       get_album()
     else
-      # make a track
+      @track = Track.new
+
+      @track.title          = @track_info['title']
+      @track.number         = @track_info['number']
+      @track.duration       = @track_info['duration']
+      @track.release_date   = @track_info['release_date']
+      @track.downloadable   = @track_info['downloadable']
+      @track.url            = @track_info['info']
+      @track.streaming_url  = @track_info['streaming_url']
+      @track.lyrics         = @track_info['lyrics']
+      @track.about          = @track_info['about']
+      @track.credits        = @track_info['credits']
+      @track.small_art_url  = @track_info['small_art_url']
+      @track.large_art_url  = @track_info['large_art_url']
+      @track.artist         = @track_info['artist']
+      @track.e_id           = @track_info['track_id']
+      @track.e_album_id     = @track_info['album_id']
+      @track.e_band_id      = @track_info['band_id']
+
+      @tags.each do |tag|
+        @track.taggings.build(:tag_id => tag.id)
+      end
+
+      @track.save
     end
   end
 

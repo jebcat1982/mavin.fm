@@ -1,19 +1,20 @@
 class Bandcamp
-  attr_accessor :url, :tags
+  attr_accessor :url, :raw_tags
 
   def initialize(url = nil, tags = nil)
     self.url  = url
-    self.tags = tags
+    self.raw_tags = tags
   end
 
   def split_tags
     @tags = []
-    self.tags.split(' ').map do |name|
+    raw_tags.split(' ').map do |name|
       @tags << Tag.find_or_create_by_name(name.chomp)
     end
   end
 
   def save
+    split_tags()
     get_album() if self.url.index('/album/')
     get_track() if self.url.index('/track/')
   end

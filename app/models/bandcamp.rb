@@ -88,4 +88,44 @@ class Bandcamp
     response = Net::HTTP.get(uri)
     @track_info = JSON.parse(response)
   end
+
+  def build_tracks
+    @album_info["tracks"].each do |track|
+      # If the tracks don't have these values take them from the album
+      downloadable  = track["downloadable"]  || @album.downloadable
+      small_art_url = track["small_art_url"] || @album.small_art_url
+      large_art_url = track["large_art_url"] || @album.large_art_url
+      artist        = track["artist"]        || @album.artist         || @band.name
+
+      @album.tracks.build(
+        :title         => track["title"],
+        :number        => track["number"],
+        :duration      => track["duration"],
+        :release_date  => track["release_date"],
+        :downloadable  => downloadable,
+        :url           => track["url"],
+        :streaming_url => track["streaming_url"] + "&api_key=#{APIKeys::BANDCAMP}",
+        :lyrics        => track["lyrics"],
+        :about         => track["about"],
+        :credits       => track["credits"],
+        :small_art_url => small_art_url,
+        :large_art_url => large_art_url,
+        :artist        => artist,
+        :e_id          => track["track_id"],
+        :e_album_id    => track["album_id"],
+        :e_band_id     => track["band_id"],
+
+        :album_title   => @album.title,
+        :album_url     => @album.url,
+        :artist_url    => @band.url,
+        :band_subdomain => @band.subdomain
+      )
+
+      @album.tracks.each do |track|
+        @tags.each do |tag|
+          track.taggings.build(:tag_id => tag.id)
+        end
+      end
+    end
+  end
 end

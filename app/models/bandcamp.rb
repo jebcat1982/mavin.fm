@@ -14,7 +14,7 @@ class Bandcamp
   end
 
   def save
-    get_album() if self.url.index('/albums/')
+    get_album() if self.url.index('/album/')
     get_track() if self.url.index('/track/')
   end
 

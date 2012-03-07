@@ -1,5 +1,9 @@
+require 'active_record/validations'
+
 class Music
+  include ActiveRecord::Validations
   attr_accessor :url, :raw_tags
+  attr_accessor :errors
 
   def initialize(url = nil, tags = nil)
     self.url = url

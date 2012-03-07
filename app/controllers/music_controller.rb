@@ -10,9 +10,7 @@ class MusicController < ApplicationController
   end
 
   def create
-    @music = Music.new
-    @music.url  = params[:music][:url]
-    @music.tags = params[:music][:tags]
+    @music = Music.new(params[:url], params[:raw_tags])
     @music.save
 
     redirect_to new_music_path, notice: "You've successfully added your music."

@@ -1,2 +1,9 @@
-%h1 Music#new
-%p Find me in app/views/music/new.html.haml
+= form_tag '/music' do
+  .field
+    = label_tag 'url'
+    = text_field_tag 'url'
+  .field
+    = label_tag 'raw_tags'
+    = text_field_tag 'raw_tags'
+  .actions
+    = submit_tag 'Save'

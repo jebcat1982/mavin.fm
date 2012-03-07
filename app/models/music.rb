@@ -5,6 +5,12 @@ class Music
   attr_accessor :url, :raw_tags
   attr_accessor :errors
 
+  validates :url, :presence => true,
+                  :format => {  :with => /.*(soundcloud|bandcamp)\.com.*/i,
+                                :message => 'You can only submit Soundcloud or Bandcamp links'  }
+
+  validates :raw_tags, :presence => true
+
   def initialize(url = nil, tags = nil)
     self.url = url
     self.raw_tags = tags

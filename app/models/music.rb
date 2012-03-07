@@ -14,7 +14,7 @@ class Music
     uri = URI.parse(self.url)
     split_tags()
 
-    if uri.hist && uri.host.index('bandcamp.com')
+    if uri.host && uri.host.index('bandcamp.com')
       b = Bandcamp.new(url, @tags)
       b.save
     elsif uri.host && uri.host.index('soundcloud.com')

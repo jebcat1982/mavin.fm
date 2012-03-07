@@ -11,7 +11,8 @@ class Soundcloud
     response = Net::HTTP.get(uri)
     json = JSON.parse(response)
     
-    response = Net::HTTP.get(json['location'])
+    uri = URI.parse(json['location'])
+    response = Net::HTTP.get(uri)
     json = JSON.parse(response)
 
     if json['tracks']

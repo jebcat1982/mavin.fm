@@ -1,5 +1,5 @@
 class Music
-  attr_accessor :url, :raw_tags, :album_id
+  attr_accessor :url, :raw_tags
 
   def initialize(url = nil, tags = nil)
     self.url = url

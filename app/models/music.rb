@@ -1,9 +1,6 @@
-require 'active_record/validations'
-
 class Music
-  include ActiveRecord::Validations
+  include ActiveModel::Validations
   attr_accessor :url, :raw_tags
-  attr_accessor :errors
 
   validates :url, :presence => true,
                   :format => {  :with => /.*(soundcloud|bandcamp)\.com.*/i,
@@ -12,20 +9,26 @@ class Music
   validates :raw_tags, :presence => true
 
   def initialize(url = nil, tags = nil)
-    self.url = url
-    self.raw_tags = tags
+    @url = url
+    @raw_tags = tags
   end
 
   def save
-    uri = URI.parse(self.url)
-    split_tags()
+    if valid?
+      uri = URI.parse(self.url)
+      split_tags()
 
-    if uri.host && uri.host.index('bandcamp.com')
-      b = Bandcamp.new(url, @tags)
-      b.save
-    elsif uri.host && uri.host.index('soundcloud.com')
-      s = Soundcloud.new(url, @tags)
-      s.save
+      if uri.host && uri.host.index('bandcamp.com')
+        b = Bandcamp.new(url, @tags)
+        b.save
+      elsif uri.host && uri.host.index('soundcloud.com')
+        s = Soundcloud.new(url, @tags)
+        s.save
+      end
+
+      true
+    else
+      false
     end
   end
 

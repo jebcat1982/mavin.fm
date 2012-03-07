@@ -11,8 +11,11 @@ class MusicController < ApplicationController
 
   def create
     @music = Music.new(params[:url], params[:raw_tags])
-    @music.save
 
-    redirect_to new_music_path, notice: "You've successfully added your music."
+    if @music.save
+      redirect_to new_music_path, notice: "You've successfully added your music."
+    else
+      render action: 'new'
+    end
   end
 end

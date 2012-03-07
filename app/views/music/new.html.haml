@@ -1,4 +1,11 @@
 = form_tag '/music' do
+  - if @music.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@music.errors.count, "error")} prohibited this from being saved:"
+      %ul
+        - @music.errors.full_messages.each do |msg|
+          %li= msg
+
   .field
     = label_tag 'url'
     = text_field_tag 'url'

@@ -39,6 +39,17 @@ class Bandcamp
     @album.save
   end
 
+  def find_or_create_band
+    band = Band.find_or_create_by_e_id(@info_json["band_id"])
+    band.offsite_url  = band["offsite_url"]
+    band.url          = band["url"]
+    band.subdomain    = band["subdomain"]
+    band.name         = band["name"]
+    band.save
+
+    band
+  end
+
   # These are methods for calling several different Bandcamp API modules in order to retrieve all of
   # the information on a band and album. Bandcamp API docs are located at http://bandcamp.com/developer
 
@@ -56,18 +67,6 @@ class Bandcamp
     uri = URI.parse("http://api.bandcamp.com/api/band/3/info?key=#{APIKeys::BANDCAMP}&band_id=#{@band.e_id}")
     response = Net::HTTP.get(uri)
     JSON.parse(response)
-  end
-
-  def create_band
-    @band = Band.find_or_create_by_e_id(@info_json["band_id"])
-    @band.offsite_url  = band["offsite_url"]
-    @band.url          = band["url"]
-    @band.subdomain    = band["subdomain"]
-    @band.name         = band["name"]
-    @band.save
-
-    # Return the parsed JSON for the rspec test
-    band
   end
 
   # Takes the album_id from the url_module and makes a request to the album module. This retrieves

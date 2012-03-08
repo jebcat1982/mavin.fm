@@ -105,8 +105,8 @@ class Bandcamp
   end
 
   def track_module
-    uri = URI.parse("http://api.bandcamp.com/api/track/3/info?key=#{APIKeys::BANDCAMP}&track_id=#{@info['track_id']}")
+    uri = URI.parse("http://api.bandcamp.com/api/track/3/info?key=#{APIKeys::BANDCAMP}&track_id=#{@info_json['track_id']}")
     response = Net::HTTP.get(uri)
-    @track_info = JSON.parse(response)
+    JSON.parse(response)
   end
 end

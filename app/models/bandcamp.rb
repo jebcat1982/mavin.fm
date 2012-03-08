@@ -16,7 +16,7 @@ class Bandcamp
   end
 
   def get_album
-    album_module() unless @album_info
+    @album_info = album_module()
 
     @album = Album.new
 

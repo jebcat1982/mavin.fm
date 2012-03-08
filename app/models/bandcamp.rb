@@ -9,6 +9,7 @@ class Bandcamp
   def save
     @info_json = url_module()
     @band_json = band_module()
+    @band      = find_or_create_band()
 
     get_album() if self.url.index('/album/')
     get_track() if self.url.index('/track/')

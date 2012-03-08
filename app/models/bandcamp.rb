@@ -8,7 +8,6 @@ class Bandcamp
 
   def save
     @info_json = url_module()
-    @band_json = band_module()
     @band      = find_or_create_band()
 
     get_album() if self.url.index('/album/')
@@ -76,12 +75,17 @@ class Bandcamp
   end
 
   def find_or_create_band
-    band = Band.find_or_create_by_e_id(@info_json["band_id"])
-    band.offsite_url  = @band_json["offsite_url"]
-    band.url          = @band_json["url"]
-    band.subdomain    = @band_json["subdomain"]
-    band.name         = @band_json["name"]
-    band.save
+    band = Band.where(:e_id => @info_json["band_id"]).first
+
+    unless band
+      band_json = band_module()
+
+      band.offsite_url  = band_json["offsite_url"]
+      band.url          = band_json["url"]
+      band.subdomain    = band_json["subdomain"]
+      band.name         = band_json["name"]
+      band.save
+    end
 
     band
   end

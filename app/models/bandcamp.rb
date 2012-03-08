@@ -2,7 +2,7 @@ class Bandcamp
   attr_accessor :url, :tags
 
   def initialize(url = nil, tags = nil)
-    self.url  = url
+    @url  = url
     @tags = tags
   end
 
@@ -19,7 +19,6 @@ class Bandcamp
     @album_info = album_module()
 
     @album = Album.new
-
     @album.title         = @album_info["title"]
     @album.release_date  = @album_info["release_date"]
     @album.downloadable  = @album_info["downloadable"]
@@ -36,41 +35,6 @@ class Bandcamp
     build_tracks()
 
     @album.save
-  end
-
-  def find_or_create_band
-    band = Band.find_or_create_by_e_id(@info_json["band_id"])
-    band.offsite_url  = band["offsite_url"]
-    band.url          = band["url"]
-    band.subdomain    = band["subdomain"]
-    band.name         = band["name"]
-    band.save
-
-    band
-  end
-
-  def url_module
-    uri = URI.parse("http://api.bandcamp.com/api/url/1/info?key=#{APIKeys::BANDCAMP}&url=#{self.url}")
-    response = Net::HTTP.get(uri)
-    JSON.parse(response)
-  end
-
-  def band_module
-    uri = URI.parse("http://api.bandcamp.com/api/band/3/info?key=#{APIKeys::BANDCAMP}&band_id=#{@band.e_id}")
-    response = Net::HTTP.get(uri)
-    JSON.parse(response)
-  end
-
-  def album_module
-    uri = URI.parse("http://api.bandcamp.com/api/album/2/info?key=#{APIKeys::BANDCAMP}&album_id=#{@info_json['album_id']}")
-    response = Net::HTTP.get(uri)
-    JSON.parse(response)
-  end
-
-  def track_module
-    uri = URI.parse("http://api.bandcamp.com/api/track/3/info?key=#{APIKeys::BANDCAMP}&track_id=#{@info['track_id']}")
-    response = Net::HTTP.get(uri)
-    @track_info = JSON.parse(response)
   end
 
   def build_tracks
@@ -109,5 +73,40 @@ class Bandcamp
         t.taggings.build(:tag_id => tag.id)
       end
     end
+  end
+
+  def find_or_create_band
+    band = Band.find_or_create_by_e_id(@info_json["band_id"])
+    band.offsite_url  = band["offsite_url"]
+    band.url          = band["url"]
+    band.subdomain    = band["subdomain"]
+    band.name         = band["name"]
+    band.save
+
+    band
+  end
+
+  def url_module
+    uri = URI.parse("http://api.bandcamp.com/api/url/1/info?key=#{APIKeys::BANDCAMP}&url=#{self.url}")
+    response = Net::HTTP.get(uri)
+    JSON.parse(response)
+  end
+
+  def band_module
+    uri = URI.parse("http://api.bandcamp.com/api/band/3/info?key=#{APIKeys::BANDCAMP}&band_id=#{@band.e_id}")
+    response = Net::HTTP.get(uri)
+    JSON.parse(response)
+  end
+
+  def album_module
+    uri = URI.parse("http://api.bandcamp.com/api/album/2/info?key=#{APIKeys::BANDCAMP}&album_id=#{@info_json['album_id']}")
+    response = Net::HTTP.get(uri)
+    JSON.parse(response)
+  end
+
+  def track_module
+    uri = URI.parse("http://api.bandcamp.com/api/track/3/info?key=#{APIKeys::BANDCAMP}&track_id=#{@info['track_id']}")
+    response = Net::HTTP.get(uri)
+    @track_info = JSON.parse(response)
   end
 end

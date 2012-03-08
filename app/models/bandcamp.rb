@@ -7,6 +7,9 @@ class Bandcamp
   end
 
   def save
+    @info_json = url_module()
+    @band_json = band_module()
+
     get_album() if self.url.index('/album/')
     get_track() if self.url.index('/track/')
   end
@@ -14,8 +17,6 @@ class Bandcamp
   # Calls each module method and stores the information to the model before saving. Also builds all
   # of the tracks into the album model before saving.
   def get_album
-    url_module()   unless @info
-    band_module()  unless @band
     album_module() unless @album_info
 
     @album = Album.new
@@ -46,17 +47,19 @@ class Bandcamp
   def url_module
     uri = URI.parse("http://api.bandcamp.com/api/url/1/info?key=#{APIKeys::BANDCAMP}&url=#{self.url}")
     response = Net::HTTP.get(uri)
-    @info = JSON.parse(response)
+    JSON.parse(response)
   end
 
   # Takes the Bandcamp band_id from the url_module and makes a request to the band module. This retrieves
   # all of the band information from Bandcamp such as name, offsite_url, etc.
   def band_module
-    @band = Band.find_or_create_by_e_id(@info["band_id"])
     uri = URI.parse("http://api.bandcamp.com/api/band/3/info?key=#{APIKeys::BANDCAMP}&band_id=#{@band.e_id}")
     response = Net::HTTP.get(uri)
-    band = JSON.parse(response)
+    JSON.parse(response)
+  end
 
+  def create_band
+    @band = Band.find_or_create_by_e_id(@info_json["band_id"])
     @band.offsite_url  = band["offsite_url"]
     @band.url          = band["url"]
     @band.subdomain    = band["subdomain"]

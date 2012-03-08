@@ -90,7 +90,7 @@ class Bandcamp
       large_art_url = track["large_art_url"] || @album.large_art_url
       artist        = track["artist"]        || @album.artist         || @band.name
 
-      @album.tracks.build(
+      t = @album.tracks.build(
         :title         => track["title"],
         :number        => track["number"],
         :duration      => track["duration"],
@@ -114,10 +114,8 @@ class Bandcamp
         :band_subdomain => @band.subdomain
       )
 
-      @album.tracks.each do |track|
-        @tags.each do |tag|
-          track.taggings.build(:tag_id => tag.id)
-        end
+      @tags.each do |tag|
+        t.taggings.build(:tag_id => tag.id)
       end
     end
   end

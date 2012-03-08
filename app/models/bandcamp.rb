@@ -77,10 +77,10 @@ class Bandcamp
 
   def find_or_create_band
     band = Band.find_or_create_by_e_id(@info_json["band_id"])
-    band.offsite_url  = band["offsite_url"]
-    band.url          = band["url"]
-    band.subdomain    = band["subdomain"]
-    band.name         = band["name"]
+    band.offsite_url  = @band_json["offsite_url"]
+    band.url          = @band_json["url"]
+    band.subdomain    = @band_json["subdomain"]
+    band.name         = @band_json["name"]
     band.save
 
     band

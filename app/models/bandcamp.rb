@@ -14,6 +14,40 @@ class Bandcamp
     get_track() if self.url.index('/track/')
   end
 
+  def get_track
+    track_json = track_module
+    album_json = album_module if track_json["album_id"]
+
+    @track = Track.new
+    @track.title         = track_json["title"],
+    @track.number        = track_json["number"],
+    @track.duration      = track_json["duration"],
+    @track.release_date  = track_json["release_date"],
+    @track.downloadable  = track_json["downloadable"]  || album_json["downloadable"],
+    @track.url           = track_json["url"],
+    @track.streaming_url = track_json["streaming_url"] + "&api_key=#{APIKeys::BANDCAMP}",
+    @track.lyrics        = track_json["lyrics"],
+    @track.about         = track_json["about"],
+    @track.credits       = track_json["credits"],
+    @track.small_art_url = track_json["small_art_url"] || album_json["small_art_url"],
+    @track.large_art_url = track_json["large_art_url"] || album_json["large_art_url"],
+    @track.artist        = track_json["artist"]        || album_json["artist"],
+    @track.e_id          = track_json["track_id"],
+    @track.e_album_id    = track_json["album_id"],
+    @track.e_band_id     = track_json["band_id"],
+
+    @track.album_title   = album_json["title"],
+    @track.album_url     = album_json["url"],
+    @track.artist_url    = @band.url,
+    @track.band_subdomain = @band.subdomain
+
+    @tags.each do |tag|
+      @track.taggings.build(:tag_id => tag.id)
+    end
+
+    @track.save
+  end
+
   def get_album
     @album_info = album_module()
 

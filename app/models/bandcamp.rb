@@ -46,6 +46,10 @@ class Bandcamp
     end
 
     @track.save
+
+    @tags.each do |tag|
+      Discovery.redis.sadd "t#{@track.id}", tag.id
+    end
   end
 
   def get_album
@@ -104,6 +108,7 @@ class Bandcamp
 
       @tags.each do |tag|
         t.taggings.build(:tag_id => tag.id)
+        Discovery.redis.sadd "t#{t.id}", tag.id
       end
     end
   end

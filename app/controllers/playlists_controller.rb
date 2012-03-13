@@ -14,6 +14,13 @@ class PlaylistsController < ApplicationController
     @playlist = Playlist.new(params[:playlist])
     @playlist.session_id = current_session
     @playlist.save
+
+    tags = @playlist.search_term.split(',')
+    tags.each do |tag|
+      t = Tag.find_or_create_by_name(tag.strip)
+      Discovery.redis.sadd "p#{@playlist.id}", t.id
+    end
+
     respond_with @playlist
   end
 

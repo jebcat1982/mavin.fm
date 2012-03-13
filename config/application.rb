@@ -2,6 +2,7 @@ require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
 require './config/api_keys.rb'
+require './config/redis.rb'
 require 'net/http'
 
 if defined?(Bundler)

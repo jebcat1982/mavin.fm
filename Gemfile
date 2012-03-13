@@ -11,6 +11,7 @@ gem 'haml-rails'
 gem 'jquery-rails'
 gem 'json'
 gem 'pry-rails'
+gem 'redis'
 gem 'therubyracer'
 
 group :assets do

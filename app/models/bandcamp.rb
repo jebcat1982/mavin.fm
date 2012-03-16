@@ -119,6 +119,7 @@ class Bandcamp
     unless band
       band_json = band_module()
 
+      band = Band.new
       band.offsite_url  = band_json["offsite_url"]
       band.url          = band_json["url"]
       band.subdomain    = band_json["subdomain"]
@@ -136,7 +137,7 @@ class Bandcamp
   end
 
   def band_module
-    uri = URI.parse("http://api.bandcamp.com/api/band/3/info?key=#{APIKeys::BANDCAMP}&band_id=#{@band.e_id}")
+    uri = URI.parse("http://api.bandcamp.com/api/band/3/info?key=#{APIKeys::BANDCAMP}&band_id=#{@info_json['band_id']}")
     response = Net::HTTP.get(uri)
     JSON.parse(response)
   end

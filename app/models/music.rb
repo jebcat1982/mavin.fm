@@ -34,7 +34,13 @@ class Music
 
   def split_tags
     @tags = []
-    raw_tags.split(' ').map do |name|
+    if raw_tags.index(',')
+      split_tags = raw_tags.split(',')
+    else
+      split_tags = raw_tags.split(' ')
+    end
+
+    split_tags.map do |name|
       @tags << Tag.find_or_create_by_name(name.chomp)
     end
   end

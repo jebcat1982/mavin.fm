@@ -24,15 +24,15 @@ ActiveRecord::Schema.define(:version => 20120304003054) do
     t.string   "large_art_url"
     t.string   "artist"
     t.integer  "band_id"
-    t.integer  "e_id"
-    t.integer  "e_band_id"
+    t.integer  "e_id",          :limit => 8
+    t.integer  "e_band_id",     :limit => 8
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
   end
 
   create_table "bands", :force => true do |t|
     t.string   "url"
-    t.integer  "e_id"
+    t.integer  "e_id",        :limit => 8
     t.string   "subdomain"
     t.string   "name"
     t.string   "offsite_url"
@@ -85,9 +85,9 @@ ActiveRecord::Schema.define(:version => 20120304003054) do
     t.string   "large_art_url"
     t.string   "artist"
     t.integer  "album_id"
-    t.integer  "e_id"
-    t.integer  "e_album_id"
-    t.integer  "e_band_id"
+    t.integer  "e_id",           :limit => 8
+    t.integer  "e_album_id",     :limit => 8
+    t.integer  "e_band_id",      :limit => 8
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
     t.string   "album_title"

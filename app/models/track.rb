@@ -24,6 +24,8 @@ class Track < ActiveRecord::Base
       end
     end
 
+    return Track.first(:order => 'RANDOM()') if !total || !size
+
     mean = total / size
     tmp = 0
     

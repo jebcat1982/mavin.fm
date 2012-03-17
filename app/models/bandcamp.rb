@@ -18,28 +18,7 @@ class Bandcamp
     track_json = track_module
     album_json = album_module if track_json["album_id"]
 
-    @track = Track.new
-    @track.title         = track_json["title"],
-    @track.number        = track_json["number"],
-    @track.duration      = track_json["duration"],
-    @track.release_date  = track_json["release_date"],
-    @track.downloadable  = track_json["downloadable"]  || album_json["downloadable"],
-    @track.url           = track_json["url"],
-    @track.streaming_url = track_json["streaming_url"] + "&api_key=#{APIKeys::BANDCAMP}",
-    @track.lyrics        = track_json["lyrics"],
-    @track.about         = track_json["about"],
-    @track.credits       = track_json["credits"],
-    @track.small_art_url = track_json["small_art_url"] || album_json["small_art_url"],
-    @track.large_art_url = track_json["large_art_url"] || album_json["large_art_url"],
-    @track.artist        = track_json["artist"]        || album_json["artist"],
-    @track.e_id          = track_json["track_id"],
-    @track.e_album_id    = track_json["album_id"],
-    @track.e_band_id     = track_json["band_id"],
-
-    @track.album_title   = album_json["title"],
-    @track.album_url     = album_json["url"],
-    @track.artist_url    = @band.url,
-    @track.band_subdomain = @band.subdomain
+    @track = Track.bandcamp_new(track_json, album_json, @band)
 
     @tags.each do |tag|
       @track.taggings.build(:tag_id => tag.id)
@@ -53,7 +32,7 @@ class Bandcamp
   end
 
   def get_album
-    @album_info = album_module()
+    @album_json= album_module()
 
     @album = Album.new
     @album.title         = @album_info["title"]
@@ -75,37 +54,10 @@ class Bandcamp
   end
 
   def build_tracks
-    @album_info["tracks"].each do |track|
-      # If the tracks don't have these values take them from the album
-      downloadable  = track["downloadable"]  || @album.downloadable
-      small_art_url = track["small_art_url"] || @album.small_art_url
-      large_art_url = track["large_art_url"] || @album.large_art_url
-      artist        = track["artist"]        || @album.artist         || @band.name
-
-      t = @album.tracks.build(
-        :title         => track["title"],
-        :number        => track["number"],
-        :duration      => track["duration"],
-        :release_date  => track["release_date"],
-        :downloadable  => downloadable,
-        :url           => track["url"],
-        :streaming_url => track["streaming_url"] + "&api_key=#{APIKeys::BANDCAMP}",
-        :lyrics        => track["lyrics"],
-        :about         => track["about"],
-        :credits       => track["credits"],
-        :small_art_url => small_art_url,
-        :large_art_url => large_art_url,
-        :artist        => artist,
-        :e_id          => track["track_id"],
-        :e_album_id    => track["album_id"],
-        :e_band_id     => track["band_id"],
-
-        :album_title   => @album.title,
-        :album_url     => @album.url,
-        :artist_url    => @band.url,
-        :band_subdomain => @band.subdomain
-      )
-
+    @album_json[:tracks].each do |track|
+      t = Track.bandcamp_new(track, @album_json, @band)
+      @album.tracks << t
+    
       @tags.each do |tag|
         t.taggings.build(:tag_id => tag.id)
         Discovery.redis.sadd "t#{t.id}", tag.id

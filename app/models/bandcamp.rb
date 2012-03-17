@@ -118,12 +118,7 @@ class Bandcamp
 
     unless band
       band_json = band_module()
-
-      band = Band.new
-      band.offsite_url  = band_json["offsite_url"]
-      band.url          = band_json["url"]
-      band.subdomain    = band_json["subdomain"]
-      band.name         = band_json["name"]
+      band = Band.bandcamp_new(band_json)
       band.save
     end
 

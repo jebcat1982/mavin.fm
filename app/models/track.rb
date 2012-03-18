@@ -69,4 +69,22 @@ class Track < ActiveRecord::Base
 
     track
   end
+
+  def soundcloud_new(args = {})
+    track = self.new
+
+    track.title          = args[:title]
+    track.duration       = args[:duration]
+    track.downloadable   = args[:downloadable]
+    track.url            = args[:permalink_url]
+    track.streaming_url  = args[:stream_url]
+    track.about          = args[:description]
+    track.small_art_url  = args[:artwork_url]
+    track.large_art_url  = args[:artwork_url]
+    track.artist         = args[:user][:username]
+    track.e_id           = args[:id]
+    track.e_band_id      = args['user-id']
+
+    track
+  end
 end

@@ -32,21 +32,9 @@ class Bandcamp
   end
 
   def get_album
-    @album_json= album_module()
+    @album_json = album_module()
 
-    @album = Album.new
-    @album.title         = @album_info["title"]
-    @album.release_date  = @album_info["release_date"]
-    @album.downloadable  = @album_info["downloadable"]
-    @album.url           = @album_info["url"]
-    @album.about         = @album_info["about"]
-    @album.credits       = @album_info["credits"]
-    @album.small_art_url = @album_info["small_art_url"]
-    @album.large_art_url = @album_info["large_art_url"]
-    @album.artist        = @album_info["artist"] || @band.name
-    @album.band_id       = @band.id
-    @album.e_id          = @album_info["album_id"]
-    @album.e_band_id     = @album_info["band_id"]
+    @album = Album.bandcamp_new(@album_json, @band)
 
     build_tracks()
 

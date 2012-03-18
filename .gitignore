@@ -16,3 +16,4 @@
 
 *.rdb
 /misc/dev
+/db_dumps

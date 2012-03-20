@@ -44,7 +44,7 @@ class Track < ActiveRecord::Base
     self.find(possible[rand(possible.length-1)])
   end
 
-  def bandcamp_new(args = {}, album = {}, band = nil)
+  def self.bandcamp_new(args = {}, album = {}, band = nil)
     track = self.new
 
     track.title         = args['title']
@@ -72,7 +72,7 @@ class Track < ActiveRecord::Base
     track
   end
 
-  def soundcloud_new(args = {})
+  def self.soundcloud_new(args = {})
     track = self.new
 
     track.title          = args['title']

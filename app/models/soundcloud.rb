@@ -19,6 +19,13 @@ class Soundcloud
       json['tracks'].each do |track|
         soundcloud_track(track)
       end
+    elsif ['track_count']
+      uri = URI.parse("https://api.soundcloud.com/users/#{json['id']}/tracks.json&client_id=#{APIKeys::SOUNDCLOUD}")
+      response = Net::HTTP.get(uri)
+      json = JSON.parse(response)
+      json.each do |track|
+        soundcloud_track(json)
+      end
     else
       soundcloud_track(json)
     end

@@ -36,5 +36,17 @@ describe Bandcamp do
       album = bc.album_module(3152700495)
       album['tracks'].count.should == 8
     end
+
+    it "should retrieve data from the track module" do
+      bc = Bandcamp.new
+      track = bc.track_module(1974108541)
+      track['downloadable'].should_not be_nil
+      track['url'].should_not be_nil
+      track['band_id'].should_not be_nil
+      track['duration'].should_not be_nil
+      track['streaming_url'].should_not be_nil
+      track['track_id'].should_not be_nil
+      track['title'].should_not be_nil
+    end
   end
 end

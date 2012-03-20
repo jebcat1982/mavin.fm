@@ -77,7 +77,7 @@ class Track < ActiveRecord::Base
     track = self.new
 
     track.title          = args['title']
-    track.duration       = args['duration']
+    track.duration       = args['duration'] / 1000
     track.downloadable   = args['downloadable']
     track.url            = args['permalink_url']
     track.streaming_url  = args['stream_url']

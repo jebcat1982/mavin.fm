@@ -8,6 +8,7 @@ class Band < ActiveRecord::Base
     band = self.new
 
     unless args.empty?
+      band.e_id         = args['band_id']
       band.offsite_url  = args['offsite_url']
       band.url          = args['url']
       band.subdomain    = args['subdomain']

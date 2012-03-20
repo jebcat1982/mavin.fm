@@ -51,7 +51,7 @@ class Bandcamp
   end
 
   def build_tracks
-    @album_json[:tracks].each do |track|
+    @album_json['tracks'].each do |track|
       t = Track.bandcamp_new(track, @album_json, @band)
       @album.tracks << t
     

@@ -23,7 +23,7 @@ class Bandcamp
 
   def get_track(track_id)
     track_json = track_module(track_id)
-    album_json = album_module(track_json['album_id'] if track_json['album_id']
+    album_json = album_module(track_json['album_id']) if track_json['album_id']
 
     @track = Track.bandcamp_new(track_json, album_json, @band)
 
@@ -78,7 +78,7 @@ class Bandcamp
     JSON.parse(response)
   end
 
-  def band_module(band_id = @info_json['band_id']
+  def band_module(band_id = @info_json['band_id'])
     uri = URI.parse("http://api.bandcamp.com/api/band/3/info?key=#{APIKeys::BANDCAMP}&band_id=#{band_id}")
     response = Net::HTTP.get(uri)
     JSON.parse(response)

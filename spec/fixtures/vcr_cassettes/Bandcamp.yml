@@ -72,4 +72,130 @@ http_interactions:
       Moods"}'
     http_version: 
   recorded_at: Tue, 20 Mar 2012 17:07:15 GMT
+- request:
+    method: get
+    uri: http://api.bandcamp.com/api/url/1/info?key=vifaurskordadlaussofhlada&url=http://featurelessghost.bandcamp.com/album/new-moods
+    body: ''
+    headers:
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Tue, 20 Mar 2012 17:16:05 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - no-cache
+      Set-Cookie:
+      - BACKENDID=roberto4; path=/; domain=.bandcamp.com
+    body: ! '{"album_id":3152700495,"band_id":2153716647}'
+    http_version: 
+  recorded_at: Tue, 20 Mar 2012 17:16:07 GMT
+- request:
+    method: get
+    uri: http://api.bandcamp.com/api/track/3/info?key=vifaurskordadlaussofhlada&track_id=1974108541
+    body: ''
+    headers:
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Tue, 20 Mar 2012 17:30:44 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - no-cache
+      Set-Cookie:
+      - BACKENDID=roberto4; path=/; domain=.bandcamp.com
+    body: ! '{"album_id":3152700495,"downloadable":2,"lyrics":null,"band_id":2153716647,"url":"\/track\/lost-city","small_art_url":null,"streaming_url":"http:\/\/popplers5.bandcamp.com\/download\/track?enc=mp3-128&fsig=04e62298c59bc547e53aacc7bf9ac208&id=1974108541&stream=1&ts=1332273600.0","about":null,"large_art_url":null,"duration":69.1154,"credits":null,"track_id":1974108541,"title":"Lost
+      City","number":1}'
+    http_version: 
+  recorded_at: Tue, 20 Mar 2012 17:30:46 GMT
+- request:
+    method: get
+    uri: http://api.bandcamp.com/api/url/1/info?key=vifaurskordadlaussofhlada&url=http://featurelessghost.bandcamp.com/track/lost-city-cont
+    body: ''
+    headers:
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Tue, 20 Mar 2012 17:46:06 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - no-cache
+      Set-Cookie:
+      - BACKENDID=bender4; path=/; domain=.bandcamp.com
+    body: ! '{"band_id":2153716647,"track_id":1236669402}'
+    http_version: 
+  recorded_at: Tue, 20 Mar 2012 17:46:08 GMT
+- request:
+    method: get
+    uri: http://api.bandcamp.com/api/track/3/info?key=vifaurskordadlaussofhlada&track_id=1236669402
+    body: ''
+    headers:
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Tue, 20 Mar 2012 17:46:07 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - no-cache
+      Set-Cookie:
+      - BACKENDID=panucci4; path=/; domain=.bandcamp.com
+    body: ! '{"album_id":3152700495,"downloadable":2,"lyrics":null,"band_id":2153716647,"url":"\/track\/lost-city-cont","small_art_url":null,"streaming_url":"http:\/\/popplers5.bandcamp.com\/download\/track?enc=mp3-128&fsig=e1facbffbeddb7fda32d5992e867cb4b&id=1236669402&stream=1&ts=1332273600.0","about":null,"large_art_url":null,"duration":155.192,"credits":null,"track_id":1236669402,"title":"Lost
+      City Cont.","number":8}'
+    http_version: 
+  recorded_at: Tue, 20 Mar 2012 17:46:09 GMT
 recorded_with: VCR 2.0.0.rc1

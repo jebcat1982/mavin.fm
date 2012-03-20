@@ -47,25 +47,25 @@ class Track < ActiveRecord::Base
   def bandcamp_new(args = {}, album = {}, band = nil)
     track = self.new
 
-    track.title         = args[:title]
-    track.number        = args[:number]
-    track.duration      = args[:duration]
-    track.release_date  = args[:release_date]
-    track.downloadable  = args[:downloadable]  || album[:downloadable]
-    track.url           = args[:url]
-    track.streaming_url = args[:streaming_url] + "&api_key=#{APIKeys::BANDCAMP}"
-    track.lyrics        = args[:lyrics]
-    track.about         = args[:about]
-    track.credits       = args[:credits]
-    track.small_art_url = args[:small_art_url] || album[:small_art_url]
-    track.large_art_url = args[:large_art_url] || album[:large_art_url]
-    track.artist        = args[:artist]        || album[:artist]          || band.name
-    track.e_id          = args[:track_id]
-    track.e_album_id    = args[:album_id]
-    track.e_band_id     = args[:band_id]
+    track.title         = args['title']
+    track.number        = args['number']
+    track.duration      = args['duration']
+    track.release_date  = args['release_date']
+    track.downloadable  = args['downloadable']  || album['downloadable']
+    track.url           = args['url']
+    track.streaming_url = args['streaming_url'] + "&api_key=#{APIKeys::BANDCAMP}"
+    track.lyrics        = args['lyrics']
+    track.about         = args['about']
+    track.credits       = args['credits']
+    track.small_art_url = args['small_art_url'] || album['small_art_url']
+    track.large_art_url = args['large_art_url'] || album['large_art_url']
+    track.artist        = args['artist']        || album['artist']          || band.name
+    track.e_id          = args['track_id']
+    track.e_album_id    = args['album_id']
+    track.e_band_id     = args['band_id']
 
-    track.album_title   = album[:title]
-    track.album_url     = album[:url]
+    track.album_title   = album['title']
+    track.album_url     = album['url']
     track.artist_url    = band.url
     track.band_subdomain = band.subdomain
 
@@ -75,16 +75,16 @@ class Track < ActiveRecord::Base
   def soundcloud_new(args = {})
     track = self.new
 
-    track.title          = args[:title]
-    track.duration       = args[:duration]
-    track.downloadable   = args[:downloadable]
-    track.url            = args[:permalink_url]
-    track.streaming_url  = args[:stream_url]
-    track.about          = args[:description]
-    track.small_art_url  = args[:artwork_url]
-    track.large_art_url  = args[:artwork_url]
-    track.artist         = args[:user][:username]
-    track.e_id           = args[:id]
+    track.title          = args['title']
+    track.duration       = args['duration']
+    track.downloadable   = args['downloadable']
+    track.url            = args['permalink_url']
+    track.streaming_url  = args['stream_url']
+    track.about          = args['description']
+    track.small_art_url  = args['artwork_url']
+    track.large_art_url  = args['artwork_url']
+    track.artist         = args['user']['username']
+    track.e_id           = args['id']
     track.e_band_id      = args['user-id']
 
     track

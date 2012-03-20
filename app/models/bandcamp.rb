@@ -18,6 +18,8 @@ class Bandcamp
   def get_discography(band_id)
     disc_json = discography_module(band_id)
     disc_json['discography'].each do |music|
+      get_album(music['album_id']) if music['album_id']
+      get_track(music['track_id']) if music['track_id']
     end
   end
 

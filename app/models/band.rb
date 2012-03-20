@@ -12,6 +12,7 @@ class Band < ActiveRecord::Base
       band.url          = args['url']
       band.subdomain    = args['subdomain']
       band.name         = args['name']
+      band.source       = 'bc'
     end
 
     band

@@ -68,6 +68,7 @@ class Track < ActiveRecord::Base
     track.album_url     = album['url']
     track.artist_url    = band.url
     track.band_subdomain = band.subdomain
+    track.source        = 'bc'
 
     track
   end
@@ -86,6 +87,7 @@ class Track < ActiveRecord::Base
     track.artist         = args['user']['username']
     track.e_id           = args['id']
     track.e_band_id      = args['user-id']
+    track.source         = 'sc'
 
     track
   end

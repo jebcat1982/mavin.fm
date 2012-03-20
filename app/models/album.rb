@@ -21,6 +21,7 @@ class Album < ActiveRecord::Base
     album.band_id       = band.id
     album.e_id          = args['album_id']
     album.e_band_id     = args['band_id']
+    album.source        = 'bc'
 
     album
   end

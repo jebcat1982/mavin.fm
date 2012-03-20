@@ -6,7 +6,7 @@ class Album < ActiveRecord::Base
 
   validates :e_id, :uniqueness => { :scope => :source }
 
-  def bandcamp_new(args = {}, band = nil)
+  def self.bandcamp_new(args = {}, band = nil)
     album = self.new
 
     album.title         = args['title']

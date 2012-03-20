@@ -43,5 +43,7 @@ class Music
     split_tags.map do |name|
       @tags << Tag.find_or_create_by_name(name.chomp)
     end
+
+    @tags
   end
 end

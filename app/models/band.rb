@@ -2,6 +2,8 @@ class Band < ActiveRecord::Base
   has_many :albums
   has_many :tracks, :through => :albums
 
+  validates :e_id, :uniqueness => { :scope => :source }
+
   def self.bandcamp_new(args = {})
     band = self.new
 

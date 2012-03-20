@@ -4,6 +4,8 @@ class Album < ActiveRecord::Base
   has_many :taggings
   has_many :tags, :through => :taggings
 
+  validates :e_id, :uniqueness => { :scope => :source }
+
   def bandcamp_new(args = {}, band = nil)
     album = self.new
 

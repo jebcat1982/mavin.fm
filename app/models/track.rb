@@ -4,6 +4,8 @@ class Track < ActiveRecord::Base
   has_many :taggings
   has_many :tags, :through => :taggings
 
+  validates :e_id, :uniqueness => { :scope => :source }
+
   def self.find_recommendation(playlist)
     pid = "p#{playlist.id}"
 

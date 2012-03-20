@@ -8,6 +8,8 @@ class Bandcamp
 
   def save
     @info_json = url_module()
+    return false if @info_json['error'] == true
+
     @band      = find_or_create_band()
 
     return get_album(@info_json['album_id']) if url.index('/album/')
@@ -63,13 +65,11 @@ class Bandcamp
   end
 
   def find_or_create_band
-    band = Band.where(:e_id => @info_json["band_id"]).first
+    band = Band.where(:e_id => @info_json["band_id"], :source => 'bc').first
 
-    unless band
-      band_json = band_module()
-      band = Band.bandcamp_new(band_json)
-      band.save
-    end
+    band_json = band_module()
+    band = Band.bandcamp_new(band_json)
+    band.save
 
     band
   end

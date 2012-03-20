@@ -49,4 +49,12 @@ describe Bandcamp do
       track['title'].should_not be_nil
     end
   end
+
+  describe "saves" do
+    it "should create a track and tags" do
+      track = Bandcamp.new('http://featurelessghost.bandcamp.com/track/lost-city-cont', ['dance', 'electronic', 'house'])
+      track.save
+      track.should have(3).tags
+    end
+  end
 end

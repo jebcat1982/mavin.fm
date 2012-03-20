@@ -4,6 +4,13 @@ describe Bandcamp do
   use_vcr_cassette "Bandcamp", :record => :new_episodes
 
   describe "modules" do
+    it "should retrieve a band_id and album_id from the url module" do
+      bc = Bandcamp.new('http://featurelessghost.bandcamp.com/album/new-moods')
+      info = bc.url_module
+      info['band_id'].should_not be_nil
+      info['album_id'].should_not be_nil
+    end
+
     it "should retrieve all the data from the band module" do
       bc = Bandcamp.new
       band = bc.band_module(2153716647)

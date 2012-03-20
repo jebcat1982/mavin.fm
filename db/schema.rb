@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120304003054) do
+ActiveRecord::Schema.define(:version => 20120320152155) do
 
   create_table "albums", :force => true do |t|
     t.string   "title"
@@ -26,9 +26,12 @@ ActiveRecord::Schema.define(:version => 20120304003054) do
     t.integer  "band_id"
     t.integer  "e_id",          :limit => 8
     t.integer  "e_band_id",     :limit => 8
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
+    t.string   "source"
   end
+
+  add_index "albums", ["e_id", "source"], :name => "index_albums_on_e_id_and_source", :unique => true
 
   create_table "bands", :force => true do |t|
     t.string   "url"
@@ -36,9 +39,12 @@ ActiveRecord::Schema.define(:version => 20120304003054) do
     t.string   "subdomain"
     t.string   "name"
     t.string   "offsite_url"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
+    t.string   "source"
   end
+
+  add_index "bands", ["e_id", "source"], :name => "index_bands_on_e_id_and_source", :unique => true
 
   create_table "playlist_tracks", :force => true do |t|
     t.integer  "playlist_id"
@@ -88,13 +94,16 @@ ActiveRecord::Schema.define(:version => 20120304003054) do
     t.integer  "e_id",           :limit => 8
     t.integer  "e_album_id",     :limit => 8
     t.integer  "e_band_id",      :limit => 8
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
     t.string   "album_title"
     t.string   "album_url"
     t.string   "artist_url"
     t.string   "band_subdomain"
+    t.string   "source"
   end
+
+  add_index "tracks", ["e_id", "source"], :name => "index_tracks_on_e_id_and_source", :unique => true
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false

@@ -67,4 +67,7 @@ music =
 music.each do |url,tags|
   m = Music.new(url,tags)
   m.save
+  puts "Done: #{url}"
+  puts "Sleeping..."
+  sleep(5)
 end

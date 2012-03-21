@@ -10,21 +10,25 @@ class Soundcloud
     uri = URI.parse("http://api.soundcloud.com/resolve.json?url=#{self.url}&client_id=#{APIKeys::SOUNDCLOUD}")
     response = Net::HTTP.get(uri)
     json = JSON.parse(response)
-    
+
+    return false if json['error_message']
+
     uri = URI.parse(json['location'])
     response = Net::HTTP.get(uri)
     json = JSON.parse(response)
+
+    return false if json['error_message']
 
     if json['tracks']
       json['tracks'].each do |track|
         soundcloud_track(track)
       end
-    elsif ['track_count']
+    elsif json['track_count']
       uri = URI.parse("http://api.soundcloud.com/users/#{json['id']}/tracks.json?client_id=#{APIKeys::SOUNDCLOUD}")
       response = Net::HTTP.get(uri)
       json = JSON.parse(response)
       json.each do |track|
-        soundcloud_track(json)
+        soundcloud_track(track)
       end
     else
       soundcloud_track(json)
@@ -37,7 +41,7 @@ class Soundcloud
 
     @tags.each do |tag|
       track.taggings.build(:tag_id => tag.id)
-      Discovery.redis.sadd "t#{t.id}", tag.id
+      Discovery.redis.sadd "t#{track.id}", tag.id
     end
 
     track.save

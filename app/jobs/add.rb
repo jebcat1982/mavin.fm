@@ -1,4 +1,4 @@
-class Add
+class AddMusic
   @queue = :music
 
   def self.perform(url, tags)

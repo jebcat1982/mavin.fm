@@ -12,6 +12,7 @@ gem 'jquery-rails'
 gem 'json'
 gem 'pry-rails'
 gem 'redis'
+gem 'resque'
 gem 'therubyracer'
 
 group :assets do

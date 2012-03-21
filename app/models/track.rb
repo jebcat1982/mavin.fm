@@ -33,14 +33,15 @@ class Track < ActiveRecord::Base
     mean = total.to_f / size.to_f
     tmp = 0
     
-    intersection.each do |tid,count|
-      tmp += (count - mean) ** 2
-    end
-    std = Math.sqrt(tmp/mean)
+    #intersection.each do |tid,count|
+    #  tmp += (count - mean) ** 2
+    #  puts tmp
+    #end
+    #std = Math.sqrt(tmp/mean)
 
     possible = []
     intersection.each do |tid,count|
-      possible << tid if count >= std+mean
+      possible << tid if count >= mean # std+mean
     end
 
     self.find(possible[rand(possible.length-1)])

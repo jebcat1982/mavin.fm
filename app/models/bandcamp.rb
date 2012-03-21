@@ -30,16 +30,15 @@ class Bandcamp
     album_json = album_module(track_json['album_id']) if track_json['album_id']
 
     @track = Track.bandcamp_new(track_json, album_json, @band)
-
-    @tags.each do |tag|
-      @track.taggings.build(:tag_id => tag.id)
-    end
-
     @track.save
 
     @tags.each do |tag|
+      @track.taggings.build(:tag_id => tag.id)
       Discovery.redis.sadd "t#{@track.id}", tag.id
     end
+
+    @track.save
+    Discovery.redis.sadd "tracks", @track.id
   end
 
   def get_album(album_id)
@@ -49,7 +48,16 @@ class Bandcamp
 
     build_tracks()
 
-    @album.save
+    result = @album.save
+
+    @album.tracks.each do |track|
+      Discovery.redis.sadd "tracks", track.id
+      track.tags.each do |tag|
+        Discovery.redis.sadd "t#{track.id}", tag.id
+      end
+    end
+
+    result
   end
 
   def build_tracks
@@ -59,7 +67,6 @@ class Bandcamp
     
       @tags.each do |tag|
         t.taggings.build(:tag_id => tag.id)
-        Discovery.redis.sadd "t#{t.id}", tag.id
       end
     end
   end

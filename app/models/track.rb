@@ -20,15 +20,17 @@ class Track < ActiveRecord::Base
       unless playlist_tracks.include?(track)
         tid = "t#{track.id}"
         count = (Discovery.redis.sinter pid, tid).count
-        intersection[track.id] = count
-        total += count
-        size += 1
+        if count != 0 
+          intersection[track.id] = count
+          total += count
+          size += 1
+        end
       end
     end
 
     return Track.first(:order => 'RANDOM()') if total == 0 || size == 0
 
-    mean = total / size
+    mean = total.to_f / size.to_f
     tmp = 0
     
     intersection.each do |tid,count|

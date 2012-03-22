@@ -9,9 +9,9 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require reset-min
- *= require bootstrap.min
  *= require token-input.css
  *= require token-input-facebook.css
+ *= require bootstrap.min
  *= require_self
  *= require_tree .
 */
@@ -68,4 +68,22 @@ html, body {
 }
 
 .songs_container {
+}
+
+#playlist_form {
+  ul.token-input-list-facebook {
+    color:#555555;
+    float: left;
+    margin-right: 4px;
+    width: 725px;
+
+    border: 1px solid #ccc;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+  }
+
+#create_new_playlist {
+    padding: 5px;
+  }
 }

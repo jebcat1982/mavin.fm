@@ -1,8 +1,16 @@
+:javascript
+  $(document).ready(function() {
+    $('#new_playlist_search_term').tokenInput("#{tags_autocomplete_path}", {
+      theme: 'facebook',
+      tokenValue: 'name'
+    });
+  });
+
 #app_container
   .playlist_form
     %form#new_playlist
       %input#new_playlist_search_term{:type => "text", :name => "tag"}
-      %input{:type => "submit", :value => "Create playlist"}
+      %input#create_new_playlist.btn.btn-primary{:type => "submit", :value => "Listen"}
 
   .playlists_container
     %h3 playlists

@@ -1,5 +1,6 @@
 class Discovery.Views.PlaylistsIndex extends Backbone.View
-  el: '#app_container'
+  template: JST['playlists/index']
+  className: 'player_container'
 
   events:
     'click #next_song': 'getSong'
@@ -13,7 +14,7 @@ class Discovery.Views.PlaylistsIndex extends Backbone.View
     $('#player').on 'ended', () -> view.songEnded()
 
   render: ->
-    $('#songs').empty()
+    $(this.el).html(this.template())
     this.model.tracks.each(this.prependSong)
     this
 

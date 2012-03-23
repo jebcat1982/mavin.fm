@@ -3,6 +3,7 @@ class Discovery.Routers.Playlists extends Backbone.Router
     this.playlists = new Discovery.Collections.Playlists()
     this.playlists.fetch()
     view = new Discovery.Views.Layout(collection: this.playlists)
+    window.activePlaylist = null
 
   routes:
     '': 'index'
@@ -11,8 +12,12 @@ class Discovery.Routers.Playlists extends Backbone.Router
   index: ->
 
   show: (id) ->
+    if window.activePlaylist?
+      window.activePlaylist.unbind()
+      window.activePlaylist.remove()
+
     playlist = new Discovery.Models.Playlist(id: id)
     playlist.fetch success: ->
       playlist.tracks.fetch success: ->
-        view = new Discovery.Views.PlaylistsIndex(model: playlist)
-        view.render().el
+        window.activePlaylist = new Discovery.Views.PlaylistsIndex(model: playlist)
+        $('.right_container').html(window.activePlaylist.render().el)

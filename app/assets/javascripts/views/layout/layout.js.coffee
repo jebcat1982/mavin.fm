@@ -21,6 +21,7 @@ class Discovery.Views.Layout extends Backbone.View
 
     attributes = search_term: $('#new_playlist_search_term').val()
     this.collection.create attributes,
+      wait: true
       success: (model) ->
         playlistView = new Discovery.Views.Playlist(model: model)
         $('#playlists').prepend(playlistView.render().el)

@@ -21,3 +21,4 @@ class Discovery.Routers.Playlists extends Backbone.Router
       playlist.tracks.fetch success: ->
         window.activePlaylist = new Discovery.Views.PlaylistsIndex(model: playlist)
         $('.right_container').html(window.activePlaylist.render().el)
+        window.activePlaylist.initPlayer()

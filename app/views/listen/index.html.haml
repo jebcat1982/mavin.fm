@@ -18,10 +18,11 @@
 
   .right_container
     .player_container
-      %audio#player
-      %a#play_song{:href => "#"} play
-      %a#pause_song{:href => "#"} pause
-      %a#next_song{:href => "#"} next
+      .player_controls
+        %audio#player
+        %a#play_song{:href => "#"} play
+        %a#pause_song{:href => "#"} pause
+        %a#next_song{:href => "#"} next
 
       .songs_container
         #songs

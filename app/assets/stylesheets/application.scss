@@ -58,13 +58,6 @@ html, body {
 
 .player_container {
   border-bottom: 1px solid #999;
-
-  a {
-    font-size: 14px;
-    font-weight: bold;
-    line-height: 27px;
-    padding-right: 10px;
-  }
 }
 
 .songs_container {
@@ -85,5 +78,15 @@ html, body {
 
 #create_new_playlist {
     padding: 5px;
+  }
+}
+
+.player_controls  {
+  margin-top: 4px;
+  margin-bottom: 4px;
+
+  a {
+    font-weight: bold;
+    margin-right: 5px;
   }
 }

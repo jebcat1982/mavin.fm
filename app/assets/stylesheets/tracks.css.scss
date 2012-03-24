@@ -2,15 +2,16 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-#songs div {
+#songs {
   background: #fbfbfb;
   border-top: 1px solid #999;
   border-bottom: 1px solid #999;
-  margin: 10px 0px 10px 0px;
+  margin-bottom: 10px;
 
   img {
     float: left;
     padding: 10px;
+    padding-top: 0px;
   }
 
   h4 {

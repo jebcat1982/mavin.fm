@@ -1,7 +1,9 @@
-<audio id="player">Your browser does not support the audio tag.</audio>
-<a href="#" id="play_song">play</a>
-<a href="#" id="pause_song">pause</a>
-<a href="#" id="next_song">next</a>
+<div class="player_controls">
+  <audio id="player">Your browser does not support the audio tag.</audio>
+  <a href="#" id="play_song">play</a>
+  <a href="#" id="pause_song">pause</a>
+  <a href="#" id="next_song">next</a>
+</div>
 
 <div class="songs_container">
   <div id="songs"></div>

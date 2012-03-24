@@ -41,4 +41,12 @@
     margin: 0;
     padding: 0;
   }
+
+  &.loading {
+    background-image: url(/assets/loading.gif);
+    background-repeat: no-repeat;
+    background-position-x: 281px;
+    background-position-y: 56px;
+    height: 128px;
+  }
 }

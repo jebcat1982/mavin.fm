@@ -27,6 +27,8 @@ class Discovery.Views.PlaylistsIndex extends Backbone.View
   getSong: (e) ->
     e.preventDefault() if e
     view = this
+
+    $('#songs').prepend("<div class='loading'></div>")
     
     attributes = search_term: this.model.get('search_term')
     this.model.tracks.create attributes,
@@ -36,6 +38,7 @@ class Discovery.Views.PlaylistsIndex extends Backbone.View
 
   startSong: (song) ->
     view = new Discovery.Views.Song(model: song)
+    $('.loading').remove()
     $('#songs').prepend(view.render().el)
     $('#player')[0].src = song.get('streaming_url')
     $('#player')[0].play()

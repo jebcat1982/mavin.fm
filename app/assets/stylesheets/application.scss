@@ -82,11 +82,21 @@ html, body {
 }
 
 .player_controls  {
-  margin-top: 4px;
-  margin-bottom: 4px;
+  margin-top: 5px;
+  margin-bottom: 3px;
 
   a {
+    background: #666;
+    border: 1px solid #444;
+    border-radius: 3px;
     font-weight: bold;
     margin-right: 5px;
+    padding: 1px;
+    padding-bottom: 0px;
+
+    &:hover {
+      background: #444;
+      border-color: #222;
+    }
   }
 }

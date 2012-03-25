@@ -83,7 +83,7 @@ class Track < ActiveRecord::Base
     track.duration       = args['duration'] / 1000
     track.downloadable   = args['downloadable']
     track.url            = args['permalink_url']
-    track.streaming_url  = args['stream_url']
+    track.streaming_url  = args['stream_url'] + "?client_id=#{APIKeys::SOUNDCLOUD}"
     track.about          = args['description']
     track.small_art_url  = args['artwork_url']
     track.large_art_url  = args['artwork_url']

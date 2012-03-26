@@ -9,8 +9,8 @@ class Track < ActiveRecord::Base
   def self.find_recommendation(playlist)
     pid = "p#{playlist.id}"
 
-    playlist_tracks = playlist.tracks.order('created_at DESC').limit(15)
-    tracks = self.all
+    playlist_tracks = playlist.tracks.select('tracks.id').order('playlist_tracks.created_at DESC').limit(15).map(&:id)
+    tracks = Discovery.redis.smembers('tracks').map { |t| t.to_i }
 
     total = 0
     size = 0
@@ -18,10 +18,10 @@ class Track < ActiveRecord::Base
 
     tracks.each do |track|
       unless playlist_tracks.include?(track)
-        tid = "t#{track.id}"
+        tid = "t#{track}"
         count = (Discovery.redis.sinter pid, tid).count
         if count != 0 
-          intersection[track.id] = count
+          intersection[track] = count
           total += count
           size += 1
         end

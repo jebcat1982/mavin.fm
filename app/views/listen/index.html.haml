@@ -20,9 +20,12 @@
     .player_container
       .player_controls
         %audio#player
-        %a#play_song{:href => "#"} play
-        %a#pause_song{:href => "#"} pause
-        %a#next_song{:href => "#"} next
+        %a#play_song{:href => "#"}
+          %i.icon-play
+        %a#pause_song{:href => "#"}
+          %i.icon-pause
+        %a#next_song{:href => "#"}
+          %i.icon-step-forward
 
       .songs_container
         #songs

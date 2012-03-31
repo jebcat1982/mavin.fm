@@ -11,11 +11,11 @@
 
     .field
       = label_tag 'url', "URL"
-      = text_field_tag 'url', '', :placeholder => "http://featurelessghost.bandcamp.com/album/new-moods"
+      = text_field_tag 'url', '', :placeholder => "ex: http://featurelessghost.bandcamp.com/album/new-moods"
       %p.tip Only accepts Bandcamp track, Bandcamp album, Soundcloud track, or Soundcloud set links.
     .field
       = label_tag 'tags'
-      = text_field_tag 'raw_tags', '', :placeholder => "2011, dance, dark, electronic, featureless ghost, ghost, house, new wave, synthpop, Atlanta"
+      = text_field_tag 'raw_tags', '', :placeholder => "ex: 2011, dance, dark, electronic, featureless ghost, ghost, house, new wave, synthpop, Atlanta"
       %p.tip Comma seperated list of tags.
     .actions
       = submit_tag 'Add your music', class: 'btn btn-primary'

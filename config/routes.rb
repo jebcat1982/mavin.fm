@@ -2,7 +2,10 @@ Discovery::Application.routes.draw do
   get "listen/index"
   get "tags/autocomplete" => "tags#autocomplete", :as => :tags_autocomplete
 
-  resources :bands, :albums, :tags, :tracks, :music
+  get 'music/new' => "music#new", :as => :new_music
+  post 'music' => "music#create", :as => :music
+
+  resources :bands, :albums, :tags, :tracks
   resources :playlists do
     resources :playlist_tracks, :shallow => true
   end

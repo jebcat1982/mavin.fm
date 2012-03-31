@@ -7,6 +7,7 @@ gem 'unicorn'
 
 gem 'backbone-on-rails'
 gem 'devise'
+gem 'foreman'
 gem 'haml'
 gem 'haml-rails'
 gem 'jquery-rails'

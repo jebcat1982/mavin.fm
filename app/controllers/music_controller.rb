@@ -6,7 +6,7 @@ class MusicController < ApplicationController
 
   def new
     @music = Music.new
-    respond_with @music
+    render :layout => 'interest'
   end
 
   def create

@@ -13,7 +13,7 @@ class MusicController < ApplicationController
     @music = Music.new(params[:url], params[:raw_tags])
 
     if @music.valid?
-      Resque.enqueue(Add, params[:url], params[:raw_tags])
+      Resque.enqueue(AddMusic, params[:url], params[:raw_tags])
       redirect_to new_music_path, notice: "You've successfully added your music."
     else
       render action: 'new'

@@ -18,53 +18,60 @@
   margin-bottom: 20px;
   width: 500px;
 
+  .notice {
+    border: 1px solid #009900;
+    padding: 5px;
+    margin-bottom: 10px;
+    background: #77e377;
+  }
+
   .outer-container {
     border: 1px solid #ccc;
     border-radius: 3px;
-  }
 
-  form {
-    margin: 0;
-  }
+    form {
+      margin: 0;
+    }
 
-  h1 {
-    background: #efefef;
-    padding: 10px;
-  }
+    h1 {
+      background: #efefef;
+      padding: 10px;
+    }
 
-  div.container {
-    padding: 10px;
-    width: auto;
-  }
+    div.container {
+      padding: 10px;
+      width: auto;
+    }
 
-  p.success {
-    color: green;
-    font-weight: bold;
-  }
+    p.success {
+      color: green;
+      font-weight: bold;
+    }
 
-  li.first {
-    margin-bottom: 9px;
-  }
+    li.first {
+      margin-bottom: 9px;
+    }
 
-  label {
-    float: left;
-    padding-top: 5px;
-    width: 3em;
-  }
+    label {
+      float: left;
+      padding-top: 5px;
+      width: 3em;
+    }
 
-  form input[type=text] {
-    margin-bottom: 0px;
-    width: 400px;
-  }
+    form input[type=text] {
+      margin-bottom: 0px;
+      width: 400px;
+    }
 
-  form input[type=submit] {
-    margin-left: 3em;
-  }
+    form input[type=submit] {
+      margin-left: 3em;
+    }
 
-  p.tip {
-    color: #aaa;
-    font-size: 8pt;
-    margin-left: 40px;
-    width: 400px;
+    p.tip {
+      color: #aaa;
+      font-size: 8pt;
+      margin-left: 40px;
+      width: 400px;
+    }
   }
 }

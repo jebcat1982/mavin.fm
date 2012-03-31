@@ -1,0 +1,68 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require bootstrap.min
+ *= require_self
+*/
+
+body#interest {
+  margin: 0 auto;
+  margin-top: 50px;
+  margin-bottom: 20px;
+  width: 500px;
+
+  .outer-container {
+    border: 1px solid #ccc;
+    border-radius: 3px;
+  }
+
+  form {
+    margin: 0;
+  }
+
+  h1 {
+    background: #efefef;
+    padding: 10px;
+  }
+
+  div.container {
+    padding: 10px;
+    width: auto;
+  }
+
+  p.success {
+    color: green;
+    font-weight: bold;
+  }
+
+  li.first {
+    margin-bottom: 9px;
+  }
+
+  label {
+    float: left;
+    padding-top: 5px;
+    width: 3em;
+  }
+
+  form input[type=text] {
+    width: 400px;
+  }
+
+  form input[type=submit] {
+    margin-left: 3em;
+  }
+
+  p.tip {
+    color: #aaa;
+    font-size: 8pt;
+    margin-left: 40px;
+  }
+}

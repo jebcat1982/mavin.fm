@@ -1,16 +1,19 @@
-= form_tag '/music' do
-  - if @music.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@music.errors.count, "error")} prohibited this from being saved:"
-      %ul
-        - @music.errors.full_messages.each do |msg|
-          %li= msg
+%h1 New Music
+
+.container
+  = form_tag music_path do
+    - if @music.errors.any?
+      #error_explanation
+        %h2= "#{pluralize(@music.errors.count, "error")} prohibited this from being saved:"
+        %ul
+          - @music.errors.full_messages.each do |msg|
+            %li= msg
 
   .field
-    = label_tag 'url'
-    = text_field_tag 'url'
+    = label_tag 'url', "URL"
+    = text_field_tag 'url', '', :placeholder => "http://featurelessghost.bandcamp.com/album/new-moods"
   .field
-    = label_tag 'raw_tags'
-    = text_field_tag 'raw_tags'
+    = label_tag 'tags'
+    = text_field_tag 'raw_tags', '', :placeholder => "2011, dance, dark, electronic, featureless ghost, ghost, house, new wave, synthpop, Atlanta"
   .actions
-    = submit_tag 'Save'
+    = submit_tag 'Add your music', class: 'btn btn-primary'

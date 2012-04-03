@@ -30,13 +30,12 @@ class Discovery.Views.PlaylistsIndex extends Backbone.View
     e.preventDefault() if e
     view = this
 
-    $('#duration').html("0:00")
-
     $('#songs').prepend("<div class='loading'></div>")
     
     attributes = search_term: this.model.get('search_term')
     this.model.tracks.create attributes,
       success: (model) ->
+        $('#duration').html("0:00")
         song = new Discovery.Models.Song(model.attributes)
         view.startSong(song)
 

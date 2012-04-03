@@ -5,6 +5,10 @@
   <a href="#" id="next_song"><i class="icon-step-forward icon-white"></i></a>
 </div>
 
+<p id="time">
+  <span id="current_time">0:00</span> / <span id="duration">0:00</span>
+</p>
+
 <div class="songs_container">
   <div id="songs"></div>
 </div>

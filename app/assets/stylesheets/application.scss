@@ -82,8 +82,10 @@ html, body {
 }
 
 .player_controls  {
+  float: left;
   margin-top: 5px;
   margin-bottom: 3px;
+  width: 100px;
 
   a {
     background: #666;
@@ -99,4 +101,10 @@ html, body {
       border-color: #222;
     }
   }
+}
+
+#time {
+  float: right;
+  margin: 0;
+  margin-top: 5px;
 }

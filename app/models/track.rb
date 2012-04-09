@@ -49,6 +49,7 @@ class Track < ActiveRecord::Base
 
   def self.bandcamp_new(args = {}, album = {}, band = nil)
     track = self.new
+    album = {} if album.nil?
 
     track.title         = args['title']
     track.number        = args['number']

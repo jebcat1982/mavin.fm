@@ -8,4 +8,8 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me
 
   has_many :playlists
+  has_many :likes
+  has_many :dislikes
+  has_many :tracks, :through => :likes
+  has_many :tracks, :through => :dislikes
 end

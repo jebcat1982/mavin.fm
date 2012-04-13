@@ -3,6 +3,8 @@ class Track < ActiveRecord::Base
   belongs_to :band
   has_many :taggings
   has_many :tags, :through => :taggings
+  has_many :likes
+  has_many :dislikes
 
   validates :e_id, :uniqueness => { :scope => :source }
 

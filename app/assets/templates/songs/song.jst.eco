@@ -8,4 +8,7 @@
 <li><a href="<%= this.song.get('artist_url') %>" target="_blank">View more by <%= this.song.get('artist') %></a></li>
 </ul>
 
+<a href="#" class="like-song" data-song="<%= this.song.id %>">Like!</a>
+<a href="#" class="dislike-song" data-song="<%= this.song.id %>">Dislike</a>
+
 <p class="clear"></p>

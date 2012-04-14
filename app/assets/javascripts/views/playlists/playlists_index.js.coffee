@@ -6,8 +6,11 @@ class Discovery.Views.PlaylistsIndex extends Backbone.View
     'click #next_song': 'getSong'
     'click #pause_song': 'pauseSong'
     'click #play_song': 'playSong'
+    'click .like-song': 'like'
+    'click .dislike-song': 'dislike'
 
   initialize: ->
+    this.song = ''
     this.getSong()
 
   render: ->
@@ -36,8 +39,8 @@ class Discovery.Views.PlaylistsIndex extends Backbone.View
     this.model.tracks.create attributes,
       success: (model) ->
         $('#duration').html("0:00")
-        song = new Discovery.Models.Song(model.attributes)
-        view.startSong(song)
+        this.song = new Discovery.Models.Song(model.attributes)
+        view.startSong(this.song)
 
   startSong: (song) ->
     view = new Discovery.Views.Song(model: song)
@@ -71,3 +74,16 @@ class Discovery.Views.PlaylistsIndex extends Backbone.View
 
   songEnded: () ->
     this.getSong()
+
+  like: (e) ->
+    e.preventDefault()
+    $.post '/likes',
+      playlist_id: this.model.id
+      track_id: e.currentTarget.getAttribute('data-song')
+
+  dislike: (e) ->
+    e.preventDefault()
+    $.post '/dislikes',
+      playlist_id: this.model.id
+      track_id: e.currentTarget.getAttribute('data-song')
+

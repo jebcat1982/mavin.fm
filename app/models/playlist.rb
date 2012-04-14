@@ -7,7 +7,7 @@ class Playlist < ActiveRecord::Base
   has_many :tags, :through => :taggings, :uniq => true
 
   def like(track)
-    track_tags = Discovery.redis.smembers "t#{track.id}"
+    track_tags = Discovery.redis.smembers "t#{track}"
     weights = Discovery.redis.mapped_hmget "ptw#{id}", *track_tags
 
     Discovery.redis.pipelined {
@@ -19,7 +19,7 @@ class Playlist < ActiveRecord::Base
   end
 
   def dislike(track)
-    track_tags = Discovery.redis.smembers "t#{track.id}"
+    track_tags = Discovery.redis.smembers "t#{track}"
     weights = Discovery.redis.mapped_hmget "ptw#{id}", *track_tags
 
     Discovery.redis.pipelined {

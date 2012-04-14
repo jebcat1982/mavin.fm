@@ -8,6 +8,47 @@ class Track < ActiveRecord::Base
 
   validates :e_id, :uniqueness => { :scope => :source }
 
+  def self.find_weighted_similar(playlist)
+    pid = "p#{playlist.id}"
+
+    #playlist_tracks = Discovery.redis.smembers "pts#{playlist.id}"
+    tracks = Discovery.redis.smembers "tracks"
+    #diff = Discovery.redis.sdiff "tracks", "pts#{playlist.id}"
+    playlist_tracks = playlist.tracks.select('tracks.id').order('playlist_tracks.created_at DESC').limit(15).map(&:id)
+
+    total = 0
+    size  = 0
+    pweights = Discovery.redis.hgetall "ptw#{playlist.id}"
+    weights = {}
+
+    tracks.each do |track|
+      unless playlist_tracks.include?(track)
+        tid = "t#{track}"
+
+        weights[track] = 0
+        
+        tags = Discovery.redis.smembers tid
+        tags.each do |tag|
+          weights[track] += pweights[tag].to_i unless pweights[tag].nil?
+        end
+          
+        total += weights[track]
+        size  += 1
+      end
+    end
+
+    return Track.first(:order => 'RANDOM()') if total == 0 || size == 0
+
+    mean = total.to_f / size.to_f
+
+    possible = []
+    weights.each do |tid,count|
+      possible << tid if count >= mean # std+mean
+    end
+
+    self.find(possible[rand(possible.length-1)])
+  end
+
   def self.find_recommendation(playlist)
     pid = "p#{playlist.id}"
 

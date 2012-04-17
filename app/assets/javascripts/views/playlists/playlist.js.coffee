@@ -1,6 +1,6 @@
 class Discovery.Views.Playlist extends Backbone.View
   template: JST['playlists/playlist']
-  tagName: 'p'
+  tagName: 'li'
 
   initialize: ->
     this.model.on('change', this.render, this)

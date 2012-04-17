@@ -42,8 +42,8 @@ class Track < ActiveRecord::Base
     mean = total.to_f / size.to_f
 
     possible = []
-    weights.each do |tid,count|
-      possible << tid if count >= mean # std+mean
+    weights.each do |tid,weight|
+      possible << tid if weight >= mean # std+mean
     end
 
     self.find(possible[rand(possible.length-1)])

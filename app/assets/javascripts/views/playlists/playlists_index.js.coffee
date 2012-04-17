@@ -1,6 +1,5 @@
 class Discovery.Views.PlaylistsIndex extends Backbone.View
   template: JST['playlists/index']
-  className: 'player_container'
 
   events:
     'click #next_song': 'getSong'

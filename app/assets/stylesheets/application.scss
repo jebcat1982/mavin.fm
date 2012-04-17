@@ -16,95 +16,183 @@
  *= require_tree .
 */
 
-html, body {
-  background: #f5f5f5;
+html {
+  background: url(/assets/classy_fabric.png);
+}
+
+body {
+  background: none;
   margin: 0 auto;
-  width: 800px;
+  margin-top: 20px;
+  width: 600px;
+}
+
+h1 {
+  color: #fff;
+}
+
+.clear {
+  clear: both;
+  margin: 0;
+  padding: 0;
 }
 
 #app_container {
-  border: #ccc 1px solid;
 }
 
 .playlist_form {
+  margin-bottom: 10px;
+}
+
+#new_playlist {
   background: #fff;
+  margin: 0;
   padding: 10px;
-
-  form, input {
-    margin-bottom: 0px;
-  }
-
-  input[type=text] {
-    width: 670px;
-  }
 }
 
-.playlists_container, .player_container, .songs_container {
-  float: left;
+#new_playlist input {
+  margin-bottom: 0px;
 }
 
-.player_container, .songs_container {
-  width: 579px;
+#new_playlist #new_playlist_term {
+  width: 509px;
 }
 
 .playlists_container {
-  margin-right: 19px;
-  width: 200px;
-
-  h3 {
-    border-bottom: 1px solid #999;
-  }
 }
 
-.player_container {
-  border-bottom: 1px solid #999;
-}
-
-.songs_container {
-}
-
-.playlist_form {
-  ul.token-input-list-facebook {
-    color:#555555;
-    float: left;
-    margin-right: 4px;
-    width: 725px;
-
-    border: 1px solid #ccc;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    border-radius: 3px;
-  }
-
-#create_new_playlist {
-    padding: 5px;
-  }
-}
-
-.player_controls  {
-  float: left;
-  margin-top: 5px;
-  margin-bottom: 3px;
-  width: 100px;
-
-  a {
-    background: #666;
-    border: 1px solid #444;
-    border-radius: 3px;
-    font-weight: bold;
-    margin-right: 5px;
-    padding: 1px;
-    padding-bottom: 0px;
-
-    &:hover {
-      background: #444;
-      border-color: #222;
-    }
-  }
-}
-
-#time {
+.playlists_container h2 {
+  color: #fff;
   float: right;
+  width: 515px;
+}
+
+.playlists_container ul {
+  color: #fff;
+  float: left;
   margin: 0;
-  margin-top: 5px;
+  width: 78px;
+}
+
+.playlists_container ul li {
+  list-style-type: none;
+  position: relative;
+}
+
+
+.playlists_container ul li a {
+  background: #efefef;
+  border-radius: 3px;
+  display: inline-block;
+  font-size: 9pt;
+  font-weight: bold;
+  margin-top: 4px;
+  padding: 5px;
+}
+
+.playlists_container ul li a:hover {
+  text-decoration: none;
+}
+
+.playlists_container ul li:hover a {
+  border-radius: 3px 3px 0px 0px;
+}
+
+.playlists_container li ul {
+  display: none;
+}
+
+.playlists_container li:hover ul {
+  background: #efefef;
+  display: block;
+  position: absolute;
+  width: 200px;
+}
+
+.playlists_container li:hover ul li a {
+  display: block;
+  border-bottom: 1px solid #efefef;
+}
+
+.player_controls {
+  background: #fff;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 5px;
+}
+
+.player_container #player_buttons {
+  float: left;
+  margin: 0 10px;
+}
+
+.player_container #current_song_name {
+  float: left;
+  font-weight: bold;
+}
+
+.player_container #time {
+  float: right;
+  margin: 0 10px;
+}
+
+.progress {
+  margin: 10px;
+}
+
+#songs div {
+  background: #fff;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 5px;
+  padding: 10px;
+  position: relative;
+}
+
+#songs .current {
+  background: #bee9fc;
+}
+
+#songs div .left {
+  float: left;
+  margin-right: 10px;
+}
+
+#songs div .left a {
+}
+
+#songs div p {
+  margin: 0;
+}
+
+#songs .like-song,
+#songs .dislike-song {
+  display: block;
+  float: left;
+  text-align: center;
+  width: 50px;
+}
+
+#songs .like-song {
+  background: #c4ffb7;
+  border-bottom-left-radius: 3px;
+}
+
+#songs .like-song:hover {
+  background: #4da439;
+}
+
+#songs .dislike-song {
+  background: #ffbcbc;
+  border-bottom-right-radius: 3px;
+}
+
+#songs .dislike-song:hover {
+  background: #a43939;
+}
+
+#songs .song-info {
+  position: absolute;
+  bottom: 10px;
+  left: 120px;
 }

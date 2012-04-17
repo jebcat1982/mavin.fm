@@ -3,49 +3,11 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 #songs div {
-  background: #fbfbfb;
-  border-top: 1px solid #999;
-  border-bottom: 1px solid #999;
-  margin-bottom: 10px;
-
-  img {
-    float: left;
-    padding: 10px;
-  }
-
-  h4 {
-    margin-top: 10px;
-  }
-
-  p {
-    font-size: 9pt;
-    margin: 0;
-    padding: 0px;
-  }
-
-  ul {
-    clear: both;
-    background: #ccc;
-    margin: 0px;
-    
-    li {
-      display: inline-block;
-      text-align: center;
-      width: 49%;
-    }
-  }
-
-  .clear {
-    clear: both;
-    margin: 0;
-    padding: 0;
-  }
-
   &.loading {
     background-image: url(/assets/loading.gif);
     background-repeat: no-repeat;
     background-position-x: 281px;
     background-position-y: 61px;
-    height: 138px;
+    height: 120px;
   }
 }

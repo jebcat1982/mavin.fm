@@ -13,22 +13,33 @@
       %input#create_new_playlist.btn.btn-inverse{:type => "submit", :value => "Listen"}
 
   .playlists_container
-    %h3 playlists
-    #playlists
+    %ul
+      %li
+        <a href="#">Playlists <i class="icon-chevron-down"></i></a>
+        %ul#playlists
+          %li
+    %h2 Hit the listen to start!
+    %p.clear
 
-  .right_container
-    .player_container
-      .player_controls
-        %audio#player
+  .player_container
+    .player_controls
+      %audio#player
+      .progress
+        .bar{:style => "width: 0%"}
+
+      #player_buttons
         %a#play_song{:href => "#"} <i class="icon-play"></i>
         %a#pause_song{:href => "#"} <i class="icon-pause"></i>
         %a#next_song{:href => "#"} <i class="icon-step-forward"></i>
 
-      %p#time
+      #current_song_name
+
+      #time
         %span#current_time 0:00
         \/
         %span#duration 0:00
 
+      %p.clear 
 
-      .songs_container
-        #songs
+    .songs_container
+      #songs

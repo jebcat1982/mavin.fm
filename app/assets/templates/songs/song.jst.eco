@@ -1,14 +1,14 @@
-<img src="<%= this.song.get('small_art_url') %>" alt="<%= this.song.get('album') %>" />
+<p class="left">
+  <img src="<%= this.song.get('small_art_url') %>" alt="<%= this.song.get('album') %>">
+  <br>
+  <a href="#" class="like-song" data-song="<%= this.song.id %>"><i class="icon-ok"></i></a>
+  <a href="#" class="dislike-song" data-song="<%= this.song.id %>"><i class="icon-remove"></i></a>
+</p>
 <h4><%= this.song.get('title') %></h4>
 <p>on <a href="<%= this.song.get('album_url') %>" target="_blank"><%= this.song.get('album_title') %></a></p>
-<p><a href="<%= this.song.get('artist_url') %>" target="_blank"><%= this.song.get('artist') %></a></p>
-
-<ul>
-<li><a href="<%= this.song.get('album_url') %>" target="_blank">Get this album</a></li>
-<li><a href="<%= this.song.get('artist_url') %>" target="_blank">View more by <%= this.song.get('artist') %></a></li>
-</ul>
-
-<a href="#" class="like-song" data-song="<%= this.song.id %>">Like!</a>
-<a href="#" class="dislike-song" data-song="<%= this.song.id %>">Dislike</a>
-
+<p>by <a href="<%= this.song.get('artist_url') %>" target="_blank"><%= this.song.get('artist') %></a></p>
+<p class="song-info">
+  <a class="btn btn-mini" href="<%= this.song.get('album_url') %>" target="_blank">Get this album</a>
+  <a class="btn btn-mini" href="<%= this.song.get('artist_url') %>" target="_blank">View more by <%= this.song.get('artist') %></a>
+</p>
 <p class="clear"></p>

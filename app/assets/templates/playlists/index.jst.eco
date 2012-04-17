@@ -1,13 +1,21 @@
 <div class="player_controls">
-  <audio id="player">Your browser does not support the audio tag.</audio>
-  <a href="#" id="play_song"><i class="icon-play icon-white"></i></a>
-  <a href="#" id="pause_song"><i class="icon-pause icon-white"></i></a>
-  <a href="#" id="next_song"><i class="icon-step-forward icon-white"></i></a>
+  <audio id="player">Sorry! You're browser isn't compatible with the site!</audio>
+  <div class="progress">
+    <div class="bar" style="width: 60%"></div>
+  </div>
+  <div id="player_buttons">
+    <a href="#" id="play_song"><i class="icon-play"></i></a>
+    <a href="#" id="pause_song"><i class="icon-pause"></i></a>
+    <a href="#" id="next_song"><i class="icon-step-forward"></i></a>
+  </div>
+  <div id="current_song_name"></div>
+  <div id="time">
+    <span id="current_time">0:00</span>
+    /
+    <span id="duration">0:00</span>
+  </div>
+  <p class="clear"></p>
 </div>
-
-<p id="time">
-  <span id="current_time">0:00</span> / <span id="duration">0:00</span>
-</p>
 
 <div class="songs_container">
   <div id="songs"></div>

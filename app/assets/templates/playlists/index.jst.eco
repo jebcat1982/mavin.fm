@@ -1,7 +1,7 @@
 <div class="player_controls">
   <audio id="player">Sorry! You're browser isn't compatible with the site!</audio>
   <div class="progress">
-    <div class="bar" style="width: 60%"></div>
+    <div class="bar" style="width: 0%"></div>
   </div>
   <div id="player_buttons">
     <a href="#" id="play_song"><i class="icon-play"></i></a>

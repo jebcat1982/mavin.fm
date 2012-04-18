@@ -9,7 +9,7 @@ class Discovery.Views.PlaylistsIndex extends Backbone.View
     'click .dislike-song': 'dislike'
 
   initialize: ->
-    this.song = ''
+    this.song = undefined
     this.getSong()
 
   render: ->
@@ -38,8 +38,8 @@ class Discovery.Views.PlaylistsIndex extends Backbone.View
     this.model.tracks.create attributes,
       success: (model) ->
         $('#duration').html("0:00")
-        this.song = new Discovery.Models.Song(model.attributes)
-        view.startSong(this.song)
+        view.song = new Discovery.Models.Song(model.attributes)
+        view.startSong(view.song)
 
   startSong: (song) ->
     view = new Discovery.Views.Song(model: song)
@@ -50,6 +50,7 @@ class Discovery.Views.PlaylistsIndex extends Backbone.View
     seconds = "0" + seconds if seconds < 10
     minutes = Math.floor(duration / 60)
     $('#duration').html(minutes + ":" + seconds)
+    $('.progress .bar').width("0%")
 
     $('.loading').remove()
     $('#songs').prepend(view.render().el)
@@ -70,6 +71,7 @@ class Discovery.Views.PlaylistsIndex extends Backbone.View
     seconds = "0" + seconds if seconds < 10
     minutes = Math.floor(current / 60)
     $('#current_time').html(minutes + ":" + seconds)
+    $('.progress .bar').width((current / this.song.get('duration')) * 100 + "%")
 
   songEnded: () ->
     this.getSong()

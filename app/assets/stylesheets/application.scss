@@ -182,6 +182,14 @@ h1 {
   background: #4da439;
 }
 
+#songs .liked {
+  background: #00e000;
+}
+
+#songs .disliked {
+  background: #e00000;
+}
+
 #songs .dislike-song {
   background: #ffbcbc;
   border-bottom-right-radius: 3px;

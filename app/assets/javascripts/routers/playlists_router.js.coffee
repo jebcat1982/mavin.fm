@@ -17,7 +17,8 @@ class Discovery.Routers.Playlists extends Backbone.Router
       window.activePlaylist.remove()
 
     playlist = new Discovery.Models.Playlist(id: id)
-    playlist.fetch success: ->
+    playlist.fetch success: (model) ->
+      $('h2').html(model.attributes.search_term)
       playlist.tracks.fetch success: ->
         window.activePlaylist = new Discovery.Views.PlaylistsIndex(model: playlist)
         $('.player_container').html(window.activePlaylist.render().el)

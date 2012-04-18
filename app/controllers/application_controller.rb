@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
   def create_session
     unless cookies[:restore_session]
-      cookies[:restore_session] = (Digest::SHA2.new << Time.now.to_s).to_s
+      cookies[:restore_session] = { :value => (Digest::SHA2.new << Time.now.to_s).to_s, :expires => Time.now + 1.year.to_i }
     end
   end
 

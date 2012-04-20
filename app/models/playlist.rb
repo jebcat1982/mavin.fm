@@ -6,6 +6,10 @@ class Playlist < ActiveRecord::Base
   has_many :taggings
   has_many :tags, :through => :taggings, :uniq => true
 
+  def set_weight(tag, weight)
+    Discovery.redis.hincrby "ptw#{id}", tag, 20
+  end
+
   def like(track)
     track_tags = Discovery.redis.smembers "t#{track}"
     weights = Discovery.redis.mapped_hmget "ptw#{id}", *track_tags

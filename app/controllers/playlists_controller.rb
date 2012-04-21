@@ -21,6 +21,9 @@ class PlaylistsController < ApplicationController
       Discovery.redis.sadd "p#{@playlist.id}", t.id
     end
 
+    @playlist.set_name
+    @playlist.save
+
     respond_with @playlist
   end
 

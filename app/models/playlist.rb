@@ -6,6 +6,20 @@ class Playlist < ActiveRecord::Base
   has_many :taggings
   has_many :tags, :through => :taggings, :uniq => true
 
+  def set_name
+    unless search_term.nil? || search_term == ''
+      tags = search_term.split(',')
+    else
+      tags = []
+    end
+
+    if tags.empty?
+      self.name = "Random #{id}" 
+    else
+      self.name = tags * ", "
+    end
+  end
+
   def set_weight(tag, weight)
     Discovery.redis.hincrby "ptw#{id}", tag, 20
   end

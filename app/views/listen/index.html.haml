@@ -10,7 +10,9 @@
   .playlist_form
     %form#new_playlist
       %input#new_playlist_search_term{:type => "text", :name => "tag"}
-      %input#create_new_playlist.btn.btn-inverse{:type => "submit", :value => "Listen"}
+      %a#new_playlist_link.btn.btn-inverse{href: "#"} <i class="icon-play icon-white"></i> Listen
+      or
+      %a#random_playlist_link.btn.btn-warning{href: "#"} <i class="icon-random icon-white"></i> Random 
 
   .playlists_container
     %ul

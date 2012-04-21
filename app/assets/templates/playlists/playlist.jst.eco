@@ -1,1 +1,1 @@
-<a class="playlist-name" href="/#playlists/<%= this.playlist.id %>"><%= this.playlist.get('search_term') %></a>
+<a class="playlist-name" href="/#playlists/<%= this.playlist.id %>"><%= this.playlist.get('name') %></a>

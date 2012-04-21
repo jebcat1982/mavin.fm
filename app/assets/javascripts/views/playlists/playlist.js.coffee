@@ -13,4 +13,4 @@ class Discovery.Views.Playlist extends Backbone.View
     this
 
   setName: () ->
-    $('h2').html(this.model.attributes.search_term)
+    $('h2').html(this.model.attributes.name)

@@ -18,7 +18,7 @@ class Discovery.Routers.Playlists extends Backbone.Router
 
     playlist = new Discovery.Models.Playlist(id: id)
     playlist.fetch success: (model) ->
-      $('h2').html(model.attributes.search_term)
+      $('h2').html(model.attributes.name)
       playlist.tracks.fetch success: ->
         window.activePlaylist = new Discovery.Views.PlaylistsIndex(model: playlist)
         $('.player_container').html(window.activePlaylist.render().el)

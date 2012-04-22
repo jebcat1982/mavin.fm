@@ -9,6 +9,8 @@ Discovery::Application.routes.draw do
   post "dislikes" => "listen#dislikes", :as => :dislikes
 
   get "user/:username" => "user#show"
+  get "user/:username/liked" => "user#liked"
+  get "user/:username/disliked" => "user#disliked"
 
   resources :bands, :albums, :tags, :tracks
   resources :playlists do

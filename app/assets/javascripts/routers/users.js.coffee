@@ -11,4 +11,4 @@ class Discovery.Routers.Users extends Backbone.Router
     user = new Discovery.Models.User(username: username)
     user.fetch success: (model) ->
       view = new Discovery.Views.UserIndex(model: model)
-      $('.content_container').html(view.render().el)
+      $('.user_container').html(view.render().el)

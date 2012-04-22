@@ -13,9 +13,9 @@ class User < ActiveRecord::Base
   has_many :liked_tracks,     :through => :likes,     :source => :track
   has_many :disliked_tracks,  :through => :dislikes,  :source => :track
   
-  after_create :assign_all_to_user
+  after_create :assign_to_user
 
-  def assign_all_to_user
+  def assign_to_user
     playlists = Playlist.where(session_id: session_id)
     playlists.each do |playlist|
       playlist.user_id = id

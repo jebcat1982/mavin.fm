@@ -44,8 +44,10 @@ class Discovery.Routers.Playlists extends Backbone.Router
         $('.user_container').html(view.render().el)
 
       error: (model, response) ->
-        console.log model
-        console.log response
         $('.music_container').hide()
         $('.user_container').show()
-        $('.user_container').html(username + ' not found!')
+
+        if response.status == 404
+          $('.user_container').html(username + ' not found!')
+        else
+          $('.user_container').html('Sorry, something went wrong! Try again later')

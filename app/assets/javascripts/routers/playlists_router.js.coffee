@@ -7,11 +7,12 @@ class Discovery.Routers.Playlists extends Backbone.Router
 
   routes:
     '': 'index'
-    'playlists/:id': 'show'
+    'playlists/:id': 'showPlaylist'
+    'user/:username': 'showUser'
 
   index: ->
 
-  show: (id) ->
+  showPlaylist: (id) ->
     if window.activePlaylist?
       window.activePlaylist.unbind()
       window.activePlaylist.remove()
@@ -23,3 +24,14 @@ class Discovery.Routers.Playlists extends Backbone.Router
         window.activePlaylist = new Discovery.Views.PlaylistsIndex(model: playlist)
         $('.player_container').html(window.activePlaylist.render().el)
         window.activePlaylist.initPlayer()
+
+  showUser: (username) ->
+    if window.activePlaylist?
+      window.activePlaylist.unbind()
+      window.activePlaylist.remove()
+      window.activePlaylist = null
+
+    user = new Discovery.Models.User(username: username)
+    user.fetch success: (model) ->
+      view = new Discovery.Views.UserIndex(model: model)
+      $('.user_container').html(view.render().el)

@@ -1,0 +1,1 @@
+class Discovery.Collections.DislikedTracks extends Backbone.Collection

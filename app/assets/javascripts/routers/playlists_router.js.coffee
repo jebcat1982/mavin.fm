@@ -35,9 +35,17 @@ class Discovery.Routers.Playlists extends Backbone.Router
       window.activePlaylist = null
 
     user = new Discovery.Models.User(username: username)
-    user.fetch success: (model) ->
-      $('.music_container').hide()
-      $('.user_container').show()
+    user.fetch
+      success: (model) ->
+        $('.music_container').hide()
+        $('.user_container').show()
 
-      view = new Discovery.Views.UserIndex(model: model)
-      $('.user_container').html(view.render().el)
+        view = new Discovery.Views.UserIndex(model: model)
+        $('.user_container').html(view.render().el)
+
+      error: (model, response) ->
+        console.log model
+        console.log response
+        $('.music_container').hide()
+        $('.user_container').show()
+        $('.user_container').html(username + ' not found!')

@@ -8,6 +8,8 @@ Discovery::Application.routes.draw do
   post "likes" => "listen#likes", :as => :likes
   post "dislikes" => "listen#dislikes", :as => :dislikes
 
+  get "user/:username" => "user#show"
+
   resources :bands, :albums, :tags, :tracks
   resources :playlists do
     resources :playlist_tracks, :shallow => true

@@ -1,0 +1,19 @@
+<h2><%= this.user.get 'username' %>'s profile</h2>
+
+<div class="liked_tracks">
+<h3>Liked tracks</h3>
+<% if this.user.liked.length != 0: %>
+  <% i = 0 %>
+  <% for track in this.user.liked.models: %>
+    <p class="<% if i % 2 == 0: %>even<% else: %>odd<% end %>">
+      <b><%= track.get 'title' %></b> by <a href="<%= track.get 'artist_url' %>" target="_blank"><%= track.get 'artist' %></a>
+      <% if track.get 'album_title': %>
+        on <a href="<%= track.get 'album_url' %>" target="_blank"><%= track.get 'album_title' %></a>
+      <% end %>
+    </p>
+    <% i++ %>
+  <% end %>
+<% else: %>
+  <p><%= this.user.get 'username' %> has not liked any tracks yet. Get to discovering!</p>
+<% end %>
+</div>

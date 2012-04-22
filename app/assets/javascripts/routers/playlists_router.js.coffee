@@ -40,8 +40,10 @@ class Discovery.Routers.Playlists extends Backbone.Router
         $('.music_container').hide()
         $('.user_container').show()
 
-        view = new Discovery.Views.UserIndex(model: model)
-        $('.user_container').html(view.render().el)
+        model.liked.fetch
+          success: ->
+            view = new Discovery.Views.UserIndex(model: model)
+            $('.user_container').html(view.render().el)
 
       error: (model, response) ->
         $('.music_container').hide()

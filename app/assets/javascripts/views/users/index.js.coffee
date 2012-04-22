@@ -1,3 +1,2 @@
-class Discovery.Views.UsersIndex extends Backbone.View
-
+class Discovery.Views.UserIndex extends Backbone.View
   template: JST['users/index']

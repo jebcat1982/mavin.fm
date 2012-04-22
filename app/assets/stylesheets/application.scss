@@ -29,7 +29,6 @@ body {
 
 h1 {
   color: #fff;
-  margin-bottom: 15px;
 }
 
 .clear {
@@ -39,6 +38,16 @@ h1 {
 }
 
 #app_container {
+}
+
+#user-nav {
+  float: right;
+  margin-bottom: 5px;
+}
+
+#user-nav li {
+  display: inline-block;
+  margin-left: 10px;
 }
 
 .playlist_form {

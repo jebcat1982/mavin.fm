@@ -19,9 +19,11 @@
 
   %body
     %h1= image_tag "logo.png"
-    - if current_user
-      = link_to 'log out', destroy_user_session_path, :method => :delete
-    - else
-      = link_to 'log in', new_user_session_path
-      = link_to 'sign up', new_user_registration_path
+    %ul#user-nav
+      - if current_user
+        %li= link_to current_user.username, "/#user/#{current_user.username}"
+        %li= link_to 'log out', destroy_user_session_path, :method => :delete
+      - else
+        %li= link_to 'log in', new_user_session_path
+        %li= link_to 'sign up', new_user_registration_path
     = yield

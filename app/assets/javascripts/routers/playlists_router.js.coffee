@@ -19,6 +19,9 @@ class Discovery.Routers.Playlists extends Backbone.Router
 
     playlist = new Discovery.Models.Playlist(id: id)
     playlist.fetch success: (model) ->
+      $('.user_container').hide()
+      $('.music_container').show()
+
       $('h2').html(model.attributes.name)
       playlist.tracks.fetch success: ->
         window.activePlaylist = new Discovery.Views.PlaylistsIndex(model: playlist)
@@ -33,5 +36,8 @@ class Discovery.Routers.Playlists extends Backbone.Router
 
     user = new Discovery.Models.User(username: username)
     user.fetch success: (model) ->
+      $('.music_container').hide()
+      $('.user_container').show()
+
       view = new Discovery.Views.UserIndex(model: model)
       $('.user_container').html(view.render().el)

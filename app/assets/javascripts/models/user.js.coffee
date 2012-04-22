@@ -3,7 +3,7 @@ class Discovery.Models.User extends Backbone.Model
     base = 'user'
     if this.isNew() then return base
     if base.charAt(base.length-1) == '/'
-      return base + this.id
+      return base + this.attributes.username
     else
-      return base + '/' + this.id
+      return base + '/' + this.attributes.username
 

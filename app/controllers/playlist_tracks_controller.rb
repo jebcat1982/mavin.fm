@@ -12,7 +12,7 @@ class PlaylistTracksController < ApplicationController
 
   def create
     @playlist = Playlist.find(params[:playlist_id])
-    @track    = Track.find_weighted_similar(@playlist)
+    @track    = Track.find_recommendation(@playlist)
 
     @playlist.playlist_tracks.build(:track_id => @track.id)
     @playlist.save

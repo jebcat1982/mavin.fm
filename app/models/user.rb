@@ -15,6 +15,9 @@ class User < ActiveRecord::Base
   
   after_create :assign_to_user
 
+  validates :username, :presence => true,
+                       :format => { :with => /^[a-zA-Z0-9]+$/ }
+
   def assign_to_user
     playlists = Playlist.where(session_id: session_id)
     playlists.each do |playlist|

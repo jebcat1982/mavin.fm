@@ -24,3 +24,9 @@
 //= require_tree ./views
 //= require_tree ./routers
 //= require_tree .
+
+$(document).ready(function() {
+  $('.info_container h3').click(function() {
+    $(this).next().toggle();
+  })
+});

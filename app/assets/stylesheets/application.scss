@@ -136,6 +136,35 @@ ul.token-input-list-facebook {
   width: 509px;
 }
 
+.info_container {
+  color: #ddd;
+
+  h3 {
+    border-bottom: 1px dashed #ddd;
+    cursor: pointer;
+    margin-bottom: 3px;
+  }
+
+  .recently_liked {
+    ul {
+      color: #333;
+      margin: 0;
+
+      li {
+        padding: 3px;
+      }
+
+      li.even {
+        background: #fff;
+      }
+
+      li.odd {
+        background: #ddd;
+      }
+    }
+  }
+}
+
 .player_controls {
   background: #fff;
   border-top: 1px solid #ccc;

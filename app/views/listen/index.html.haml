@@ -21,30 +21,40 @@
       or
       %a#random_playlist_link.btn.btn-warning{href: "#"} <i class="icon-random icon-white"></i> Random 
 
+    %p.clear
+
+  .info_container.clear
+    %h2 What is Mavin.fm?
+    %p
+      :plain
+        Mavin.fm is a music discovery engine for independent artists that use 
+        <a href="http://bandcamp.com" target="_blank">Bandcamp</a> and <a href="http://soundcloud.com" target="_blank">SoundCloud</a>.
+        Mavin hopes to make finding awesome new independent artists easy and help the artists get the exposure they deserve.
+
+    .recently_liked
+      %h3 Recently Liked
+      %div
+        %ul 
+          - @likes.each_with_index do |like,i|
+            %li{:class => i%2==0?'even':'odd'}
+              = like.track.title
+              by #{link_to like.track.artist, like.track.artist_url, :target => "_blank"}
+              - if like.track.album_title
+                on #{link_to like.track.album_title, like.track.album_url, :target => "_blank"}
+
+    %h3 How do I get started?
+    %p.hide
+      :plain
+        Discovering is easy! Just type in a genre and some related music-tags and hit listen. Not sure what you want 
+        to listen to? No problem! Hit random and like or dislike songs as their played until Mavin knows what kind of 
+        music you're looking for.
+    %h3 How do I add my music to Mavin.fm?
+    %p.hide
+      :plain
+        Artists just need to <a href="/music/new" target="_blank">submit their music</a> to our site so we know about it. 
+        Submitting is easy, just add the link and a couple of genres or tags that are appropriate for it so Mavin knows 
+        when to play it.
+
+          
   .music_container.clear
-    %h2 Hit the listen to start!
-
-    .player_container
-      .player_controls
-        %audio#player
-        .progress
-          .bar{:style => "width: 0%"}
-
-        #player_buttons
-          %a#play_song{:href => "#"} <i class="icon-play"></i>
-          %a#pause_song{:href => "#"} <i class="icon-pause"></i>
-          %a#next_song{:href => "#"} <i class="icon-step-forward"></i>
-
-        #current_song_name
-
-        #time
-          %span#current_time 0:00
-          \/
-          %span#duration 0:00
-
-        %p.clear 
-
-      .songs_container
-        #songs
-
   .user_container.clear

@@ -1,5 +1,6 @@
 class Discovery.Routers.Playlists extends Backbone.Router
   initialize: () ->
+    this.bind 'all', this._trackPageview
     this.playlists = new Discovery.Collections.Playlists()
     this.playlists.fetch()
     view = new Discovery.Views.Layout(collection: this.playlists)
@@ -9,6 +10,10 @@ class Discovery.Routers.Playlists extends Backbone.Router
     '': 'index'
     'playlists/:id': 'showPlaylist'
     'user/:username': 'showUser'
+
+  _trackPageview: ->
+    url = Backbone.history.getFragment()
+    _gaq.push(['_trackPageview', "/#{url}"])
 
   index: ->
 

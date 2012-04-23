@@ -22,18 +22,21 @@ class User < ActiveRecord::Base
     playlists = Playlist.where(session_id: session_id)
     playlists.each do |playlist|
       playlist.user_id = id
+      playlist.session_id = nil
       playlist.save
     end
 
     dislikes = Dislike.where(session_id: session_id)
     dislikes.each do |dislike|
       dislike.user_id = id
+      dislike.session_id = nil
       dislike.save
     end
 
     likes = Like.where(session_id: session_id)
     likes.each do |like|
       like.user_id = id
+      like.session_id = nil
       like.save
     end
   end

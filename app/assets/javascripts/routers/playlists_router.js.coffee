@@ -13,7 +13,7 @@ class Discovery.Routers.Playlists extends Backbone.Router
 
   _trackPageview: ->
     url = Backbone.history.getFragment()
-    _gaq.push(['_trackPageview', "/#{url}"])
+    _gaq.push(['_trackPageview', "/#{url}"]) if typeof _gaq == 'object'
 
   index: ->
 

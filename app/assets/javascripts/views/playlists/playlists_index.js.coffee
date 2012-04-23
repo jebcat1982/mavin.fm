@@ -11,7 +11,6 @@ class Discovery.Views.PlaylistsIndex extends Backbone.View
   initialize: ->
     this.song = undefined
     this.wait = true
-    this.getSong()
 
   render: ->
     $(this.el).html(this.template())
@@ -20,8 +19,11 @@ class Discovery.Views.PlaylistsIndex extends Backbone.View
 
   initPlayer: () ->
     view = this
-    $('#player').on 'timeupdate', () -> view.songTime()
-    $('#player').on 'ended', () -> view.songEnded()
+    $('#jplayer').jPlayer
+      ready: () -> view.getSong()
+      swfPath: '/Jplayer.swf'
+    $('#jplayer').bind $.jPlayer.event.timeupdate, (e) -> view.songTime(e.jPlayer.status.currentTime)
+    $('#jplayer').bind $.jPlayer.event.ended, () -> view.songEnded()
 
   prependSong: (song) ->
     if song.get('track')
@@ -61,19 +63,18 @@ class Discovery.Views.PlaylistsIndex extends Backbone.View
 
     $('.loading').remove()
     $('#songs').prepend(view.render().el)
-    $('#player')[0].src = song.get('streaming_url')
-    $('#player')[0].play()
+    $('#jplayer').jPlayer('setMedia', mp3: song.get 'streaming_url')
+    $('#jplayer').jPlayer('play')
 
   pauseSong: (e) ->
     e.preventDefault()
-    $('#player')[0].pause()
+    $('#jplayer').jPlayer('pause')
 
   playSong: (e) ->
     e.preventDefault()
-    $('#player')[0].play()
+    $('#jplayer').jPlayer('play')
 
-  songTime: () ->
-    current = $('#player')[0].currentTime
+  songTime: (current) ->
     seconds = Math.floor(current % 60)
     seconds = "0" + seconds if seconds < 10
     minutes = Math.floor(current / 60)

@@ -1,6 +1,6 @@
 <h2 id="playlist_name"></h2>
 <div class="player_controls">
-  <audio id="player">Sorry! You're browser isn't compatible with the site!</audio>
+  <div id="jplayer"></div>
   <div class="progress">
     <div class="bar" style="width: 0%"></div>
   </div>

@@ -8,21 +8,21 @@
 
 #app_container.clear
   .playlist_form
-    %form#new_playlist
-      %input#new_playlist_search_term{:type => "text", :name => "tag"}
-      %a#new_playlist_link.btn.btn-inverse{href: "#"} <i class="icon-play icon-white"></i> Listen
-      or
-      %a#random_playlist_link.btn.btn-warning{href: "#"} <i class="icon-random icon-white"></i> Random 
-
-  .music_container
     .playlists_container
       %ul
         %li
           <a href="#">Playlists <i class="icon-chevron-down"></i></a>
           %ul#playlists
             %li
-      %h2 Hit the listen to start!
-      %p.clear
+
+    %form#new_playlist
+      %input#new_playlist_search_term{:type => "text", :name => "tag"}
+      %a#new_playlist_link.btn.btn-inverse{href: "#"} <i class="icon-play icon-white"></i> Listen
+      or
+      %a#random_playlist_link.btn.btn-warning{href: "#"} <i class="icon-random icon-white"></i> Random 
+
+  .music_container.clear
+    %h2 Hit the listen to start!
 
     .player_container
       .player_controls
@@ -47,4 +47,4 @@
       .songs_container
         #songs
 
-  .user_container
+  .user_container.clear

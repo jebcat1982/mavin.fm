@@ -31,13 +31,14 @@ h1 {
   color: #fff;
 }
 
+h2 {
+  color: #fff;
+}
+
 .clear {
   clear: both;
   margin: 0;
   padding: 0;
-}
-
-#app_container {
 }
 
 #user-nav {
@@ -54,34 +55,19 @@ h1 {
   margin-bottom: 10px;
 }
 
-#new_playlist {
-  background: #fff;
-  margin: 0;
-  padding: 10px;
-}
-
-#new_playlist input {
-  margin-bottom: 0px;
-}
-
-#new_playlist #new_playlist_term {
-  width: 509px;
-}
-
 .playlists_container {
 }
 
-.playlists_container h2 {
-  color: #fff;
-  float: right;
-  width: 515px;
-}
-
 .playlists_container ul {
+  background: #777;
+  border-radius: 3px 0px 0px 3px;
   color: #fff;
   float: left;
   margin: 0;
-  width: 78px;
+}
+
+.playlists_container ul:hover {
+  border-radius: 3px 0px 0px 0px;
 }
 
 .playlists_container ul li {
@@ -89,23 +75,17 @@ h1 {
   position: relative;
 }
 
-
 .playlists_container ul li a {
-  background: #efefef;
-  border-radius: 3px;
+  color: #fff;
   display: inline-block;
   font-size: 9pt;
   font-weight: bold;
-  margin-top: 4px;
-  padding: 5px;
+  padding: 15px 5px;
 }
 
 .playlists_container ul li a:hover {
+  color: #bbb;
   text-decoration: none;
-}
-
-.playlists_container ul li:hover a {
-  border-radius: 3px 3px 0px 0px;
 }
 
 .playlists_container li ul {
@@ -113,19 +93,47 @@ h1 {
 }
 
 .playlists_container li:hover ul {
-  background: #efefef;
+  border-radius: 0px;
   display: block;
   position: absolute;
   width: 200px;
 }
 
 .playlists_container li:hover ul li a {
-  display: block;
   border-bottom: 1px solid #efefef;
+  border-radius: 0px;
+  display: block;
+  padding: 5px;
 }
 
 #playlists {
   z-index: 999;
+}
+
+div.token-input-dropdown-facebook {
+  width: 317px;
+}
+
+#new_playlist {
+  background: #fff;
+  float: left;
+  padding: 10px;
+  margin: 0;
+}
+
+ul.token-input-list-facebook {
+  float: left;
+  margin-right: 5px;
+  width: 317px;
+}
+
+#new_playlist input {
+  margin-bottom: 0px;
+  float: left;
+}
+
+#new_playlist #new_playlist_term {
+  width: 509px;
 }
 
 .player_controls {
@@ -217,12 +225,6 @@ h1 {
   position: absolute;
   bottom: 10px;
   left: 120px;
-}
-
-ul.token-input-list-facebook {
-  float: left;
-  margin-right: 5px;
-  width: 390px;
 }
 
 .user_container {

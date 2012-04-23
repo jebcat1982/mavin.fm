@@ -3,7 +3,11 @@ class PlaylistsController < ApplicationController
   before_filter :create_session
 
   def index
-    respond_with @playlists = Playlist.where(:session_id => current_session)
+    if current_user
+      respond_with @playlists = Playlist.where(:user_id => current_user)
+    else
+      respond_with @playlists = Playlist.where(:session_id => current_session)
+    end
   end
 
   def show
@@ -12,7 +16,11 @@ class PlaylistsController < ApplicationController
 
   def create
     @playlist = Playlist.new(params[:playlist])
-    @playlist.session_id = current_session
+    if current_user
+      @playlist.current_user = current_user
+    else
+      @playlist.session_id = current_session
+    end
     @playlist.save
 
     tags = @playlist.search_term.split(',')

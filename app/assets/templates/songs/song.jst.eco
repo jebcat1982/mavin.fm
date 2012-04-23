@@ -9,8 +9,20 @@
   <a href="#" class="dislike-song" data-song="<%= this.song.id %>"><i class="icon-remove"></i></a>
 </p>
 <h4><%= this.song.get('title') %></h4>
-<p>on <a href="<%= this.song.get('album_url') %>" target="_blank"><%= this.song.get('album_title') %></a></p>
+<% if this.song.get 'album_url': %>
+  <p>on <a href="<%= this.song.get('album_url') %>" target="_blank"><%= this.song.get('album_title') %></a></p>
+<% end %>
 <p>by <a href="<%= this.song.get('artist_url') %>" target="_blank"><%= this.song.get('artist') %></a></p>
+<% if this.song.get 'downloadable' == true || this.song.get 'downloadable' == 1: %>
+  <p>
+    Get this track for free on 
+    <% if this.song.get 'source' == 'bc': %>
+      <a href="<%= this.song.get 'url'%>">Bandcamp</a>
+    <% else: %>
+      <a href="<%= this.song.get 'url'%>">SoundCloud</a>
+    <% end %>
+  </p>
+<% end %>
 <p class="song-info">
   <a class="btn btn-mini" href="<%= this.song.get('album_url') %>" target="_blank">Get this album</a>
   <a class="btn btn-mini" href="<%= this.song.get('artist_url') %>" target="_blank">View more by <%= this.song.get('artist') %></a>

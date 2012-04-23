@@ -2,7 +2,7 @@ class Discovery.Views.PlaylistsIndex extends Backbone.View
   template: JST['playlists/index']
 
   events:
-    'click #next_song': 'getSong'
+    'click #next_song': 'getNextSong'
     'click #pause_song': 'pauseSong'
     'click #play_song': 'playSong'
     'click .like-song': 'like'
@@ -10,6 +10,7 @@ class Discovery.Views.PlaylistsIndex extends Backbone.View
 
   initialize: ->
     this.song = undefined
+    this.wait = true
     this.getSong()
 
   render: ->
@@ -28,6 +29,11 @@ class Discovery.Views.PlaylistsIndex extends Backbone.View
       view = new Discovery.Views.Song(model: model)
       $('#songs').prepend(view.render().el)
 
+  getNextSong: (e) ->
+    e.preventDefault() if e
+    return if this.wait
+    this.getSong()
+
   getSong: (e) ->
     e.preventDefault() if e
     view = this
@@ -39,6 +45,7 @@ class Discovery.Views.PlaylistsIndex extends Backbone.View
       success: (model) ->
         $('#duration').html("0:00")
         view.song = new Discovery.Models.Song(model.attributes)
+        view.wait = false
         view.startSong(view.song)
 
   startSong: (song) ->

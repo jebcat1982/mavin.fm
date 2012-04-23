@@ -18,7 +18,7 @@
 
 
   %body#interest
-    %h1 Mavin.fm
+    %h1= image_tag 'logo.png', :alt => 'Mavin.fm'
 
     - if flash[:notice]
       .notice= flash[:notice]

@@ -1,5 +1,9 @@
 <p class="left">
-  <img src="<%= this.song.get('small_art_url') %>" alt="<%= this.song.get('album') %>">
+  <% if this.song.get 'small_art_url': %>
+    <img src="<%= this.song.get('small_art_url') %>" alt="<%= this.song.get('album') %>">
+  <% else: %>
+    <img src="/assets/missing.gif" alt="<%= this.song.get('album') %>">
+  <% end %>
   <br>
   <a href="#" class="like-song" data-song="<%= this.song.id %>"><i class="icon-ok"></i></a>
   <a href="#" class="dislike-song" data-song="<%= this.song.id %>"><i class="icon-remove"></i></a>

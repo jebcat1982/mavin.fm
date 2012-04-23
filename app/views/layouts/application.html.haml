@@ -18,7 +18,9 @@
         })();
 
   %body
-    %p#new_music_button= link_to 'Musicians: get discovered!', new_music_path, :class => 'btn btn-info btn-mini', :target => '_blank'
+    %p#new_music_button
+      = link_to 'Musicians: get discovered!', new_music_path, :class => 'btn btn-info btn-mini', :target => '_blank'
+      = link_to 'Feedback?', 'mailto:tomer@mavin.fm', :class => 'btn btn-mini', :target => '_blank'
     %h1= image_tag "logo.png"
     %ul#user-nav
       - if current_user

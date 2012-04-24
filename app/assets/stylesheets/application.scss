@@ -131,6 +131,17 @@ ul.token-input-list-facebook {
   float: left;
   margin-right: 5px;
   width: 317px;
+
+  li.token-input-token-facebook {
+    margin: 2px;
+
+  }
+
+  li {
+    input {
+      margin: 1px 0;
+    }
+  }
 }
 
 #new_playlist input {

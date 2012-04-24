@@ -254,10 +254,6 @@ ul.token-input-list-facebook {
   background: #00e000;
 }
 
-#songs .disliked {
-  background: #e00000;
-}
-
 #songs .dislike-song {
   background: #ffbcbc;
   border-bottom-right-radius: 3px;
@@ -265,6 +261,10 @@ ul.token-input-list-facebook {
 
 #songs .dislike-song:hover {
   background: #a43939;
+}
+
+#songs .disliked {
+  background: #e00000;
 }
 
 #songs .song-info {

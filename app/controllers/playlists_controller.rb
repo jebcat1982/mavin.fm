@@ -17,7 +17,7 @@ class PlaylistsController < ApplicationController
   def create
     @playlist = Playlist.new(params[:playlist])
     if current_user
-      @playlist.current_user = current_user
+      @playlist.user_id = current_user
     else
       @playlist.session_id = current_session
     end

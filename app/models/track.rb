@@ -29,7 +29,11 @@ class Track < ActiveRecord::Base
         
         tags = Discovery.redis.smembers tid
         tags.each do |tag|
-          weights[track] += pweights[tag].to_i unless pweights[tag].nil?
+          unless pweights[tag].nil?
+            if pweights[tag].to_i > 0
+              weights[track] += pweights[tag].to_i
+            end
+          end
         end
           
         total += weights[track]

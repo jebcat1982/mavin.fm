@@ -56,23 +56,20 @@ class Track < ActiveRecord::Base
   def self.find_recommendation(playlist)
     pid = "p#{playlist.id}"
 
-    playlist_tracks = playlist.tracks.select('tracks.id').order('playlist_tracks.created_at DESC').limit(15).map(&:id)
-    #tracks = Discovery.redis.smembers('tracks').map { |t| t.to_i }
-    tracks = Discovery.redis.sdiff('tracks', "pd#{playlist.id}").map {|t| t.to_i}
+    playlist_tracks = playlist.tracks.select('tracks.id').order('playlist_tracks.created_at DESC').limit(15)
+    tracks = Discovery.redis.sdiff 'tracks', "pd#{playlist.id}", "pts#{playlist.id}"
 
     total = 0
     size = 0
     intersection = {}
 
     tracks.each do |track|
-      unless playlist_tracks.include?(track)
-        tid = "t#{track}"
-        count = (Discovery.redis.sinter pid, tid).count
-        if count != 0 
-          intersection[track] = count
-          total += count
-          size += 1
-        end
+      tid = "t#{track}"
+      count = (Discovery.redis.sinter pid, tid).count
+      if count != 0 
+        intersection[track] = count
+        total += count
+        size += 1
       end
     end
 
@@ -86,7 +83,10 @@ class Track < ActiveRecord::Base
       possible << tid if count >= mean # std+mean
     end
 
-    self.find(possible[rand(possible.length-1)])
+    track = possible[rand(possible.length-1)]
+    Discovery.redis.srem "pts#{playlist.id}", playlist_tracks.first.id unless playlist_tracks.empty?
+    Discovery.redis.sadd "pts#{playlist.id}", track
+    self.find(track.to_i)
   end
 
   def self.bandcamp_new(args = {}, album = {}, band = nil)

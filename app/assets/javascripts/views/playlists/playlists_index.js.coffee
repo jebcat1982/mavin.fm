@@ -53,6 +53,7 @@ class Discovery.Views.PlaylistsIndex extends Backbone.View
   startSong: (song) ->
     view = new Discovery.Views.Song(model: song)
 
+    $('#current_song_name').html(song.get 'title')
     $('#current_time').html("0:00")
     duration = song.get('duration')
     seconds = Math.floor(duration % 60)

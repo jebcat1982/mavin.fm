@@ -1,3 +1,7 @@
-== TODO
-Readme
-Graph database
+Data currently stored in Redis
+==============================
+    tracks  = set  of all of the current tracks
+    p{id}   = set  of tag ids attached to a current playlist
+    pts{id} = set  of recently played playlist tracks
+    ptw{id} = hash of tag weights for a playlist
+    t{id]   = set  of tags for the track

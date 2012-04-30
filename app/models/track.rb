@@ -57,7 +57,8 @@ class Track < ActiveRecord::Base
     pid = "p#{playlist.id}"
 
     playlist_tracks = playlist.tracks.select('tracks.id').order('playlist_tracks.created_at DESC').limit(15).map(&:id)
-    tracks = Discovery.redis.smembers('tracks').map { |t| t.to_i }
+    #tracks = Discovery.redis.smembers('tracks').map { |t| t.to_i }
+    tracks = Discovery.redis.sdiff('tracks', "pd#{playlist.id}").map {|t| t.to_i}
 
     total = 0
     size = 0

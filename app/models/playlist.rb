@@ -40,11 +40,6 @@ class Playlist < ActiveRecord::Base
     track_tags = Discovery.redis.smembers "t#{track}"
     weights = Discovery.redis.mapped_hmget "ptw#{id}", *track_tags
 
-    Discovery.redis.pipelined {
-      weights.each do |tag,weight|
-        Discovery.redis.hincrby "ptw#{id}", tag, -1
-        Discovery.redis.sadd "p#{id}", tag
-      end
-    }
+    Discovery.redis.sadd "pd#{id}", track
   end
 end

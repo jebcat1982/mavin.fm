@@ -79,12 +79,6 @@ class Track < ActiveRecord::Base
 
     mean = total.to_f / size.to_f
     tmp = 0
-    
-    #intersection.each do |tid,count|
-    #  tmp += (count - mean) ** 2
-    #  puts tmp
-    #end
-    #std = Math.sqrt(tmp/mean)
 
     possible = []
     intersection.each do |tid,count|

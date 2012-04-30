@@ -1,5 +1,4 @@
-Data currently stored in Redis
-==============================
+== Data currently stored in Redis
 
     tracks  = set  of all of the current tracks
     p{id}   = set  of tag ids attached to a current playlist

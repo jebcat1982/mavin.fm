@@ -14,7 +14,6 @@ class Discovery.Views.PlaylistsIndex extends Backbone.View
 
   render: ->
     $(this.el).html(this.template())
-    this.model.tracks.each(this.prependSong)
     this
 
   initPlayer: () ->
@@ -25,6 +24,9 @@ class Discovery.Views.PlaylistsIndex extends Backbone.View
     $('#jplayer').bind $.jPlayer.event.timeupdate, (e) -> view.songTime(e.jPlayer.status.currentTime)
     $('#jplayer').bind $.jPlayer.event.ended, () -> view.songEnded()
 
+  initSongs: () ->
+    this.model.tracks.each(this.prependSong)
+  
   prependSong: (song) ->
     if song.get('track')
       model = new Discovery.Models.Song(song.get('track'))

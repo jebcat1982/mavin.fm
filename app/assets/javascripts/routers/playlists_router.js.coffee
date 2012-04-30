@@ -33,6 +33,7 @@ class Discovery.Routers.Playlists extends Backbone.Router
         $('.music_container').html(window.activePlaylist.render().el)
         $('h2#playlist_name').html(model.attributes.name)
         window.activePlaylist.initPlayer()
+        window.activePlaylist.initSongs()
 
   showUser: (username) ->
     if window.activePlaylist?

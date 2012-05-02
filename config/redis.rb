@@ -7,4 +7,10 @@ module Discovery
       @redis ||= Redis.new
     end
   end
+
+  def self.bench(desc)
+    start = Time.now
+    yield
+    puts "#{desc} #{Time.now-start} seconds"
+  end
 end

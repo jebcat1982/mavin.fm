@@ -21,7 +21,7 @@ class Soundcloud
 
     if json['tracks']
       json['tracks'].each do |track|
-        soundcloud_track(track)
+        soundcloud_track(track, json['permalink_url'])
       end
     elsif json['track_count']
       uri = URI.parse("http://api.soundcloud.com/users/#{json['id']}/tracks.json?client_id=#{APIKeys::SOUNDCLOUD}")

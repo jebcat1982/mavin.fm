@@ -125,18 +125,20 @@ class Track < ActiveRecord::Base
     track
   end
 
-  def self.soundcloud_new(args = {})
+  def self.soundcloud_new(args = {}, url = '')
     track = self.new
 
     track.title          = args['title']
     track.duration       = args['duration'] / 1000
     track.downloadable   = args['downloadable']
     track.url            = args['permalink_url']
+    track.album_url      = url
     track.streaming_url  = args['stream_url'] + "?client_id=#{APIKeys::SOUNDCLOUD}"
     track.about          = args['description']
     track.small_art_url  = args['artwork_url']
     track.large_art_url  = args['artwork_url']
     track.artist         = args['user']['username']
+    track.artist_url     = args['user']['permalink_url']
     track.e_id           = args['id']
     track.e_band_id      = args['user-id']
     track.source         = 'sc'

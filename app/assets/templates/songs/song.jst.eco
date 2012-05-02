@@ -24,7 +24,11 @@
   </p>
 <% end %>
 <p class="song-info">
-  <a class="btn btn-mini" href="<%= this.song.get('album_url') %>" target="_blank">Get this album</a>
+<% if this.song.get 'source' == 'bc': %>
+  <a class="btn btn-mini" href="<%= this.song.get('album_url') %>" target="_blank">Get this album on Bandcamp</a>
+<% else: %>
+  <a class="btn btn-mini" href="<%= this.song.get('url') %>" target="_blank">Listen to this song on SoundCloud</a>
+<% end %>
   <a class="btn btn-mini" href="<%= this.song.get('artist_url') %>" target="_blank">View more by <%= this.song.get('artist') %></a>
 </p>
 <p class="clear"></p>

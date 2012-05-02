@@ -63,9 +63,15 @@ class Track < ActiveRecord::Base
     size = 0
     intersection = {}
 
-    tracks.each do |track|
-      tid = "t#{track}"
-      count = (Discovery.redis.sinter pid, tid).count
+    counts = Discovery.redis.pipelined {
+      tracks.each do |track|
+        tid = "t#{track}"
+        Discovery.redis.sinterstore "temp", pid, tid
+      end
+    }
+
+    tracks.each_with_index do |track,i|
+      count = counts[i]
       if count != 0 
         intersection[track] = count
         total += count

@@ -12,6 +12,6 @@ tracks.each_with_index do |track,i|
   resp = Net::HTTP.get(uri)
   json = JSON.parse(resp)
 
-  track.artist_url = json['user']['permalink_url']
+  track.artist_url = json['user']['permalink_url'] if json['user']
   track.save
 end

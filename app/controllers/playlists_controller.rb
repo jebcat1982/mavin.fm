@@ -4,9 +4,9 @@ class PlaylistsController < ApplicationController
 
   def index
     if current_user
-      respond_with @playlists = Playlist.where(:user_id => current_user)
+      respond_with @playlists = Playlist.where(:user_id => current_user, :deleted => false)
     else
-      respond_with @playlists = Playlist.where(:session_id => current_session)
+      respond_with @playlists = Playlist.where(:session_id => current_session, :deleted => false)
     end
   end
 
@@ -37,7 +37,7 @@ class PlaylistsController < ApplicationController
 
   def destroy
     @playlist = Playlist.find(params[:id])
-    @playlist.destroy
+    @playlist.update_attributes(deleted: true)
     respond_with head :no_content
   end
 end

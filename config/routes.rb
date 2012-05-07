@@ -5,6 +5,7 @@ Discovery::Application.routes.draw do
   get 'music/new' => "music#new", :as => :new_music
   post 'music' => "music#create", :as => :music
 
+  post "ratings" => "ratings#rate", :as => :ratings
   post "likes" => "listen#likes", :as => :likes
   post "dislikes" => "listen#dislikes", :as => :dislikes
 

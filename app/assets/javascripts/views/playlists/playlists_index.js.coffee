@@ -91,15 +91,17 @@ class Discovery.Views.PlaylistsIndex extends Backbone.View
     e.preventDefault()
     $(e.currentTarget).addClass('liked') if !$(e.currentTarget).hasClass('liked')
     $(e.currentTarget.nextElementSibling).removeClass('disliked')
-    $.post '/likes',
+    $.post '/ratings',
       playlist_id: this.model.id
       track_id: e.currentTarget.getAttribute('data-song')
+      liked: true
 
   dislike: (e) ->
     e.preventDefault()
     $(e.currentTarget).addClass('disliked') if !$(e.currentTarget).hasClass('disliked')
     $(e.currentTarget.previousElementSibling).removeClass('liked')
-    $.post '/dislikes',
+    $.post '/ratings',
       playlist_id: this.model.id
       track_id: e.currentTarget.getAttribute('data-song')
+      liked: false
 

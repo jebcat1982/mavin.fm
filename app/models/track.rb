@@ -145,4 +145,10 @@ class Track < ActiveRecord::Base
 
     track
   end
+
+  def as_json(liked = nil, attributes = {})
+    json = super(attributes)
+    json['liked'] = liked
+    json
+  end
 end

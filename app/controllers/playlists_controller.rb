@@ -38,6 +38,6 @@ class PlaylistsController < ApplicationController
   def destroy
     @playlist = Playlist.find(params[:id])
     @playlist.update_attributes(deleted: true)
-    respond_with head :no_content
+    respond_with :no_content
   end
 end

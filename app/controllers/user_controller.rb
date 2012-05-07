@@ -7,7 +7,7 @@ class UserController < ApplicationController
 
   def liked
     @user = User.find_by_username(params[:username])
-    respond_with @user.liked_tracks
+    respond_with @user.liked_tracks.find(:all, :select => "DISTINCT ON (track_id) * ", :order => 'track_id, ratings.created_at DESC')
   end
 
   def disliked

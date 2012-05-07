@@ -36,8 +36,12 @@ class PlaylistsController < ApplicationController
   end
 
   def destroy
-    @playlist = Playlist.find(params[:id])
-    @playlist.update_attributes(deleted: true)
+    if current_user
+      @playlist = current_user.playlists.find(params[:id])
+    else
+      @playlist = Playlist.where(session_id: current_session, id: params[:id]).first
+    end
+    @playlist.update_attributes(deleted: true) unless @playlist.nil?
     respond_with :no_content
   end
 end

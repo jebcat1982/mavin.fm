@@ -11,7 +11,14 @@ class PlaylistsController < ApplicationController
   end
 
   def show
-    respond_with @playlist = Playlist.find(params[:id])
+    if current_user
+      @playlist = current_user.playlists.find(params[:id], conditions: { deleted: false })
+    else
+      @playlist = Playlist.where(session_id: current_session, id: params[:id], deleted: false).first
+    end
+
+    raise ActiveRecord::RecordNotFound, "Playlist not found" if @playlist.nil?
+    respond_with @playlist
   end
 
   def create

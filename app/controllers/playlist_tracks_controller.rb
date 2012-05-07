@@ -16,6 +16,17 @@ class PlaylistTracksController < ApplicationController
 
     @playlist.playlist_tracks.build(:track_id => @track.id)
     @playlist.save
-    respond_with @track
+
+    if current_user
+      @rating = Rating.where(user_id: current_user, playlist_id: @playlist, track_id: @track).first
+    else
+      @rating = Rating.where(session_id: session_id, playlist_id: @playlist, track_id: @track).first
+    end
+
+    unless @rating.nil?
+      respond_with @track.as_json(@rating.liked), :location => nil
+    else
+      respond_with @track.as_json(nil), :location => nil
+    end
   end
 end

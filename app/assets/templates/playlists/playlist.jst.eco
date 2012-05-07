@@ -1,1 +1,1 @@
-<a class="playlist-name" href="/#playlists/<%= this.playlist.id %>"><%= this.playlist.get('name') %></a>
+<a class="playlist-name" href="/#playlists/<%= this.playlist.id %>"><%= this.playlist.get('name') %></a><a class="delete" href="#" data-playlist="<%= this.playlist.get 'id' %>"><i class="icon-remove-sign icon-white"></i></a>

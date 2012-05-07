@@ -108,8 +108,19 @@ h2 {
 .playlists_container li:hover ul li a {
   border-bottom: 1px solid #efefef;
   border-radius: 0px;
-  display: block;
+  display: inline-block;
   padding: 5px;
+}
+
+.playlists_container .playlist-name {
+  width: 160px;
+}
+
+.playlists_container .delete {
+  float: right;
+  position: relative;
+  width: 20px;
+  z-index: 1000px;
 }
 
 #playlists {

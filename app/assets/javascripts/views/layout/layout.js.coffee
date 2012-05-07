@@ -44,10 +44,6 @@ class Discovery.Views.Layout extends Backbone.View
     time = new Date()
     time = time.getTime()
 
-    console.log time
-    console.log this.lastCreated
-    console.log time - this.lastCreated
-
     return if time - this.lastCreated < 5000 && this.lastCreated != undefined
 
     attributes = search_term: ''

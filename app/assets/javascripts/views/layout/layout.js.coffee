@@ -66,3 +66,9 @@ class Discovery.Views.Layout extends Backbone.View
     this.collection.remove(id)
     $("#playlist_#{id}").remove()
     $.ajax "/playlists/#{id}", type: 'delete'
+    if id == window.activePlaylist.model.id
+      window.activePlaylist.unbind()
+      window.activePlaylist.remove()
+      window.activePlaylist = null
+      router.navigate("")
+

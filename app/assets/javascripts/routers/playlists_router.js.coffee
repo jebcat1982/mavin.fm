@@ -16,6 +16,9 @@ class Discovery.Routers.Playlists extends Backbone.Router
     _gaq.push(['_trackPageview', "/#{url}"]) if typeof _gaq == 'object'
 
   index: ->
+    $('.info_container').show()
+    $('.user_container').hide()
+    $('.music_container').hide()
 
   showPlaylist: (id) ->
     if window.activePlaylist?

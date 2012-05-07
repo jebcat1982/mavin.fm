@@ -4,6 +4,7 @@ class Discovery.Views.Layout extends Backbone.View
   events:
     'click #new_playlist_link': 'createPlaylist'
     'click #random_playlist_link': 'createRandomPlaylist'
+    'click #playlists .delete': 'deletePlaylist'
 
   initialize: ->
     this.collection.on('reset', this.render, this)
@@ -58,3 +59,10 @@ class Discovery.Views.Layout extends Backbone.View
         playlistView = new Discovery.Views.Playlist(model: model)
         $('#playlists').prepend(playlistView.render().el)
         router.navigate("playlists/#{model.id}", trigger: true)
+
+  deletePlaylist: (e) ->
+    e.preventDefault()
+    id = $(e.currentTarget).data('playlist')
+    this.collection.remove(id)
+    $("#playlist_#{id}").remove()
+    $.ajax "/playlists/#{id}", type: 'delete'

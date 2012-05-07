@@ -9,10 +9,9 @@ class User < ActiveRecord::Base
   attr_accessor :session_id
 
   has_many :playlists
-  has_many :likes
-  has_many :dislikes
-  has_many :liked_tracks,     :through => :likes,     :source => :track
-  has_many :disliked_tracks,  :through => :dislikes,  :source => :track
+  has_many :ratings
+  has_many :liked_tracks,     :through => :ratings,  :source => :track, :conditions => ['liked = ?',  true]
+  has_many :disliked_tracks,  :through => :ratings,  :source => :track, :conditions => ['liked = ?', false]
   
   after_create :assign_to_user
 

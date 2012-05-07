@@ -10,6 +10,7 @@ class Discovery.Views.Playlist extends Backbone.View
 
   render: ->
     $(this.el).html(this.template(playlist: this.model))
+    this.el.id = "playlist_#{this.model.id}"
     this
 
   setName: () ->

@@ -11,6 +11,7 @@ class Discovery.Views.PlaylistsIndex extends Backbone.View
   initialize: ->
     this.song = undefined
     this.wait = true
+    this.current_time = 0
 
   render: ->
     $(this.el).html(this.template())
@@ -49,6 +50,7 @@ class Discovery.Views.PlaylistsIndex extends Backbone.View
       success: (model) ->
         $('#duration').html("0:00")
         view.song = new Discovery.Models.Song(model.attributes)
+        view.current_time = 0
         view.wait = false
         view.startSong(view.song)
 
@@ -78,6 +80,7 @@ class Discovery.Views.PlaylistsIndex extends Backbone.View
     $('#jplayer').jPlayer('play')
 
   songTime: (current) ->
+    this.current_time = current
     seconds = Math.floor(current % 60)
     seconds = "0" + seconds if seconds < 10
     minutes = Math.floor(current / 60)
@@ -91,17 +94,39 @@ class Discovery.Views.PlaylistsIndex extends Backbone.View
     e.preventDefault()
     $(e.currentTarget).addClass('liked') if !$(e.currentTarget).hasClass('liked')
     $(e.currentTarget.nextElementSibling).removeClass('disliked')
+    song_id = e.currentTarget.getAttribute('data-song')
+
+    if this.song.id == parseInt(song_id)
+      current_time = this.current_time
+      percentage = this.current_time / this.song.get 'duration'
+    else
+      current_time = -1.0
+      percentage = -1.0
+
     $.post '/ratings',
       playlist_id: this.model.id
-      track_id: e.currentTarget.getAttribute('data-song')
+      track_id: song_id
       liked: true
+      time: current_time
+      percentage: percentage
 
   dislike: (e) ->
     e.preventDefault()
     $(e.currentTarget).addClass('disliked') if !$(e.currentTarget).hasClass('disliked')
     $(e.currentTarget.previousElementSibling).removeClass('liked')
+    song_id = e.currentTarget.getAttribute('data-song')
+
+    if this.song.id == parseInt(song_id)
+      current_time = this.current_time
+      percentage = this.current_time / this.song.get 'duration'
+    else
+      current_time = -1.0
+      percentage = -1.0
+
     $.post '/ratings',
       playlist_id: this.model.id
       track_id: e.currentTarget.getAttribute('data-song')
       liked: false
+      time: current_time
+      percentage: percentage
 

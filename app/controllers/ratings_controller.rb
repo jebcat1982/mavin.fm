@@ -9,7 +9,7 @@ class RatingsController < ApplicationController
     end
 
     if rating.nil?
-      rating = Rating.new(track_id: params[:track_id], playlist_id: params[:playlist_id], liked: liked)
+      rating = Rating.new(track_id: params[:track_id], playlist_id: params[:playlist_id], liked: liked, time: params[:time], percentage: params[:percentage])
       if current_user
         rating.user_id = current_user
       else
@@ -26,6 +26,8 @@ class RatingsController < ApplicationController
     else
       if rating.liked != liked
         rating.liked = !rating.liked
+        rating.time = params[:time]
+        rating.percentage = params[:percentage]
       end
       rating.save
     end

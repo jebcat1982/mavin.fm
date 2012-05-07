@@ -1,5 +1,5 @@
 <p class="left">
-  <% if this.song.get 'small_art_url': %>
+  <% if this.song.get('small_art_url'): %>
     <img src="<%= this.song.get('small_art_url') %>" alt="<%= this.song.get('album') %>">
   <% else: %>
     <img src="/assets/missing.gif" alt="<%= this.song.get('album') %>">
@@ -9,22 +9,22 @@
   <a href="#" class="dislike-song" data-song="<%= this.song.id %>"><i class="icon-remove"></i></a>
 </p>
 <h4><%= this.song.get('title') %></h4>
-<% if this.song.get 'album_url': %>
+<% if this.song.get('album_url'): %>
   <p>on <a href="<%= this.song.get('album_url') %>" target="_blank"><%= this.song.get('album_title') %></a></p>
 <% end %>
 <p>by <a href="<%= this.song.get('artist_url') %>" target="_blank"><%= this.song.get('artist') %></a></p>
-<% if this.song.get 'downloadable' == true || this.song.get 'downloadable' == 1: %>
+<% if this.song.get('downloadable') == true || this.song.get('downloadable') == 1: %>
   <p>
     Get this track for free on 
-    <% if this.song.get 'source' == 'bc': %>
-      <a href="<%= this.song.get 'url'%>">Bandcamp</a>
+    <% if this.song.get('source') == 'bc': %>
+      <a href="<%= this.song.get('url') %>">Bandcamp</a>
     <% else: %>
-      <a href="<%= this.song.get 'url'%>">SoundCloud</a>
+      <a href="<%= this.song.get('url') %>">SoundCloud</a>
     <% end %>
   </p>
 <% end %>
 <p class="song-info">
-<% if this.song.get 'source' == 'bc': %>
+<% if this.song.get('source') == 'bc': %>
   <a class="btn btn-mini" href="<%= this.song.get('album_url') %>" target="_blank">Get this album on Bandcamp</a>
 <% else: %>
   <a class="btn btn-mini" href="<%= this.song.get('url') %>" target="_blank">Listen to this song on SoundCloud</a>

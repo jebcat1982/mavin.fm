@@ -5,8 +5,8 @@
     <img src="/assets/missing.gif" alt="<%= this.song.get('album') %>">
   <% end %>
   <br>
-  <a href="#" class="like-song <% if this.song.get('liked') == true: %>liked<% end %>" data-song="<%= this.song.id %>"><i class="icon-ok"></i></a>
-  <a href="#" class="dislike-song <% if this.song.get('liked') == false: %>disliked<% end %>" data-song="<%= this.song.id %>"><i class="icon-remove"></i></a>
+  <a href="#" class="like-song <% if this.song.get('liked') == true: %>liked<% end %>" data-song="<%= this.song.id %>"><i class="icon-thumbs-up"></i></a>
+  <a href="#" class="dislike-song <% if this.song.get('liked') == false: %>disliked<% end %>" data-song="<%= this.song.id %>"><i class="icon-thumbs-down"></i></a>
 </p>
 <h4><%= this.song.get('title') %></h4>
 <% if this.song.get('album_url'): %>

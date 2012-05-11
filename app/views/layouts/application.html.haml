@@ -23,7 +23,7 @@
       = link_to 'Feedback?', 'mailto:tomer@mavin.fm', :class => 'btn btn-mini btn-danger', :target => '_blank'
     %h1= image_tag "logo.png"
     %ul#user-nav
-      - if current_user
+      - if current_user.registered
         %li= link_to current_user.username, "/#user/#{current_user.username}"
         %li= link_to 'log out', destroy_user_session_path, :method => :delete
       - else

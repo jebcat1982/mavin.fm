@@ -20,7 +20,7 @@ class PlaylistTracksController < ApplicationController
     if current_user
       @rating = Rating.where(user_id: current_user, playlist_id: @playlist, track_id: @track).first
     else
-      @rating = Rating.where(session_id: session_id, playlist_id: @playlist, track_id: @track).first
+      @rating = Rating.where(session_id: current_session, playlist_id: @playlist, track_id: @track).first
     end
 
     unless @rating.nil?

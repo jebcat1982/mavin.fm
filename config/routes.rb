@@ -17,7 +17,7 @@ Discovery::Application.routes.draw do
   resources :playlists do
     resources :playlist_tracks, :shallow => true
   end
-  devise_for :users
+  devise_for :users, :controllers => { :registrations => "registrations" }
 
   root :to => "listen#index"
 end

@@ -4,9 +4,9 @@ class PlaylistsController < ApplicationController
 
   def index
     if current_user
-      respond_with @playlists = Playlist.where(:user_id => current_user, :deleted => false)
+      respond_with @playlists = Playlist.where(:user_id => current_user.id, :deleted => false).order('created_at ASC')
     else
-      respond_with @playlists = Playlist.where(:session_id => current_session, :deleted => false)
+      respond_with @playlists = Playlist.where(:session_id => current_session, :deleted => false).order('created_at ASC')
     end
   end
 
@@ -24,7 +24,7 @@ class PlaylistsController < ApplicationController
   def create
     @playlist = Playlist.new(params[:playlist])
     if current_user
-      @playlist.user_id = current_user
+      @playlist.user_id = current_user.id
     else
       @playlist.session_id = current_session
     end

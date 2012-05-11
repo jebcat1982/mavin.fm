@@ -13,8 +13,6 @@ class User < ActiveRecord::Base
   has_many :liked_tracks,     :through => :ratings,  :source => :track, :conditions => ['liked = ?',  true]
   has_many :disliked_tracks,  :through => :ratings,  :source => :track, :conditions => ['liked = ?', false]
   
-  after_create :assign_to_user
-
   validates :username, :presence => true,
                        :format => { :with => /^[a-zA-Z0-9]+$/ }
 

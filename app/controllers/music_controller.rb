@@ -1,9 +1,6 @@
 class MusicController < ApplicationController
   respond_to :json, :html
 
-  def show
-  end
-
   def new
     @music = Music.new
     render :layout => 'interest'

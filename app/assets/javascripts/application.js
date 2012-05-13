@@ -28,5 +28,9 @@
 $(document).ready(function() {
   $('.info_container h3').click(function() {
     $(this).next().toggle();
-  })
+  });
+
+  $('#playlists_dropdown').click(function(e) {
+    e.preventDefault();
+  });
 });

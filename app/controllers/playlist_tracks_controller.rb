@@ -19,10 +19,6 @@ class PlaylistTracksController < ApplicationController
 
     @rating = Rating.where(user_id: current_user, playlist_id: @playlist, track_id: @track).first
 
-    unless @rating.nil?
-      respond_with @track.as_json(@rating.liked), :location => nil
-    else
-      respond_with @track.as_json(nil), :location => nil
-    end
+    respond_with @track.as_json(@rating), :location => nil
   end
 end

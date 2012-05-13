@@ -48,7 +48,6 @@ ActiveRecord::Schema.define(:version => 20120511203534) do
 
   create_table "dislikes", :force => true do |t|
     t.integer  "user_id"
-    t.string   "session_id"
     t.integer  "track_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
@@ -56,7 +55,6 @@ ActiveRecord::Schema.define(:version => 20120511203534) do
 
   create_table "likes", :force => true do |t|
     t.integer  "user_id"
-    t.string   "session_id"
     t.integer  "track_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
@@ -71,7 +69,6 @@ ActiveRecord::Schema.define(:version => 20120511203534) do
 
   create_table "playlists", :force => true do |t|
     t.integer  "user_id"
-    t.string   "session_id"
     t.string   "search_term"
     t.datetime "created_at",                     :null => false
     t.datetime "updated_at",                     :null => false
@@ -81,7 +78,6 @@ ActiveRecord::Schema.define(:version => 20120511203534) do
 
   create_table "ratings", :force => true do |t|
     t.integer  "user_id"
-    t.string   "session_id"
     t.integer  "playlist_id"
     t.integer  "track_id"
     t.boolean  "liked"

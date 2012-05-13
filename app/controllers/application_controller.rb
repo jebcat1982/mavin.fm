@@ -12,6 +12,12 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def check_if_registered
+    if current_user.registered
+      redirect_to root_path
+    end
+  end
+
   helper_method :current_session
 
   def create_session

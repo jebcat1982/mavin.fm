@@ -1,5 +1,6 @@
 class RegistrationsController < Devise::RegistrationsController
   skip_filter :require_no_authentication
+  before_filter :check_if_registered, :only => [:new, :create]
 
   def new
     super

@@ -17,7 +17,7 @@
   <p>
     Get this track for free on 
     <% if this.song.get('source') == 'bc': %>
-      <a href="<%= this.song.get('url') %>">Bandcamp</a>
+      <a href="<%= this.song.get('artist_url') %><%= this.song.get('url') %>">Bandcamp</a>
     <% else: %>
       <a href="<%= this.song.get('url') %>">SoundCloud</a>
     <% end %>

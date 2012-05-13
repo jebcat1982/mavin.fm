@@ -6,7 +6,6 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :username, :email, :password, :password_confirmation, :remember_me, :session_id, :registered
-  attr_accessor :session_id
 
   has_many :playlists
   has_many :ratings
@@ -16,26 +15,4 @@ class User < ActiveRecord::Base
   validates :username, :presence => true,
                        :format => { :with => /^[a-zA-Z0-9]+$/ }
 
-  def assign_to_user
-    playlists = Playlist.where(session_id: session_id)
-    playlists.each do |playlist|
-      playlist.user_id = id
-      playlist.session_id = nil
-      playlist.save
-    end
-
-    dislikes = Dislike.where(session_id: session_id)
-    dislikes.each do |dislike|
-      dislike.user_id = id
-      dislike.session_id = nil
-      dislike.save
-    end
-
-    likes = Like.where(session_id: session_id)
-    likes.each do |like|
-      like.user_id = id
-      like.session_id = nil
-      like.save
-    end
-  end
 end

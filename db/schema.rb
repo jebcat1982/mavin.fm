@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120511203534) do
+ActiveRecord::Schema.define(:version => 20120513204002) do
 
   create_table "albums", :force => true do |t|
     t.string   "title"
@@ -45,20 +45,6 @@ ActiveRecord::Schema.define(:version => 20120511203534) do
   end
 
   add_index "bands", ["e_id", "source"], :name => "index_bands_on_e_id_and_source", :unique => true
-
-  create_table "dislikes", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "track_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  create_table "likes", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "track_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
 
   create_table "playlist_tracks", :force => true do |t|
     t.integer  "playlist_id"

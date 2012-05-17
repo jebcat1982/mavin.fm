@@ -8,6 +8,7 @@
 - @similar.each do |track|
   .track
     <a href="#" class="play" data-location="#{track.streaming_url}"><i class="icon-play"></i></a>
+    <a href="#" class="stop" style="display:none;"><i class="icon-stop"></i></a>
     - if track.source == 'bc'
       <a href="#{track.artist_url}#{track.url}" target="_blank">#{track.title}</a> by <a href="#{track.url}" target="_blank">#{track.artist}</a>
       - if track.album_url
@@ -15,4 +16,6 @@
     - else
       <a href="#{track.url}" target="_blank">#{track.title}</a> by <a href="#{track.artist_url}" target="_blank">#{track.artist}</a>
 
-.get_more= link_to 'Get more', search_results_path(query: @query)
+.get_more= link_to 'Get more', search_results_path(query: @query), :class => 'btn btn-primary btn-large'
+
+#jplayer_search

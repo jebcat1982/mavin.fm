@@ -95,6 +95,51 @@ class Track < ActiveRecord::Base
     self.find(track.to_i)
   end
 
+  def self.find_known_similar(key)
+    tracks = Discovery.redis.smembers 'tracks'
+
+    total = 0
+    size = 0
+    intersection = {}
+
+    counts = Discovery.redis.pipelined {
+      tracks.each do |track|
+        tid = "t#{track}"
+        Discovery.redis.sinterstore "temp", key, tid
+      end
+    }
+
+    tracks.each_with_index do |track,i|
+      count = counts[i]
+      if count != 0 
+        intersection[track] = count
+        total += count
+        size += 1
+      end
+    end
+
+    return Track.all(:order => 'RANDOM()', :limit => 5) if total == 0 || size == 0
+
+    mean = total.to_f / size.to_f
+    tmp = 0
+
+    possible = []
+    intersection.each do |tid,count|
+      possible << tid if count >= mean # std+mean
+    end
+
+    similar = []
+    
+    while similar.count < 5 && possible.count != 0 do
+      track = possible[rand(possible.length-1)]
+      similar << self.find(track.to_i)
+      possible.delete_at(track.to_i)
+    end
+
+    similar
+  end
+
+
   def self.bandcamp_new(args = {}, album = {}, band = nil)
     track = self.new
     album = {} if album.nil?

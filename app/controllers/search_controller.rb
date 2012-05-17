@@ -16,7 +16,7 @@ class SearchController < ApplicationController
       track = KnownTrack.create(artist: json['toptags']['@attr']['artist'], name: json['toptags']['@attr']['track']) if track.nil?
 
       json['toptags']['tag'].each do |t|
-        tag = Tag.find(:first, :conditions => [ "lower(name) = ? ", t['name']])
+        tag = Tag.find(:first, :conditions => [ "lower(name) = ? ", t['name'].downcase])
         unless tag.nil?
           track.tags << tag
         end
@@ -33,7 +33,7 @@ class SearchController < ApplicationController
       artist = KnownArtist.find_or_create_by_name(json['toptags']['@attr']['artist'])
       
       json['toptags']['tag'].each do |t|
-        tag = Tag.find(:first, :conditions => [ "lower(name) = ? ", t['name']])
+        tag = Tag.find(:first, :conditions => [ "lower(name) = ? ", t['name'].downcase])
         unless tag.nil?
           artist.tags << tag
         end

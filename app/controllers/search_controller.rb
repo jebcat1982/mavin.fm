@@ -3,6 +3,7 @@ class SearchController < ApplicationController
   end
 
   def find
+    redirect_to search_path
   end
 
   def results

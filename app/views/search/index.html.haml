@@ -1,0 +1,4 @@
+.search_form
+  = form_for '/search', :method => :post do |f|
+    %input{:name => 'query', :type => 'text'}
+    %input{:type => 'submit', :value => 'Find!'}

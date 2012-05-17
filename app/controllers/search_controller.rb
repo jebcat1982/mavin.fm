@@ -43,7 +43,7 @@ class SearchController < ApplicationController
       path = artist.name.gsub(' ', '+')
     end
 
-    redirect_to search_path
+    redirect_to search_results_path(query: path)
   end
 
   def results

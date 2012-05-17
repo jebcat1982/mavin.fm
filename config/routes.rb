@@ -15,7 +15,7 @@ Discovery::Application.routes.draw do
 
   get "search" => "search#index", :as => :search
   post "search" => "search#find"
-  get "search/:artist" => "search#results", :as => :search_results
+  get "search/:query" => "search#results", :as => :search_results
 
   resources :bands, :albums, :tags, :tracks
   resources :playlists do

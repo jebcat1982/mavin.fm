@@ -1,4 +1,6 @@
 class SearchController < ApplicationController
+  respond_to :html
+
   def index
   end
 
@@ -56,11 +58,11 @@ class SearchController < ApplicationController
       track = @query.split(' by ')[0]
       artist = @query.split(' by ')[1]
       track = KnownTrack.find(:first, :conditions => [ "lower(artist) = ? AND lower(name) = ?", artist.downcase, track.downcase ])
-      # @similar = Track.find_known_similar("kt#{track.id}") unless track.nil?
+      @similar = Track.find_known_similar("kt#{track.id}") unless track.nil?
     else
       # No it's an artist!
-      artist = KnownArtist.find(:first, :conditions => [ "lower(name) = ?", query.downcase ])
-      # @similar = Track.find_known_similar("ka#{artist.id}") unless artist.nil?
+      artist = KnownArtist.find(:first, :conditions => [ "lower(name) = ?", @query.downcase ])
+      @similar = Track.find_known_similar("ka#{artist.id}") unless artist.nil?
     end
 
     respond_with @similar

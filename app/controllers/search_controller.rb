@@ -19,6 +19,7 @@ class SearchController < ApplicationController
         tag = Tag.find(:first, :conditions => [ "lower(name) = ? ", t['name'].downcase])
         unless tag.nil?
           track.tags << tag
+          Discovery.redis.sadd "kt#{track.id}", tag.id
         end
       end
       track.save
@@ -36,6 +37,7 @@ class SearchController < ApplicationController
         tag = Tag.find(:first, :conditions => [ "lower(name) = ? ", t['name'].downcase])
         unless tag.nil?
           artist.tags << tag
+          Discovery.redis.sadd "ka#{artist.id}", tag.id
         end
       end
 

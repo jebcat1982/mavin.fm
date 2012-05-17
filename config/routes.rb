@@ -13,6 +13,10 @@ Discovery::Application.routes.draw do
   get "user/:username/liked" => "user#liked"
   get "user/:username/disliked" => "user#disliked"
 
+  get "search" => "search#index", :as => :search
+  post "search" => "search#find"
+  get "search/:artist" => "search#results", :as => :search_results
+
   resources :bands, :albums, :tags, :tracks
   resources :playlists do
     resources :playlist_tracks, :shallow => true

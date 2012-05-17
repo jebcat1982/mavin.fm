@@ -1,4 +1,8 @@
 .search_form
-  = form_for '/search', :method => :post do |f|
-    %input{:name => 'query', :type => 'text'}
-    %input{:type => 'submit', :value => 'Find!'}
+  = form_tag search_path, :method => :post do |f|
+    %input{:name => 'query', :type => 'text', :id => 'known_search_box', :placeholder => 'Come Together by The Beatles'}
+    %input{:type => 'submit', :value => 'Find!', :class => 'btn btn-inverse'}
+
+.info_container
+  %h2 Find music based on artists you already know!
+  %p All you have to do is search for any artist (or track) that you already know and we'll try to find similar music for you.

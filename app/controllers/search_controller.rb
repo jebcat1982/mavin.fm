@@ -49,5 +49,20 @@ class SearchController < ApplicationController
   end
 
   def results
+    @query = params[:query].gsub('+', ' ')
+    @similar = []
+    if @query.index(' by ')
+      # It's a track!
+      track = @query.split(' by ')[0]
+      artist = @query.split(' by ')[1]
+      track = KnownTrack.find(:first, :conditions => [ "lower(artist) = ? AND lower(name) = ?", artist.downcase, track.downcase ])
+      # @similar = Track.find_known_similar("kt#{track.id}") unless track.nil?
+    else
+      # No it's an artist!
+      artist = KnownArtist.find(:first, :conditions => [ "lower(name) = ?", query.downcase ])
+      # @similar = Track.find_known_similar("ka#{artist.id}") unless artist.nil?
+    end
+
+    respond_with @similar
   end
 end

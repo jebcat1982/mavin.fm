@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
 
   has_many :playlists
   has_many :ratings
+  has_many :stations
   has_many :liked_tracks,     :through => :ratings,  :source => :track, :conditions => ['liked = ?',  true]
   has_many :disliked_tracks,  :through => :ratings,  :source => :track, :conditions => ['liked = ?', false]
   

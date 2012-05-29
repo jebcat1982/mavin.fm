@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120517172415) do
+ActiveRecord::Schema.define(:version => 20120529181500) do
 
   create_table "albums", :force => true do |t|
     t.string   "title"
@@ -91,6 +91,21 @@ ActiveRecord::Schema.define(:version => 20120517172415) do
     t.float    "percentage"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+  end
+
+  create_table "station_tracks", :force => true do |t|
+    t.integer  "station_id"
+    t.integer  "track_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "stations", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "name"
+    t.boolean  "deleted",    :default => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
   end
 
   create_table "taggings", :force => true do |t|

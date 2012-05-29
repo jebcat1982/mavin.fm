@@ -50,7 +50,7 @@ describe Bandcamp do
     end
   end
 
-  describe "saves" do
+  pending "saves" do
     it "should create a track and tags" do
       track = Bandcamp.new('http://featurelessghost.bandcamp.com/track/lost-city-cont', ['dance', 'electronic', 'house'])
       track.save

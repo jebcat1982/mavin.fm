@@ -7,4 +7,12 @@ describe StationsController do
       response.should be_success
     end
   end
+
+  describe "GET 'show'" do
+    it "returns the selected station" do
+      station = FactoryGirl.create(:station)
+      get 'show', format: :json, id: station.id
+      response.body.should == station.to_json
+    end
+  end
 end

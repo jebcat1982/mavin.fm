@@ -6,6 +6,6 @@ class StationsController < ApplicationController
   end
 
   def show
-    respond_with @station = Station.where(id: params[:id], deleted: false).first
+    respond_with @station = current_user.stations.where(id: params[:id], deleted: false).first
   end
 end

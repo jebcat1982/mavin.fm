@@ -10,7 +10,9 @@ describe StationsController do
 
   describe "GET 'show'" do
     it "returns the selected station" do
-      station = FactoryGirl.create(:station)
+      user = User.create(username: 'tomer', email: 'tomer@awesome.com', registered: false)
+      controller.stub current_user: user
+      station = FactoryGirl.create(:station, user_id: controller.current_user.id)
       get 'show', format: :json, id: station.id
       response.body.should == station.to_json
     end

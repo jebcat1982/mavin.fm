@@ -17,4 +17,16 @@ describe StationsController do
       response.body.should == station.to_json
     end
   end
+
+  describe "POST 'create'" do
+    it "creates a station" do
+      user = User.new(username: 'tomer', email: 'tomer@awesome.com', registered: false)
+      user.save(validate: false)
+      controller.stub current_user: user
+
+      expect {
+        post 'create', format: :json, :station => { name: "Tomer's Music Playlist" }
+      }.to change(Station, :count).by(1)
+    end
+  end
 end

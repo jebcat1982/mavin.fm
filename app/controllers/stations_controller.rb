@@ -8,4 +8,8 @@ class StationsController < ApplicationController
   def show
     respond_with @station = current_user.stations.where(id: params[:id], deleted: false).first
   end
+
+  def create
+    respond_with @station = current_user.stations.create(params[:station])
+  end
 end

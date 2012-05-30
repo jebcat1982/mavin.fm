@@ -17,7 +17,7 @@ Discovery::Application.routes.draw do
   post "search" => "search#find"
   get "search/:query" => "search#results", :as => :search_results
 
-  resources :bands, :albums, :tags, :tracks
+  resources :bands, :albums, :tags, :tracks, :stations
   resources :playlists do
     resources :playlist_tracks, :shallow => true
   end

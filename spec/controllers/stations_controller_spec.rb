@@ -28,5 +28,16 @@ describe StationsController do
         post 'create', format: :json, :station => { name: "Tomer's Music Playlist" }
       }.to change(Station, :count).by(1)
     end
+
+    it "creates a station with tags" do
+      user = User.new(username: 'tomer', email: 'tomer@awesome.com', registered: false)
+      user.save(validate: false)
+      controller.stub current_user: user
+      FactoryGirl.create(:tag)
+
+      expect {
+        post 'create', format: :json, :station => { name: "Tomer's Music Playlist", genre: "jazz" }
+      }.to change(Tagging, :count).by(1)
+    end
   end
 end

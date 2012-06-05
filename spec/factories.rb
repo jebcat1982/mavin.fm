@@ -10,4 +10,8 @@ FactoryGirl.define do
   factory :station do
     name "Tomer's station"
   end
+
+  factory :tag do
+    name "jazz"
+  end
 end

@@ -5,4 +5,15 @@ class Station < ActiveRecord::Base
 
   has_many :taggings
   has_many :tags, :through => :taggings, :uniq => true
+
+  attr_accessor :genre
+
+  after_create :add_tags
+
+  def add_tags
+    unless genre.nil?
+      self.tags = Tag.where("name LIKE '%#{genre}%'")
+      self.save
+    end
+  end
 end

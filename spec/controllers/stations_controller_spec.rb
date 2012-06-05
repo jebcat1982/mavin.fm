@@ -38,4 +38,13 @@ describe StationsController do
       }.to change(Tagging, :count).by(1)
     end
   end
+
+  describe "DELETE 'destroy'" do
+    it "soft deletes the station" do
+      station = FactoryGirl.create(:station, user_id: controller.current_user.id)
+      delete 'destroy', format: :json, id: station.id
+      station = Station.find(station.id)
+      station.deleted.should == true
+    end
+  end
 end

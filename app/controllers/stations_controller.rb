@@ -12,4 +12,10 @@ class StationsController < ApplicationController
   def create
     respond_with @station = current_user.stations.create(params[:station])
   end
+
+  def destroy
+    @station = current_user.stations.find(params[:id])
+    @station.update_attributes(deleted: true)
+    respond_with :no_content
+  end
 end

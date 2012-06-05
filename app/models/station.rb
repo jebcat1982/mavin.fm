@@ -8,7 +8,18 @@ class Station < ActiveRecord::Base
 
   attr_accessor :genre
 
+  before_create :create_name
   after_create :add_tags
+
+  def create_name
+    if name.nil?
+      if genre.nil?
+        self.name = "Random Playlist"
+      else
+        self.name =  "#{genre.humanize} Playlist"
+      end
+    end
+  end
 
   def add_tags
     unless genre.nil?

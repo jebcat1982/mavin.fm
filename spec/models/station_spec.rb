@@ -9,5 +9,13 @@ describe Station do
       station.save
       station.tags.count.should == 1
     end
+
+    it "should create a name" do
+      station = Station.new(genre: 'jazz')
+      station.save
+      station.name.should_not be_nil
+      station.name.should_not == ""
+      station.name.should == "Jazz Playlist"
+    end
   end
 end

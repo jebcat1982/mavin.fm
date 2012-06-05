@@ -5,6 +5,7 @@ describe StationsController do
     user = User.new(username: 'tomer', email: 'tomer@awesome.com', registered: false)
     user.save(validate: false)
     controller.stub current_user: user
+    Station.skip_callback(:create, :after, :add_tags_to_redis)
   end
 
   describe "GET 'index'" do

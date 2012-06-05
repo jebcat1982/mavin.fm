@@ -9,7 +9,7 @@ class Station < ActiveRecord::Base
   attr_accessor :genre
 
   before_create :create_name
-  after_create :add_tags
+  after_create :add_tags, :add_tags_to_redis
 
   def create_name
     if name.nil?
@@ -26,5 +26,9 @@ class Station < ActiveRecord::Base
       self.tags = Tag.where("name LIKE '%#{genre}%'")
       self.save
     end
+  end
+
+  def add_tags_to_redis
+    tags.each { |t| Discovery.redis.sadd "s#{id}", t.id }
   end
 end

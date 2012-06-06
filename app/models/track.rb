@@ -140,11 +140,4 @@ class Track < ActiveRecord::Base
 
     track
   end
-
-  def as_json(rating, attributes = {})
-    json = super(attributes)
-    json['liked'] = nil
-    json['liked'] = rating.liked unless rating.nil? 
-    json
-  end
 end

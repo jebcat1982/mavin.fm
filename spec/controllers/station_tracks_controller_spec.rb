@@ -15,4 +15,18 @@ describe StationTracksController do
       response.should be_success
     end
   end
+  
+  describe "POST 'create'" do
+    it "returns success" do
+      track = Track.create
+      post 'create', format: :json, station_id: @station.id
+      response.should be_success
+    end
+
+    it "returns a track" do
+      track = Track.create
+      post 'create', format: :json, station_id: @station.id
+      response.body.should == track.to_json
+    end
+  end
 end

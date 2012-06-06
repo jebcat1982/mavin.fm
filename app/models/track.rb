@@ -64,49 +64,6 @@ class Track < ActiveRecord::Base
     return intersection, size, total
   end
 
-
-  def self.find_recommendation(playlist)
-    pid = "p#{playlist.id}"
-
-    playlist_tracks = playlist.tracks.select('tracks.id').order('playlist_tracks.created_at DESC').limit(15)
-    tracks = Discovery.redis.sdiff 'tracks', "pd#{playlist.id}", "pts#{playlist.id}"
-
-    total = 0
-    size = 0
-    intersection = {}
-
-    counts = Discovery.redis.pipelined {
-      tracks.each do |track|
-        tid = "t#{track}"
-        Discovery.redis.sinterstore "temp", pid, tid
-      end
-    }
-
-    tracks.each_with_index do |track,i|
-      count = counts[i]
-      if count != 0 
-        intersection[track] = count
-        total += count
-        size += 1
-      end
-    end
-
-    return Track.first(:order => 'RANDOM()') if total == 0 || size == 0
-
-    mean = total.to_f / size.to_f
-    tmp = 0
-
-    possible = []
-    intersection.each do |tid,count|
-      possible << tid if count >= mean # std+mean
-    end
-
-    track = possible[rand(possible.length-1)]
-    Discovery.redis.srem "pts#{playlist.id}", playlist_tracks.first.id unless playlist_tracks.empty?
-    Discovery.redis.sadd "pts#{playlist.id}", track
-    self.find(track.to_i)
-  end
-
   def self.find_known_similar(key)
     tracks = Discovery.redis.smembers 'tracks'
 

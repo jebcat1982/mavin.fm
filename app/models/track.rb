@@ -8,6 +8,63 @@ class Track < ActiveRecord::Base
 
   validates :e_id, :uniqueness => { :scope => :source }
 
+  def self.find_next(station)
+    sid = "s#{station.id}"
+    tracks = get_all_tracks(station.id)
+
+    counts = get_counts(tracks, sid)
+    intersection, size, total = tally(tracks, counts)
+
+    return Track.first(:order => 'RANDOM()') if total == 0 || size == 0
+
+    mean = total.to_f / size.to_f
+
+    possible = []
+    intersection.each do |tid,count|
+      possible << tid if count >= mean # std+mean
+    end
+
+    track = possible[rand(possible.length-1)]
+    update_station_sets(station, track)
+    self.find(track.to_i)
+  end
+
+  def self.update_station_sets(station, track)
+    station_tracks = station.tracks.select('tracks.id').order('station_tracks.created_at DESC').limit(15)
+    Discovery.redis.srem "sts#{station.id}", station_tracks.first.id unless station_tracks.empty?
+    Discovery.redis.sadd "sts#{station.id}", track
+  end
+  
+  def self.get_all_tracks(station_id)
+    Discovery.redis.sdiff 'tracks', "sd#{station_id}", "sts#{station_id}"
+  end
+
+  def self.get_counts(tracks, key)
+    Discovery.redis.pipelined {
+      tracks.each do |track|
+        Discovery.redis.sinterstore "temp", key, "t#{track}"
+      end
+    }
+  end
+
+  def self.tally(tracks, counts)
+    intersection = {}
+    size = 0
+    total = 0
+
+    tracks.each_with_index do |track,i|
+      count = counts[i]
+      if count != 0 
+        intersection[track] = count
+        total += count
+        size += 1
+      end
+    end
+
+    return intersection, size, total
+  end
+
+
   def self.find_recommendation(playlist)
     pid = "p#{playlist.id}"
 

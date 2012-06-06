@@ -25,6 +25,12 @@ describe StationTracksController do
       response.should be_success
     end
 
+    it "should create a station_track" do
+      expect {
+        post 'create', format: :json, station_id: @station.id
+      }.to change(StationTrack, :count).by(1)
+    end
+
     it "returns a track" do
       post 'create', format: :json, station_id: @station.id
       response.body.should == @track.to_json

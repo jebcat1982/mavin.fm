@@ -67,31 +67,12 @@ class Track < ActiveRecord::Base
   def self.find_known_similar(key)
     tracks = Discovery.redis.smembers 'tracks'
 
-    total = 0
-    size = 0
-    intersection = {}
-
-    counts = Discovery.redis.pipelined {
-      tracks.each do |track|
-        tid = "t#{track}"
-        Discovery.redis.sinterstore "temp", key, tid
-      end
-    }
-
-    tracks.each_with_index do |track,i|
-      count = counts[i]
-      if count != 0 
-        intersection[track] = count
-        total += count
-        size += 1
-      end
-    end
+    counts = get_counts(tracks, key)
+    intersection, size, total = tally(tracks, counts)
 
     return Track.all(:order => 'RANDOM()', :limit => 5) if total == 0 || size == 0
 
     mean = total.to_f / size.to_f
-    tmp = 0
-
     possible = []
     intersection.each do |tid,count|
       possible << tid if count >= mean # std+mean

@@ -6,6 +6,9 @@ describe StationTracksController do
     user.save(validate: false)
     controller.stub current_user: user
 
+    @track = Track.create
+    Track.stub(:find_next).and_return(@track)
+
     @station = FactoryGirl.create(:station, user_id: controller.current_user.id)
   end
 
@@ -18,15 +21,13 @@ describe StationTracksController do
   
   describe "POST 'create'" do
     it "returns success" do
-      track = Track.create
       post 'create', format: :json, station_id: @station.id
       response.should be_success
     end
 
     it "returns a track" do
-      track = Track.create
       post 'create', format: :json, station_id: @station.id
-      response.body.should == track.to_json
+      response.body.should == @track.to_json
     end
   end
 end

@@ -31,4 +31,10 @@ class Station < ActiveRecord::Base
   def add_tags_to_redis
     tags.each { |t| Discovery.redis.sadd "s#{id}", t.id }
   end
+
+  def like(track_id)
+  end
+
+  def dislike(track_id)
+  end
 end
